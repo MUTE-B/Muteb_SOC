@@ -200,3 +200,63 @@ echo "$REPORT"
 echo
 
 echo "Muteb SOC Scan Completed"
+#!/usr/bin/env bash
+
+# ============================================================
+# اسم المشروع : Muteb SOC
+# المطور      : Muteb Albalawi
+# الوظيفة     : الملف الرئيسي المسؤول عن تشغيل المشروع
+# الإصدار     : v1.0.0
+# ============================================================
+
+# ============================================================
+# تحديد المسار الرئيسي للمشروع
+# ============================================================
+
+readonly PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# ============================================================
+# تحميل محرك المشروع
+# ============================================================
+
+source "${PROJECT_ROOT}/core/loader.sh"
+
+# ============================================================
+# بداية تشغيل المشروع
+# ============================================================
+
+show_banner
+
+log_info "Muteb SOC Started Successfully"
+
+log_info "Loading Monitoring Modules"
+
+log_info "Loading Security Modules"
+
+log_info "Preparing Report Engine"
+
+log_info "Framework Ready"
+
+echo
+
+echo "Project Loaded Successfully."
+
+echo
+
+exit 0
+#!/usr/bin/env bash
+
+source core/loader.sh
+
+main() {
+
+    load_core_modules
+
+    bootstrap_framework
+
+    shutdown_framework
+
+}
+
+main "$@"
+
