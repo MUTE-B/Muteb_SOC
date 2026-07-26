@@ -109,3 +109,39 @@ load_core_modules() {
     echo "[INFO] Core Framework Loaded Successfully."
 
 }
+#!/usr/bin/env bash
+
+# ============================================================
+# مشروع        : Muteb SOC
+# الملف        : loader.sh
+# الوصف        : تحميل جميع ملفات Core بالترتيب الصحيح.
+# ============================================================
+
+# تحميل ملف واحد
+load_module() {
+
+    local module_path="$1"
+
+    if [[ ! -f "$module_path" ]]; then
+        echo "[FATAL] Module not found: $module_path"
+        exit 1
+    fi
+
+    source "$module_path"
+
+}
+
+# تحميل جميع ملفات Core
+load_core_modules() {
+
+    load_module "core/constants.sh"
+    load_module "core/helpers.sh"
+    load_module "core/colors.sh"
+    load_module "core/logger.sh"
+    load_module "core/banner.sh"
+    load_module "core/validator.sh"
+    load_module "core/health.sh"
+    load_module "core/bootstrap.sh"
+    load_module "core/shutdown.sh"
+
+}
