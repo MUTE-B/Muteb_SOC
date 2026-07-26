@@ -56,3 +56,32 @@ venv/
 # Temporary Files
 
 *.tmp
+venv/
+
+__pycache__/
+
+*.pyc
+
+*.log
+
+.env
+
+reports/
+
+backup/
+
+logs/
+
+*.pdf
+
+.idea/
+
+.vscode/
+
+.DS_Store
+backups/*.tar.gz
+logs/*
+tmp/*
+reports/*
+*.log
+.env
