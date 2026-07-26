@@ -24,3 +24,35 @@ baseline/current_*
 # Operating system files
 .DS_Store
 Thumbs.db
+# Python Cache
+
+__pycache__/
+
+*.pyc
+
+
+
+# Virtual Environment
+
+venv/
+
+
+.env
+
+
+
+# Reports
+
+*.pdf
+
+
+
+# Logs
+
+*.log
+
+
+
+# Temporary Files
+
+*.tmp

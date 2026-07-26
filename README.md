@@ -54,3 +54,118 @@ docs/
 ## Current Version
 
 v1.0.0
+# Muteb SOC
+
+
+## Project Overview
+
+
+مشروع Muteb SOC هو مختبر أمني تدريبي
+يهدف إلى بناء بيئة عملية لتعلم:
+
+- Linux Administration
+- SOC Operations
+- Security Monitoring
+- Incident Response
+- Security Automation
+
+
+
+## Project Goals
+
+
+الأهداف الرئيسية للمشروع:
+
+
+- تطوير مهارات محلل SOC.
+
+- تطبيق مفاهيم Blue Team.
+
+- بناء أدوات أمنية بسيطة.
+
+- توثيق العمليات الأمنية.
+
+
+
+## Project Structure
+
+
+
+
+## Technologies Used
+
+
+Operating System:
+
+Ubuntu Linux
+
+
+Languages:
+
+- Bash
+
+- Python
+
+
+Security Concepts:
+
+- Logs Analysis
+
+- Firewall
+
+- SSH Security
+
+- Permissions
+
+- Hardening
+
+
+
+## Installation
+
+
+Run:
+
+
+```bash
+sudo ./INSTALL.sh
+
+
+
+## Technologies Used
+
+
+Operating System:
+
+Ubuntu Linux
+
+
+Languages:
+
+- Bash
+
+- Python
+
+
+Security Concepts:
+
+- Logs Analysis
+
+- Firewall
+
+- SSH Security
+
+- Permissions
+
+- Hardening
+
+
+
+## Installation
+
+
+Run:
+
+
+```bash
+sudo ./INSTALL.sh

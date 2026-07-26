@@ -1,0 +1,110 @@
+# =====================================================
+# Muteb SOC Detection Rule
+#
+# Name:
+# Privilege Escalation Detection
+#
+# Purpose:
+# Detect suspicious attempts to gain higher privileges
+#
+# Log Source:
+# Linux Authentication Logs
+# =====================================================
+
+
+
+rule:
+
+
+  name:
+    Privilege Escalation Attempt
+
+
+
+  description:
+    Detect unauthorized privilege elevation activities
+
+
+
+  severity:
+    High
+
+
+
+  category:
+    Privilege Abuse
+
+
+
+  log_source:
+
+
+    files:
+
+
+      - /var/log/auth.log
+
+      - /var/log/secure
+
+
+
+  detection:
+
+
+    events:
+
+
+      sudo_usage:
+
+
+        keywords:
+
+
+          - sudo
+
+
+          - authentication failure
+
+
+
+      root_access:
+
+
+        keywords:
+
+
+          - su root
+
+
+          - session opened for user root
+
+
+
+  threshold:
+
+
+    attempts:
+      3
+
+
+    timeframe:
+      10 minutes
+
+
+
+  response:
+
+
+    actions:
+
+
+      - Review User Permissions
+
+
+      - Check Command History
+
+
+      - Investigate User Activity
+
+
+      - Disable Suspicious Account If Required
