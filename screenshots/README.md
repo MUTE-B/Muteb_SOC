@@ -1,35 +1,42 @@
 # MUTEB SOC Screenshots
 
 
-Add screenshots demonstrating:
-
-
 ## Dashboard
 
-- SOC Dashboard Interface
-- Security Monitoring View
+
+Shows:
+
+- Active alerts
+- Incident count
+- SOC monitoring status
 
 
-## Detection
 
-- Alert Detection Output
-- Threat Hunting Results
+## Alerts
 
 
-## Incident Response
+Shows:
 
-- Case Creation
-- Investigation Timeline
-
-
-## Security Rules
-
-- YARA Detection
-- Sigma Rules
+- Detection results
+- Severity level
+- Evidence
 
 
-## MITRE Mapping
 
-- ATT&CK Technique Mapping
+## Incident Cases
+
+
+Shows:
+
+- Case ID
+- Timeline
+- Investigation notes
+
+
+
+## Purpose
+
+
+Screenshots demonstrate practical SOC workflow execution.
 
 
