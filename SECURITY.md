@@ -1,73 +1,40 @@
-# Security Policy
+# MUTEB SOC Security Policy
 
 
 ## Reporting Security Issues
 
 
-إذا وجدت مشكلة أمنية داخل المشروع
-يرجى توثيقها بشكل مسؤول.
-
+Security issues should be reported responsibly.
 
 
 ## Supported Version
 
 
-Current Version:
+Current:
+
+v1.3.0
 
 
-1.0.0
+## Security Areas
 
 
-
-## Security Principles
-
-
-The project follows:
-
-
-- Least Privilege
-
-- Secure Configuration
-
-- Logging
-
-- Monitoring
-
-- Documentation
-# Security Policy
-
-## Supported Version
-
-Latest
-
----
-
-## Reporting a Security Issue
-
-If you discover a security vulnerability, please create a private report before publishing any details.
-
----
-
-## Scope
-
-This project is intended for:
-
-- Security Education
-- Blue Team
-- SOC Laboratory
-- Linux Administration
+- Detection Rules
+- Authentication Monitoring
+- Incident Response
 - Security Automation
 
----
 
-## Responsible Disclosure
+## Response Process
 
-Please do not publish security issues until they have been reviewed.
 
----
+1. Validate report
 
-## Contact
+2. Investigate issue
 
-Developer
+3. Apply security fix
 
-Muteb Albalawi
+4. Document resolution
+
+
+MUTEB SOC Team
+

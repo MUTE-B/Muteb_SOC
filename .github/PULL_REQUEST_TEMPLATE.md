@@ -1,24 +1,29 @@
 # Pull Request
 
+
 ## Description
-Explain the changes introduced.
+
+Describe the security improvement or feature.
+
 
 ## Type of Change
 
-- [ ] Bug Fix
-- [ ] New Feature
+- [ ] New Detection Rule
+
 - [ ] Security Improvement
+
 - [ ] Documentation
+
+- [ ] Bug Fix
+
 
 ## Testing
 
-- [ ] Python Tests Passed
-- [ ] Bash Tests Passed
-- [ ] Manual Testing Completed
+Describe tests performed.
 
-## Security Checklist
 
-- [ ] No Secrets Added
-- [ ] No Credentials Added
-- [ ] Code Reviewed
+## Security Impact
+
+Explain security impact.
+
 

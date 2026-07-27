@@ -1,12 +1,23 @@
 # Code of Conduct
 
-All contributors should
 
-- Be respectful
-- Provide constructive feedback
+## Our Commitment
+
+
+We are committed to creating a professional and respectful security community.
+
+
+## Expected Behavior
+
+
+- Respect contributors
+- Share knowledge responsibly
 - Follow ethical security practices
-- Respect open-source licenses
 
----
 
-Muteb SOC is an educational and defensive security project.
+## Security Ethics
+
+
+MUTEB SOC is designed for defensive security and authorized environments only.
+
+
