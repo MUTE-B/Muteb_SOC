@@ -1,18 +1,14 @@
 #!/bin/bash
-#
-# MUTEB SOC
-# Python Syntax Test
-#
-
 
 echo "=== PYTHON TEST ==="
 
 
-
-find automation hunting threat_intel incident -name "*.py" | while read FILE
+find automation threat_intel incident hunting \
+-name "*.py" \
+-type f \
+| while read FILE
 
 do
-
 
 python3 -m py_compile "$FILE"
 
@@ -23,11 +19,9 @@ then
 
 echo "[+] OK : $FILE"
 
-
 else
 
 echo "[-] ERROR : $FILE"
-
 
 fi
 

@@ -1,65 +1,35 @@
 #!/bin/bash
-#
-# MUTEB SOC
-# Project Structure Test
-#
+
+echo "=== STRUCTURE TEST ==="
 
 
-echo "=== MUTEB SOC STRUCTURE TEST ==="
+FILES=(
 
-
-DIRS=(
-
-automation
-automation/bash
-automation/python
-detections
-playbooks
-docs
-reports
-logs
-utilities
-hardening
-incident
-hunting
-threat_intel
+"muteb_soc.sh"
+"dashboard.sh"
+"automation/python/log_analyzer.py"
+"threat_intel/ioc_scanner.py"
+"incident/case_manager.py"
+"hunting/persistence_hunter.py"
+"hardening/firewall_hardening.sh"
 
 )
 
 
-
-PASS=0
-FAIL=0
-
-
-
-for DIR in "${DIRS[@]}"
+for FILE in "${FILES[@]}"
 do
 
-if [[ -d "$DIR" ]]
+if [[ -f "$FILE" ]]
 
 then
 
-echo "[+] OK : $DIR"
-
-((PASS++))
+echo "[+] OK : $FILE"
 
 else
 
-echo "[-] Missing : $DIR"
-
-((FAIL++))
+echo "[-] MISSING : $FILE"
 
 fi
 
-
 done
-
-
-
-echo
-
-echo "Passed : $PASS"
-
-echo "Failed : $FAIL"
 

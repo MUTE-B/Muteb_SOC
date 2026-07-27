@@ -1,72 +1,179 @@
 #!/usr/bin/env python3
 
+#
+# ==========================================================
+# MUTEB SOC v1.1
+# IOC Scanner v2
+# ==========================================================
+#
+
+import json
 import os
-import hashlib
+import re
+import datetime
 
 
-IOC_FILE="threat_intel/iocs.txt"
+LOG_FILE="/var/log/auth.log"
+
+IOC_DB="threat_intel/ioc_database.json"
+
+REPORT="reports/ioc_scan_report.json"
 
 
 
-SEARCH_DIR="/tmp"
+def load_iocs():
+
+    if not os.path.exists(IOC_DB):
+
+        database={
+
+            "malicious_ips":[
+                "192.168.1.100"
+            ],
+
+            "malicious_domains":[
+                "evil.com"
+            ]
+
+        }
+
+
+        with open(IOC_DB,"w") as f:
+
+            json.dump(
+                database,
+                f,
+                indent=4
+            )
+
+
+    with open(IOC_DB) as f:
+
+        return json.load(f)
 
 
 
-if not os.path.exists(IOC_FILE):
 
-    open(IOC_FILE,"w").write(
+def scan():
 
-    "# Add hashes here\n"
+
+    iocs=load_iocs()
+
+    findings=[]
+
+
+    if not os.path.exists(LOG_FILE):
+
+        print("Log file missing")
+
+        return
+
+
+
+    with open(LOG_FILE,errors="ignore") as log:
+
+
+        for line in log:
+
+
+            for ip in iocs["malicious_ips"]:
+
+
+                if ip in line:
+
+
+                    findings.append({
+
+                        "type":"Malicious IP",
+
+                        "ioc":ip,
+
+                        "log":line.strip()
+
+                    })
+
+
+
+            for domain in iocs["malicious_domains"]:
+
+
+                if domain in line:
+
+
+                    findings.append({
+
+                        "type":"Malicious Domain",
+
+                        "ioc":domain,
+
+                        "log":line.strip()
+
+                    })
+
+
+
+
+    report={
+
+
+        "tool":
+
+        "MUTEB SOC IOC Scanner",
+
+
+        "timestamp":
+
+        str(datetime.datetime.now()),
+
+
+        "detections":
+
+        len(findings),
+
+
+        "findings":
+
+        findings
+
+
+    }
+
+
+
+    os.makedirs(
+
+        "reports",
+
+        exist_ok=True
 
     )
 
 
-
-with open(IOC_FILE) as f:
-
-    iocs=[x.strip() for x in f.readlines()]
+    with open(REPORT,"w") as f:
 
 
+        json.dump(
 
-print("\n=== MUTEB SOC IOC SCANNER ===\n")
+            report,
 
+            f,
 
+            indent=4
 
-for root,dirs,files in os.walk(SEARCH_DIR):
-
-
-    for file in files:
-
-
-        path=os.path.join(root,file)
-
-
-        try:
-
-            sha256=hashlib.sha256(
-
-            open(path,'rb').read()
-
-            ).hexdigest()
+        )
 
 
 
-            if sha256 in iocs:
+    print("[+] IOC Scan Completed")
 
-                print(
+    print("[+] Detections:",len(findings))
 
-                "[!] IOC MATCH:",
-
-                path
-
-                )
-
-
-        except:
-
-            pass
+    print("[+] Report:",REPORT)
 
 
 
-print("\n[+] IOC Scan Completed")
+
+if __name__=="__main__":
+
+    scan()
 

@@ -1,0 +1,9 @@
+{
+    "case_id": "CASE-def1e2fe",
+    "created": "2026-07-27 08:41:02.210992",
+    "title": "Incident Title: SSH Brute Force Attempt",
+    "type": "Incident Type: Unauthorized Login",
+    "severity": "Severity: HIGH",
+    "status": "OPEN",
+    "analyst": "Analyst Name: MUTEB"
+}

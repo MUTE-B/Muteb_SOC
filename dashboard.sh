@@ -1,75 +1,152 @@
 #!/bin/bash
 
 # ==========================================================
-# الهدف:
-# لوحة معلومات مشروع Muteb SOC.
+# MUTEB SOC v1.1
+# Professional SOC Dashboard TUI v2.0
 # ==========================================================
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$BASE_DIR/core/colors.sh" 2>/dev/null
+source "$BASE_DIR/core/logger.sh" 2>/dev/null
 
 clear
 
-PROJECT_NAME="Muteb-SOC"
 
-OS_NAME=$(hostnamectl | awk -F': ' '/Operating System/{print $2}')
-HOSTNAME=$(hostname)
-KERNEL=$(uname -r)
-UPTIME=$(uptime -p)
+banner(){
 
-CPU_USAGE=$(top -bn1 | awk '/Cpu\(s\)/ {print 100-$8"%"}')
+echo "================================================="
+echo "             MUTEB SOC DASHBOARD v2.0"
+echo "================================================="
+echo
 
-MEMORY_USAGE=$(free -h | awk '/Mem:/ {print $3" / "$2}')
+}
 
-DISK_USAGE=$(df -h / | awk 'NR==2 {print $3" / "$2" ("$5")"}')
 
-SSH_STATUS=$(systemctl is-active ssh 2>/dev/null)
+system_health(){
 
-UFW_STATUS=$(systemctl is-active ufw 2>/dev/null)
+echo "[ SYSTEM INFORMATION ]"
+echo
 
-FAILED_LOGIN=$(grep "Failed password" /var/log/auth.log 2>/dev/null | wc -l)
+echo "Hostname : $(hostname)"
+echo "User     : $(whoami)"
+echo "Kernel   : $(uname -r)"
+echo
 
-echo "============================================================"
-echo "                     $PROJECT_NAME"
-echo "============================================================"
+}
+
+
+resource_monitor(){
+
+echo "[ RESOURCE MONITOR ]"
+echo
+
+echo "CPU:"
+top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4 "%"}'
 
 echo
 
-echo "System Information"
-
-echo "------------------------------------------------------------"
-
-printf "%-20s %s\n" "Hostname:" "$HOSTNAME"
-
-printf "%-20s %s\n" "Operating System:" "$OS_NAME"
-
-printf "%-20s %s\n" "Kernel:" "$KERNEL"
-
-printf "%-20s %s\n" "Uptime:" "$UPTIME"
+echo "Memory:"
+free -h | awk '/Mem:/ {print $3 "/" $2}'
 
 echo
 
-echo "Resource Usage"
-
-echo "------------------------------------------------------------"
-
-printf "%-20s %s\n" "CPU:" "$CPU_USAGE"
-
-printf "%-20s %s\n" "Memory:" "$MEMORY_USAGE"
-
-printf "%-20s %s\n" "Disk:" "$DISK_USAGE"
+echo "Disk:"
+df -h / | awk 'NR==2 {print $3 "/" $2 " Used: "$5}'
 
 echo
 
-echo "Security Status"
+}
 
-echo "------------------------------------------------------------"
 
-printf "%-20s %s\n" "SSH:" "$SSH_STATUS"
+security_status(){
 
-printf "%-20s %s\n" "Firewall:" "$UFW_STATUS"
+echo "[ SECURITY STATUS ]"
+echo
 
-printf "%-20s %s\n" "Failed Logins:" "$FAILED_LOGIN"
+
+FAILED=$(grep "Failed password" /var/log/auth.log 2>/dev/null | wc -l)
+
+echo "Failed SSH Attempts : $FAILED"
+
 
 echo
 
-echo "============================================================"
-echo "Dashboard Completed Successfully"
-echo "============================================================"
+echo "Firewall Status:"
+
+systemctl is-active ufw 2>/dev/null || echo "Not Active"
+
+
+echo
+
+}
+
+
+services_status(){
+
+echo "[ IMPORTANT SERVICES ]"
+echo
+
+for SERVICE in ssh apache2 cron ufw;
+
+do
+
+STATUS=$(systemctl is-active $SERVICE 2>/dev/null)
+
+echo "$SERVICE : $STATUS"
+
+done
+
+echo
+
+}
+
+
+log_monitor(){
+
+echo "[ RECENT SECURITY EVENTS ]"
+echo
+
+
+tail -10 /var/log/auth.log 2>/dev/null
+
+
+}
+
+
+main(){
+
+while true
+
+do
+
+clear
+
+banner
+
+system_health
+
+resource_monitor
+
+security_status
+
+services_status
+
+log_monitor
+
+
+echo
+echo "Refresh every 10 seconds..."
+echo "Press CTRL+C to exit"
+
+
+sleep 10
+
+
+done
+
+}
+
+
+main
+

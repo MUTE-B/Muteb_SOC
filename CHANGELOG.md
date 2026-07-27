@@ -47,3 +47,23 @@ Release Date:
 - Developer Guide
 
 
+
+# MUTEB SOC v1.1.0
+
+## Added
+
+- Advanced Threat Hunting Engine
+- IOC Scanner v2
+- Linux Hardening Toolkit
+- Incident Response Toolkit
+- Automated Testing Framework
+- Persistence Detection
+- Timeline Analysis
+
+## Security Improvements
+
+- SSH Hardening
+- Firewall Hardening
+- Kernel Security Controls
+- Permissions Auditing
+

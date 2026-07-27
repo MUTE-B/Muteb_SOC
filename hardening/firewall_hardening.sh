@@ -1,17 +1,21 @@
 #!/bin/bash
+
 #
-# MUTEB SOC
-# Firewall Hardening
+# ==========================================================
+# MUTEB SOC v1.1
+# Firewall Hardening Toolkit
+# ==========================================================
 #
 
-echo "=== FIREWALL HARDENING ==="
+echo "======================================"
+echo " MUTEB SOC FIREWALL HARDENING"
+echo "======================================"
+
 
 
 if [[ $EUID -ne 0 ]]; then
 
-echo "[!] Please run as root"
-
-echo "Usage: sudo ./firewall_hardening.sh"
+echo "[ERROR] Run as root"
 
 exit 1
 
@@ -19,18 +23,16 @@ fi
 
 
 
-if command -v ufw >/dev/null 2>&1
+echo "[+] Enabling UFW..."
 
-then
-
-
-echo "[+] Enabling Firewall"
 
 
 ufw --force enable
 
 
-echo "[+] Setting Default Rules"
+
+echo "[+] Default Policies"
+
 
 
 ufw default deny incoming
@@ -38,21 +40,36 @@ ufw default deny incoming
 ufw default allow outgoing
 
 
-echo "[+] Allowing SSH"
 
+echo "[+] Allow SSH"
 
 ufw allow ssh
 
 
-echo "[+] Firewall Hardened Successfully"
+
+echo "[+] Allow Web Services"
+
+ufw allow 80/tcp
+
+ufw allow 443/tcp
 
 
 
-else
+echo "[+] Enable Firewall Logging"
+
+ufw logging medium
 
 
-echo "[!] UFW not installed"
+
+echo
+
+echo "[+] Firewall Rules"
+
+ufw status verbose
 
 
-fi
+
+echo
+
+echo "[+] Firewall Hardening Completed"
 

@@ -1,38 +1,49 @@
 #!/bin/bash
+
 #
-# MUTEB SOC
-# SSH Hardening
+# ==========================================================
+# MUTEB SOC v1.1
+# SSH Hardening Toolkit
+# ==========================================================
 #
 
-echo "=== SSH HARDENING ==="
+echo "======================================"
+echo " MUTEB SOC SSH HARDENING"
+echo "======================================"
+
+SSH_CONFIG="/etc/ssh/sshd_config"
 
 
-SSHD="/etc/ssh/sshd_config"
+if [[ $EUID -ne 0 ]]; then
+
+echo "[ERROR] Run as root"
+
+exit 1
+
+fi
 
 
-if [[ -f "$SSHD" ]]
-then
 
-backup="${SSHD}.backup"
-
-cp "$SSHD" "$backup"
+cp $SSH_CONFIG ${SSH_CONFIG}.backup
 
 
-sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' "$SSHD"
+sed -i 's/^#PermitRootLogin.*/PermitRootLogin no/' $SSH_CONFIG
 
-sed -i 's/^#PasswordAuthentication.*/PasswordAuthentication no/' "$SSHD"
+sed -i 's/^PermitRootLogin.*/PermitRootLogin no/' $SSH_CONFIG
 
 
-echo "[+] SSH Configuration Updated"
+sed -i 's/^#MaxAuthTries.*/MaxAuthTries 3/' $SSH_CONFIG
+
+sed -i 's/^MaxAuthTries.*/MaxAuthTries 3/' $SSH_CONFIG
+
 
 
 systemctl restart ssh
 
 
-else
 
-echo "SSH configuration not found"
-
-fi
-
+echo
+echo "[+] SSH Hardening Completed"
+echo "[+] Backup:"
+echo "${SSH_CONFIG}.backup"
 

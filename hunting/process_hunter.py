@@ -1,52 +1,135 @@
 #!/usr/bin/env python3
 
-import psutil
+#
+# ==========================================================
+# MUTEB SOC v1.1
+# Process Threat Hunter
+# ==========================================================
+#
+
+import subprocess
+import datetime
+import json
+import os
 
 
-print("\n=== MUTEB SOC PROCESS HUNTER ===\n")
+REPORT = "reports/process_hunting.json"
 
 
-keywords=[
 
-    "nc",
-    "netcat",
-    "nmap",
-    "miner",
-    "crypt",
-    "bash"
+SUSPICIOUS_PATHS = [
+
+    "/tmp",
+    "/dev/shm",
+    "/var/tmp"
 
 ]
 
 
-for process in psutil.process_iter(
 
-    ['pid','name','username']
-
-):
-
-    try:
-
-        name=process.info['name']
-
-        if name:
-
-            for key in keywords:
-
-                if key.lower() in name.lower():
-
-                    print(
-
-                    "[!] Suspicious Process:",
-                    process.info
-
-                    )
+def hunt_processes():
 
 
-    except:
+    findings = []
 
-        pass
+
+    output = subprocess.check_output(
+
+        ["ps","aux"],
+
+        text=True
+
+    )
 
 
 
-print("\n[+] Process Hunting Completed")
+    for line in output.splitlines()[1:]:
+
+
+        for path in SUSPICIOUS_PATHS:
+
+
+            if path in line:
+
+
+                findings.append({
+
+                    "type":
+                    "Suspicious Process Location",
+
+
+                    "path":
+                    path,
+
+
+                    "process":
+                    line.strip()
+
+                })
+
+
+
+    report = {
+
+
+        "tool":
+        "MUTEB SOC Process Hunter",
+
+
+        "timestamp":
+        str(datetime.datetime.now()),
+
+
+        "detections":
+        len(findings),
+
+
+        "findings":
+        findings
+
+    }
+
+
+
+    os.makedirs(
+
+        "reports",
+
+        exist_ok=True
+
+    )
+
+
+    with open(
+
+        REPORT,
+
+        "w"
+
+    ) as file:
+
+
+        json.dump(
+
+            report,
+
+            file,
+
+            indent=4
+
+        )
+
+
+    print("[+] Process Hunting Completed")
+
+    print("[+] Detections:", len(findings))
+
+    print("[+] Report:", REPORT)
+
+
+
+
+if __name__ == "__main__":
+
+    hunt_processes()
 
