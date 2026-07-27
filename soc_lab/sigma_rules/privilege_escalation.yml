@@ -1,0 +1,42 @@
+title: Privileged Account Activity Detection
+
+id: MUTEB-SIGMA-003
+
+status: experimental
+
+
+description:
+
+Detect privileged account usage
+
+
+logsource:
+
+    product: windows
+    service: security
+
+
+detection:
+
+
+    selection:
+
+        EventID:
+
+            - 4672
+
+
+    condition:
+
+        selection
+
+
+level:
+
+    medium
+
+
+tags:
+
+    - attack.privilege_escalation
+
