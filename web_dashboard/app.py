@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 
-#
-# ==========================================================
-# MUTEB SOC
-# Web Dashboard API
-# ==========================================================
-#
-
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import os
 import json
 import datetime
@@ -16,8 +9,16 @@ import datetime
 app = Flask(__name__)
 
 
+
 @app.route("/")
 def home():
+
+    return render_template("index.html")
+
+
+
+@app.route("/api/status")
+def status():
 
     return jsonify({
 
@@ -27,26 +28,14 @@ def home():
         "version":
         "v1.3",
 
-        "status":
-        "running"
-
-    })
-
-
-
-@app.route("/api/status")
-def status():
-
-    return jsonify({
-
         "hostname":
         os.uname().nodename,
 
         "time":
         str(datetime.datetime.now()),
 
-        "service":
-        "MUTEB SOC API"
+        "status":
+        "Running"
 
     })
 
@@ -55,22 +44,20 @@ def status():
 @app.route("/api/reports")
 def reports():
 
-    report_file="reports/detection_results.json"
+    file="reports/detection_results.json"
 
 
-    if os.path.exists(report_file):
+    if os.path.exists(file):
 
-        with open(report_file) as file:
+        with open(file) as f:
 
-            return jsonify(
-                json.load(file)
-            )
+            return jsonify(json.load(f))
 
 
     return jsonify({
 
         "message":
-        "No reports available"
+        "No detection reports"
 
     })
 
@@ -79,10 +66,7 @@ def reports():
 if __name__ == "__main__":
 
     app.run(
-
         host="0.0.0.0",
-
         port=5000
-
     )
 

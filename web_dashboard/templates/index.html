@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+MUTEB SOC Dashboard
+</title>
+
+<style>
+
+body {
+
+background:#0b0f14;
+color:#00ff99;
+font-family:monospace;
+padding:30px;
+
+}
+
+
+.card {
+
+border:1px solid #00ff99;
+padding:20px;
+margin:15px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+🛡️ MUTEB SOC Dashboard v1.3
+</h1>
+
+
+<div class="card">
+
+<h2>Status</h2>
+
+<p id="status">
+Loading...
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>Detection Reports</h2>
+
+<pre id="reports">
+Loading...
+</pre>
+
+</div>
+
+
+
+<script>
+
+
+fetch('/api/status')
+
+.then(response => response.json())
+
+.then(data => {
+
+document.getElementById("status").innerHTML =
+JSON.stringify(data,null,2);
+
+});
+
+
+
+fetch('/api/reports')
+
+.then(response => response.json())
+
+.then(data => {
+
+document.getElementById("reports").innerHTML =
+JSON.stringify(data,null,2);
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
