@@ -1,0 +1,116 @@
+# ==========================================
+# Muteb SOC
+# Git Ignore Rules
+# ==========================================
+
+# Daily reports
+reports/*
+
+# Runtime logs
+logs/*
+
+# Temporary files
+tmp/*
+
+# Baseline snapshots
+baseline/current_*
+
+# Backup files
+*.bak
+
+# Swap files
+*.swp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+# Python Cache
+
+__pycache__/
+
+*.pyc
+
+
+
+# Virtual Environment
+
+venv/
+
+
+.env
+
+
+
+# Reports
+
+*.pdf
+
+
+
+# Logs
+
+*.log
+
+
+
+# Temporary Files
+
+*.tmp
+venv/
+
+__pycache__/
+
+*.pyc
+
+*.log
+
+.env
+
+reports/
+
+backup/
+
+logs/
+
+*.pdf
+
+.idea/
+
+.vscode/
+
+.DS_Store
+backups/*.tar.gz
+logs/*
+tmp/*
+reports/*
+*.log
+.env
+# Runtime Logs
+*.log
+
+# Reports Generated
+*_report.txt
+log_analysis_report.txt
+port_scan_report.txt
+security_check_report.txt
+service_monitor_report.txt
+system_audit_report.txt
+user_audit_report.txt
+
+# Temporary
+*.tmp
+*.lock
+
+# Environment
+.env
+
+# Runtime folders
+monitoring/
+reporting/
+
+# Backups
+backups/*.tar.gz
+
+# Python Cache
+__pycache__/
+*.pyc

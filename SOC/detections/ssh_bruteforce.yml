@@ -1,0 +1,143 @@
+# =====================================================
+# Muteb SOC Detection Rule
+#
+# Name:
+# SSH Brute Force Detection
+#
+# Purpose:
+# Detect multiple failed SSH login attempts
+#
+# Log Source:
+# Linux Authentication Logs
+# =====================================================
+
+
+
+rule:
+
+  name: SSH Brute Force Attack
+
+
+  description:
+    Detect repeated failed SSH authentication attempts
+
+
+  severity:
+    High
+
+
+  category:
+    Credential Attack
+
+
+
+  log_source:
+
+    file:
+      /var/log/auth.log
+
+
+
+  detection:
+
+
+    event:
+
+      failed_login:
+        keyword:
+          Failed password
+
+
+
+    threshold:
+
+      attempts:
+        5
+
+
+      timeframe:
+        5 minutes
+
+
+
+  response:
+
+
+    actions:
+
+      - Create Security Alert
+
+      - Investigate Source IP
+
+      - Review Authentication Logs
+# =====================================================
+# Muteb SOC Detection Rule
+#
+# Name:
+# SSH Brute Force Detection
+#
+# الهدف:
+# اكتشاف محاولات تسجيل الدخول الفاشلة المتكررة
+# على خدمة SSH
+#
+# الاستخدام:
+# SOC Monitoring
+# SIEM Detection Engineering
+# =====================================================
+
+
+
+rule:
+
+  name: SSH Brute Force Detection
+
+
+  description:
+
+    Detect multiple failed SSH login attempts
+    from the same source IP.
+
+
+
+  severity:
+
+    High
+
+
+
+  log_source:
+
+    Linux Authentication Logs
+
+
+
+  event:
+
+    type: ssh_failed_login
+
+
+
+  detection:
+
+
+    condition:
+
+      failed_attempts: 5
+
+
+      timeframe:
+
+        minutes: 5
+
+
+
+  response:
+
+
+    actions:
+
+      - Create Alert
+
+      - Investigate Source IP
+
+      - Review Authentication Logs

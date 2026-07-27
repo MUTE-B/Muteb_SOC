@@ -1,0 +1,90 @@
+# ==========================================================
+# الملف:
+# security-check.yml
+#
+# الهدف:
+# تشغيل فحص تلقائي عند كل Push أو Pull Request.
+#
+# يقوم بـ:
+# - تثبيت Python
+# - تثبيت المتطلبات
+# - فحص تركيب الملفات
+# - اختبار الأدوات
+# ==========================================================
+
+
+name: Muteb SOC Security Check
+
+
+on:
+
+  push:
+
+    branches:
+
+      - main
+
+
+  pull_request:
+
+    branches:
+
+      - main
+
+
+
+jobs:
+
+
+  security-test:
+
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+
+      - name: Checkout Repository
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Setup Python
+
+        uses: actions/setup-python@v5
+
+        with:
+
+          python-version: "3.12"
+
+
+
+      - name: Install Requirements
+
+        run: |
+
+          pip install -r requirements.txt
+
+
+
+      - name: Python Syntax Check
+
+        run: |
+
+          python -m compileall automation/python
+
+
+
+      - name: Project Structure Check
+
+        run: |
+
+          ls -la
+
+          ls -la automation
+
+          ls -la detections
+
+          ls -la playbooks

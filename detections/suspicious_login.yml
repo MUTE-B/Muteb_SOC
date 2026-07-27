@@ -1,0 +1,110 @@
+# ==========================================================
+# الملف:
+# suspicious_login.yml
+#
+# الهدف:
+# اكتشاف عمليات تسجيل الدخول المشبوهة.
+#
+# تقوم هذه القاعدة بمراقبة:
+#
+# - تسجيل الدخول خارج أوقات العمل.
+# - تسجيل الدخول بواسطة المستخدم Root.
+# - تسجيل الدخول من عناوين IP غير معروفة.
+# - كثرة محاولات تسجيل الدخول.
+#
+# تستخدم لمراقبة حسابات المستخدمين
+# واكتشاف أي نشاط غير طبيعي.
+# ==========================================================
+
+title: Suspicious Login Detection
+
+id: MUTEB-LNX-0003
+
+status: stable
+
+author: Muteb Albalawi
+
+description: >
+  Detect suspicious authentication events
+  that may indicate unauthorized access.
+
+severity: High
+
+category: Authentication
+
+logsource:
+
+  product: linux
+
+  service: ssh
+
+detection:
+
+  selection:
+
+    message|contains:
+
+      - "Accepted password"
+
+      - "Accepted publickey"
+
+      - "session opened"
+
+      - "session closed"
+
+      - "Invalid user"
+
+      - "Failed password"
+
+      - "Disconnected from"
+
+  condition: selection
+
+fields:
+
+  - timestamp
+
+  - hostname
+
+  - username
+
+  - source_ip
+
+  - process
+
+  - tty
+
+  - message
+
+falsepositives:
+
+  - Remote administration.
+
+  - Scheduled maintenance.
+
+  - VPN users.
+
+level: high
+
+tags:
+
+  - attack.t1078
+
+  - valid_accounts
+
+  - ssh
+
+  - authentication
+
+  - linux
+
+  - soc
+
+references:
+
+  - https://attack.mitre.org/techniques/T1078/
+
+  - https://attack.mitre.org/
+reverse_shell.yml
+web_attack.yml
+malware_execution.yml

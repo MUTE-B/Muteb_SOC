@@ -1,0 +1,113 @@
+# ==========================================================
+# الملف:
+# privilege_escalation.yml
+#
+# الهدف:
+# اكتشاف محاولات رفع الصلاحيات داخل أنظمة Linux.
+#
+# تقوم هذه القاعدة بمراقبة:
+#
+# - استخدام sudo.
+# - محاولات su.
+# - تغيير المستخدم إلى root.
+# - تنفيذ أوامر بصلاحيات مرتفعة.
+#
+# تستخدم أثناء التحقيقات الأمنية
+# داخل بيئات SOC.
+# ==========================================================
+
+title: Privilege Escalation Detection
+
+id: MUTEB-LNX-0002
+
+status: stable
+
+author: Muteb Albalawi
+
+description: >
+  Detect commands and authentication events
+  related to privilege escalation attempts.
+
+severity: Critical
+
+category: Privilege Escalation
+
+logsource:
+
+  product: linux
+
+  service: auth
+
+detection:
+
+  selection:
+
+    message|contains:
+
+      - "sudo"
+
+      - "COMMAND="
+
+      - "session opened for user root"
+
+      - "session closed for user root"
+
+      - "su:"
+
+      - "authentication failure"
+
+      - "user=root"
+
+  condition: selection
+
+fields:
+
+  - timestamp
+
+  - hostname
+
+  - username
+
+  - process
+
+  - command
+
+  - source_ip
+
+  - tty
+
+  - message
+
+falsepositives:
+
+  - System administrator maintenance.
+
+  - Scheduled automation scripts.
+
+  - Configuration management tools.
+
+level: critical
+
+tags:
+
+  - attack.t1548
+
+  - privilege_escalation
+
+  - linux
+
+  - sudo
+
+  - root
+
+  - soc
+
+references:
+
+  - https://attack.mitre.org/techniques/T1548/
+
+  - https://attack.mitre.org/
+suspicious_login.yml
+reverse_shell.yml
+web_attack.yml
+malware_execution.yml

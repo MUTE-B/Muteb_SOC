@@ -1,0 +1,116 @@
+# ==========================================================
+# الملف:
+# reverse_shell.yml
+#
+# الهدف:
+# اكتشاف محاولات إنشاء Reverse Shell
+# داخل أنظمة Linux.
+#
+# تقوم هذه القاعدة بمراقبة:
+#
+# - استخدام bash -i
+# - استخدام nc أو netcat
+# - استخدام socat
+# - استخدام python لإنشاء Socket
+# - استخدام perl أو php أو ruby
+#
+# تستخدم لاكتشاف محاولات التحكم
+# عن بعد بعد استغلال النظام.
+# ==========================================================
+
+title: Reverse Shell Detection
+
+id: MUTEB-LNX-0004
+
+status: stable
+
+author: Muteb Albalawi
+
+description: >
+  Detect process execution patterns that may
+  indicate a reverse shell on Linux systems.
+
+severity: Critical
+
+category: Command Execution
+
+logsource:
+
+  product: linux
+
+  service: process
+
+detection:
+
+  selection:
+
+    command_line|contains:
+
+      - "bash -i"
+
+      - "/dev/tcp/"
+
+      - "nc -e"
+
+      - "netcat -e"
+
+      - "socat TCP"
+
+      - "python -c"
+
+      - "python3 -c"
+
+      - "perl -e"
+
+      - "php -r"
+
+      - "ruby -rsocket"
+
+  condition: selection
+
+fields:
+
+  - timestamp
+
+  - hostname
+
+  - username
+
+  - process
+
+  - pid
+
+  - parent_process
+
+  - command_line
+
+falsepositives:
+
+  - Authorized security testing.
+
+  - Internal penetration testing.
+
+  - Approved administrative scripts.
+
+level: critical
+
+tags:
+
+  - attack.t1059
+
+  - attack.t1071
+
+  - reverse_shell
+
+  - command_execution
+
+  - linux
+
+  - soc
+
+references:
+
+  - https://attack.mitre.org/techniques/T1059/
+
+  - https://attack.mitre.org/web_attack.yml
+malware_execution.yml

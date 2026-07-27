@@ -1,0 +1,136 @@
+# ==========================================================
+# الملف:
+# web_attack.yml
+#
+# الهدف:
+# اكتشاف مؤشرات الهجمات الشائعة
+# التي تستهدف تطبيقات الويب.
+#
+# تقوم هذه القاعدة بمراقبة:
+#
+# - SQL Injection
+# - Command Injection
+# - Local File Inclusion (LFI)
+# - Remote File Inclusion (RFI)
+# - Directory Traversal
+# - XSS
+#
+# تعتمد على تحليل سجلات خادم الويب.
+# ==========================================================
+
+title: Web Attack Detection
+
+id: MUTEB-WEB-0005
+
+status: stable
+
+author: Muteb Albalawi
+
+description: >
+  Detect common attack patterns targeting
+  web applications by analyzing web server logs.
+
+severity: High
+
+category: Web Security
+
+logsource:
+
+  product: linux
+
+  service: webserver
+
+detection:
+
+  selection:
+
+    request|contains:
+
+      - "../"
+
+      - "/etc/passwd"
+
+      - "union select"
+
+      - "select%20"
+
+      - "<script"
+
+      - "cmd="
+
+      - "exec="
+
+      - "wget "
+
+      - "curl "
+
+      - "base64"
+
+      - "powershell"
+
+      - "%2e%2e%2f"
+
+      - "../../../../"
+
+      - "/bin/sh"
+
+      - "/bin/bash"
+
+  condition: selection
+
+fields:
+
+  - timestamp
+
+  - source_ip
+
+  - destination_ip
+
+  - http_method
+
+  - url
+
+  - user_agent
+
+  - response_code
+
+  - request
+
+falsepositives:
+
+  - Security scanning tools.
+
+  - Authorized penetration testing.
+
+  - Vulnerability assessments.
+
+level: high
+
+tags:
+
+  - attack.t1190
+
+  - web_attack
+
+  - sql_injection
+
+  - xss
+
+  - lfi
+
+  - rfi
+
+  - command_injection
+
+  - linux
+
+  - soc
+
+references:
+
+  - https://attack.mitre.org/techniques/T1190/
+
+  - https://owasp.org/www-project-top-ten/
+
+  - https://attack.mitre.org/
+detections/malware_execution.yml

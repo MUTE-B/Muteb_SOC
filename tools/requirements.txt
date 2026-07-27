@@ -1,0 +1,7 @@
+requests
+psutil
+python-dotenv
+reportlab
+colorama
+rich
+python-nmap
