@@ -1,0 +1,9 @@
+{
+    "case_id": "CASE-20260727105526",
+    "incident_title": "SSH_BRUTE_FORCE",
+    "severity": "HIGH",
+    "created": "2026-07-27 10:55:26.872837",
+    "status": "OPEN",
+    "evidence": "2026-07-19T08:10:56.345406+03:00 mte-b sshd[4844]: Failed password for mte-b from 172.20.10.2 port 51735 ssh2",
+    "analyst": "MUTEB"
+}

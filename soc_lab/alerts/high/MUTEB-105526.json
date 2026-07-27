@@ -1,0 +1,8 @@
+{
+    "alert_id": "MUTEB-105526",
+    "title": "SSH_BRUTE_FORCE",
+    "severity": "HIGH",
+    "timestamp": "2026-07-27 10:55:26.728740",
+    "evidence": "Jul 27 10:03 server sshd[1004]: authentication failure for user root",
+    "status": "NEW"
+}
