@@ -1,12 +1,35 @@
 # MUTEB SOC Screenshots
 
 
-Add project screenshots here:
+Add screenshots demonstrating:
 
 
-- Dashboard Screenshot
-- Detection Engine Output
-- Security Reports
-- Architecture Diagram
+## Dashboard
+
+- SOC Dashboard Interface
+- Security Monitoring View
+
+
+## Detection
+
+- Alert Detection Output
+- Threat Hunting Results
+
+
+## Incident Response
+
+- Case Creation
+- Investigation Timeline
+
+
+## Security Rules
+
+- YARA Detection
+- Sigma Rules
+
+
+## MITRE Mapping
+
+- ATT&CK Technique Mapping
 
 
