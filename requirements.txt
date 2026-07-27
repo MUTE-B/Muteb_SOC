@@ -1,3 +1,11 @@
+
+flask
+flask-cors
+flask-sqlalchemy
+python-dotenv
+werkzeug
 psutil
-reportlab
 pyyaml
+requests
+gunicorn
+pytest
