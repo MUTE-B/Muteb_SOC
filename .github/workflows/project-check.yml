@@ -1,0 +1,58 @@
+name: MUTEB SOC Validation
+
+
+on:
+
+  push:
+
+    branches:
+
+      - main
+
+
+  pull_request:
+
+    branches:
+
+      - main
+
+
+
+jobs:
+
+
+  security-check:
+
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+
+    - name: Checkout
+
+      uses: actions/checkout@v4
+
+
+
+    - name: Python Check
+
+      uses: actions/setup-python@v5
+
+      with:
+
+        python-version: "3.x"
+
+
+
+    - name: Validate Files
+
+      run: |
+
+        python --version
+
+        ls -la
+
+        echo "MUTEB SOC Validation Completed"
+

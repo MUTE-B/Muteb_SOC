@@ -1,109 +1,31 @@
-# MUTEB SOC CHANGELOG
+# Changelog
 
 
-# Version 1.0.0
-
-Release Date:
-2026
+## v1.3.0
 
 
-## Added
+Added:
 
-- Professional SOC Framework
-- Security Dashboard
-- Live Log Viewer
-- JSON Report Export
-- HTML Dashboard
-- Threat Hunting Engine
-- IOC Scanner
-- Log Analyzer
-- Linux Hardening Toolkit
-- Incident Response Toolkit
-- Threat Intelligence Module
-- Plugin System
-- Configuration Manager
-- Auto Update System
-- Installer
-- Uninstaller
-- Testing Framework
+- SOC Dashboard
+- Detection Engine
+- MITRE ATT&CK Mapping
+- Sigma Rules
+- YARA Rules
+- SIEM Documentation
+- Docker Support
+- Security Logging
+- Backup System
 
 
-## Security Features
+## v1.2.0
 
-- SSH Monitoring
-- Firewall Audit
-- System Hardening
-- Process Hunting
-- Network Analysis
-- IOC Detection
+Added:
+
+- Threat Detection Framework
+- Automation Modules
 
 
-## Documentation
+## v1.0.0
 
-- Architecture Guide
-- Installation Guide
-- SOC Workflow
-- Troubleshooting Guide
-- Developer Guide
-
-
-
-# MUTEB SOC v1.1.0
-
-## Added
-
-- Advanced Threat Hunting Engine
-- IOC Scanner v2
-- Linux Hardening Toolkit
-- Incident Response Toolkit
-- Automated Testing Framework
-- Persistence Detection
-- Timeline Analysis
-
-## Security Improvements
-
-- SSH Hardening
-- Firewall Hardening
-- Kernel Security Controls
-- Permissions Auditing
-
-
-# MUTEB SOC v1.1.0
-
-## Added
-
-- Advanced Threat Hunting Engine
-- IOC Scanner v2
-- Linux Hardening Toolkit
-- Incident Response Toolkit
-- Automated Testing Framework
-- Persistence Detection
-- Timeline Analysis
-
-## Security Improvements
-
-- SSH Hardening
-- Firewall Hardening
-- Kernel Security Controls
-- Permissions Auditing
-
-
-# MUTEB SOC v1.1.0
-
-## Added
-
-- Advanced Threat Hunting Engine
-- IOC Scanner v2
-- Linux Hardening Toolkit
-- Incident Response Toolkit
-- Automated Testing Framework
-- Persistence Detection
-- Timeline Analysis
-
-## Security Improvements
-
-- SSH Hardening
-- Firewall Hardening
-- Kernel Security Controls
-- Permissions Auditing
+Initial Professional Release
 
