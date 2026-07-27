@@ -1,0 +1,17 @@
+[
+    {
+        "username": "administrator",
+        "role": "Domain Admin",
+        "status": "enabled"
+    },
+    {
+        "username": "analyst",
+        "role": "SOC Analyst",
+        "status": "enabled"
+    },
+    {
+        "username": "guest",
+        "role": "Guest",
+        "status": "disabled"
+    }
+]
