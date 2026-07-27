@@ -1,0 +1,26 @@
+[
+    {
+        "alert_id": "SIEM-105706",
+        "rule": "SIEM-001",
+        "severity": "HIGH",
+        "description": "Multiple SSH authentication failures",
+        "event": "SOURCE=LINUX EVENT=SSH_FAILED USER=root IP=192.168.1.50",
+        "time": "2026-07-27 10:57:06.615667"
+    },
+    {
+        "alert_id": "SIEM-105706",
+        "rule": "SIEM-002",
+        "severity": "HIGH",
+        "description": "Suspicious PowerShell activity",
+        "event": "SOURCE=WINDOWS EVENT=POWERSHELL_EXECUTION USER=analyst COMMAND=powershell",
+        "time": "2026-07-27 10:57:06.615719"
+    },
+    {
+        "alert_id": "SIEM-105706",
+        "rule": "SIEM-003",
+        "severity": "CRITICAL",
+        "description": "Suspicious network connection detected",
+        "event": "SOURCE=NETWORK EVENT=SUSPICIOUS_CONNECTION IP=192.168.1.70 PORT=4444",
+        "time": "2026-07-27 10:57:06.615737"
+    }
+]

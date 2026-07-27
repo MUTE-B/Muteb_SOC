@@ -1,0 +1,22 @@
+[
+    {
+        "rule_id":"SIEM-001",
+        "event":"SSH_FAILED",
+        "severity":"HIGH",
+        "description":"Multiple SSH authentication failures"
+    },
+
+    {
+        "rule_id":"SIEM-002",
+        "event":"POWERSHELL_EXECUTION",
+        "severity":"HIGH",
+        "description":"Suspicious PowerShell activity"
+    },
+
+    {
+        "rule_id":"SIEM-003",
+        "event":"SUSPICIOUS_CONNECTION",
+        "severity":"CRITICAL",
+        "description":"Suspicious network connection detected"
+    }
+]
