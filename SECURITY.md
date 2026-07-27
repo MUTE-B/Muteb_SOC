@@ -1,40 +1,22 @@
-# MUTEB SOC Security Policy
+# Security Policy
 
 
-## Reporting Security Issues
+## Purpose
+
+This project is a defensive cybersecurity learning environment.
 
 
-Security issues should be reported responsibly.
+## Reporting Issues
+
+Security improvements and suggestions are welcome.
 
 
-## Supported Version
+## Scope
 
+This repository focuses on:
 
-Current:
+- Detection Engineering
+- SOC Monitoring
+- Defensive Security
 
-v1.3.0
-
-
-## Security Areas
-
-
-- Detection Rules
-- Authentication Monitoring
-- Incident Response
-- Security Automation
-
-
-## Response Process
-
-
-1. Validate report
-
-2. Investigate issue
-
-3. Apply security fix
-
-4. Document resolution
-
-
-MUTEB SOC Team
 
