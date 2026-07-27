@@ -1,29 +1,32 @@
+
+
 # Pull Request
 
 
 ## Description
 
-Describe the security improvement or feature.
+
+Explain the change.
+
 
 
 ## Type of Change
 
-- [ ] New Detection Rule
 
-- [ ] Security Improvement
+- Feature
 
-- [ ] Documentation
+- Bug Fix
 
-- [ ] Bug Fix
+- Documentation
 
+- Security Improvement
 
-## Testing
-
-Describe tests performed.
 
 
 ## Security Impact
 
-Explain security impact.
+
+Describe security considerations.
+
 
 
