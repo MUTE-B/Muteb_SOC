@@ -3,64 +3,41 @@
 # MITRE ATT&CK Mapping
 # ==========================================================
 
-
 detections:
 
-
   - name: SSH Brute Force
-
     technique:
       id: T1110
       name: Brute Force
-
     tactic:
       - Credential Access
-
-    severity:
-      HIGH
-
+    severity: HIGH
 
 
   - name: Suspicious Login
-
     technique:
       id: T1078
       name: Valid Accounts
-
     tactic:
       - Initial Access
       - Persistence
-
-    severity:
-      MEDIUM
-
+    severity: MEDIUM
 
 
   - name: Privilege Escalation
-
     technique:
       id: T1548
       name: Abuse Elevation Control Mechanism
-
     tactic:
       - Privilege Escalation
-
-    severity:
-      HIGH
-
+    severity: HIGH
 
 
   - name: Reverse Shell Detection
-
     technique:
       id: T1059
       name: Command and Scripting Interpreter
-
     tactic:
       - Execution
-
-    severity:
-      CRITICAL
-
-
+    severity: CRITICAL
 

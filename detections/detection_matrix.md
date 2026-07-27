@@ -8,4 +8,3 @@
 | Privilege Escalation | T1548 | HIGH |
 | Reverse Shell | T1059 | CRITICAL |
 
-

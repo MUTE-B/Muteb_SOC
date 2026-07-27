@@ -28,4 +28,3 @@
 |---|---|
 | T1059 | Command Execution |
 
-
