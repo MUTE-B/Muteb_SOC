@@ -1,0 +1,6 @@
+{
+    "alert": "Suspicious PowerShell Execution",
+    "severity": "HIGH",
+    "time": "2026-07-27 10:56:19.697357",
+    "evidence": "Process:powershell.exe"
+}
