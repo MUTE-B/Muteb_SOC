@@ -58,3 +58,6 @@ def get_settings():
 
     return SETTINGS
 
+
+# Backward compatibility
+settings = SETTINGS
