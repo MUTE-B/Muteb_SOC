@@ -1,0 +1,31 @@
+title: MUTEB SOC Privilege Escalation Detection
+
+id: muteb-privilege-escalation
+
+status: experimental
+
+description: Detect sudo privilege usage
+
+
+logsource:
+  product: linux
+  service: sudo
+
+
+detection:
+
+  selection:
+    message|contains:
+      - "sudo"
+
+
+  condition:
+    selection
+
+
+level: high
+
+tags:
+  - attack.privilege_escalation
+  - attack.t1548
+

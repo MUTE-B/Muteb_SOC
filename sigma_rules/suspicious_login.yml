@@ -1,0 +1,31 @@
+title: MUTEB SOC Suspicious Login Detection
+
+id: muteb-suspicious-login
+
+status: experimental
+
+description: Detect successful SSH login events
+
+logsource:
+  product: linux
+  service: ssh
+
+
+detection:
+
+  selection:
+    message|contains:
+      - "Accepted password"
+      - "Accepted publickey"
+
+
+  condition:
+    selection
+
+
+level: medium
+
+tags:
+  - attack.valid_accounts
+  - attack.t1078
+
