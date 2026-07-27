@@ -1,3 +1,44 @@
+# MUTEB SOC v1.0.0
+
+Professional Blue Team Security Operations Center Platform.
+
+## Overview
+
+MUTEB SOC is a defensive cybersecurity framework designed for:
+
+- SOC Analysts
+- Blue Team Operations
+- Linux Security Monitoring
+- Incident Response Training
+
+## Features
+
+- Security Dashboard
+- Log Monitoring
+- Threat Hunting
+- IOC Scanner
+- Incident Response Toolkit
+- Linux Hardening
+- Security Automation
+- Detection Rules
+- Reporting System
+
+## Technologies
+
+- Linux
+- Bash
+- Python
+- Git
+- Cybersecurity Frameworks
+- MITRE ATT&CK
+
+## Installation
+
+```bash
+git clone https://github.com/MUTE-B/Muteb_SOC.git
+cd Muteb_SOC
+chmod +x INSTALL.sh
+./INSTALL.sh
 # Muteb SOC Professional Edition
 
 ## About
