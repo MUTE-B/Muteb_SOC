@@ -1,0 +1,22 @@
+[Unit]
+Description=MUTEB SOC Dashboard Service
+After=network.target
+
+
+[Service]
+
+Type=simple
+
+WorkingDirectory=/opt/Muteb-SOC
+
+ExecStart=/usr/bin/python3 /opt/Muteb-SOC/web_dashboard/dashboard_api.py
+
+Restart=always
+
+User=root
+
+
+
+[Install]
+
+WantedBy=multi-user.target
