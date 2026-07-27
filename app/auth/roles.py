@@ -1,0 +1,11 @@
+class Roles:
+
+    ADMIN = "ADMIN"
+
+    SOC_MANAGER = "SOC_MANAGER"
+
+    SOC_ANALYST = "SOC_ANALYST"
+
+    AUDITOR = "AUDITOR"
+
+    VIEWER = "VIEWER"

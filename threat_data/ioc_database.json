@@ -1,0 +1,15 @@
+{
+    "malicious_ips":[
+        "10.10.10.10",
+        "192.168.100.50"
+    ],
+
+    "malicious_domains":[
+        "evil-domain.com",
+        "malware-test.local"
+    ],
+
+    "malware_hashes":[
+        "44d88612fea8a8f36de82e1278abb02f"
+    ]
+}

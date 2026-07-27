@@ -1,0 +1,17 @@
+
+{
+  "name":"muteb-soc-dashboard",
+  "version":"12.2.0",
+  "private":true,
+  "dependencies":{
+    "react":"latest",
+    "react-dom":"latest",
+    "axios":"latest",
+    "react-router-dom":"latest"
+  },
+  "scripts":{
+    "start":"react-scripts start",
+    "build":"react-scripts build"
+  }
+}
+

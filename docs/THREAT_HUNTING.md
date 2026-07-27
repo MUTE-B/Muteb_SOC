@@ -1,11 +1,23 @@
 
-# MUTEB SOC Threat Hunting Engine
+
+# MUTEB SOC Threat Hunting
+
 
 Capabilities:
 
-- Event Searching
-- Suspicious Pattern Detection
-- Timeline Investigation
-- Analyst Hunting Workflow
 
-Version 3.0.0
+- Query Based Hunting
+
+- Investigation Search
+
+- Hunting Reports
+
+- Analyst Workflow
+
+
+Purpose:
+
+
+Proactive threat discovery before incidents occur.
+
+

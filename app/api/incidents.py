@@ -1,18 +1,30 @@
-
 from flask import Blueprint,request,jsonify
 
 from app.database.database import db
+
 from app.models.incident import Incident
 
-incident=Blueprint(
+from app.auth.decorators import permission_required
+
+
+
+incident = Blueprint(
     "incident",
     __name__
 )
 
-@incident.route("/",methods=["GET"])
+
+
+@incident.route(
+    "/",
+    methods=["GET"]
+)
+@permission_required("incidents")
 def all_incidents():
 
-    rows=Incident.query.all()
+
+    rows = Incident.query.all()
+
 
     return jsonify([
 
@@ -35,10 +47,18 @@ def all_incidents():
     ])
 
 
-@incident.route("/",methods=["POST"])
+
+
+@incident.route(
+    "/",
+    methods=["POST"]
+)
+@permission_required("incidents")
 def create():
 
+
     data=request.json
+
 
     row=Incident(
 
@@ -52,9 +72,12 @@ def create():
 
     )
 
+
     db.session.add(row)
 
     db.session.commit()
+
+
 
     return jsonify({
 

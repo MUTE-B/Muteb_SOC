@@ -1,0 +1,43 @@
+
+{
+
+"swagger":"2.0",
+
+"info":{
+
+"title":"MUTEB SOC Enterprise API",
+
+"version":"9.1.0"
+
+},
+
+"paths":{
+
+"/api/auth/login":{
+
+"post":{
+
+"summary":
+
+"User Authentication"
+
+}
+
+},
+
+"/api/threat-intel/lookup":{
+
+"post":{
+
+"summary":
+
+"Threat Intelligence Lookup"
+
+}
+
+}
+
+}
+
+}
+

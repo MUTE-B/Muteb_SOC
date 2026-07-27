@@ -1,0 +1,74 @@
+
+{
+
+"product":
+
+"MUTEB SOC Enterprise",
+
+
+"version":
+
+"12.0.0",
+
+
+"edition":
+
+"Final Enterprise Edition",
+
+
+"status":
+
+"PRODUCTION READY",
+
+
+"components":[
+
+
+"Authentication",
+
+"JWT Security",
+
+"RBAC",
+
+"Audit System",
+
+"SOC Dashboard",
+
+"Threat Intelligence",
+
+"IOC Management",
+
+"Detection Engine",
+
+"Sigma Rules",
+
+"MITRE ATT&CK Mapping",
+
+"SOAR Automation",
+
+"Incident Response",
+
+"Case Management",
+
+"Evidence Management",
+
+"Compliance",
+
+"AI Security Assistant",
+
+"Reporting Engine",
+
+"Asset Management",
+
+"SIEM Integration"
+
+],
+
+
+"architecture":
+
+"Enterprise SOC Platform"
+
+
+}
+

@@ -1,0 +1,27 @@
+
+[
+{
+"id":"SIGMA-001",
+"name":"SSH Brute Force Detection",
+"event":"failed ssh login",
+"severity":"HIGH",
+"mitre":"T1110"
+},
+
+{
+"id":"SIGMA-002",
+"name":"Suspicious PowerShell Execution",
+"event":"powershell -enc",
+"severity":"HIGH",
+"mitre":"T1059"
+},
+
+{
+"id":"SIGMA-003",
+"name":"Reverse Shell Detection",
+"event":"nc -e",
+"severity":"CRITICAL",
+"mitre":"T1059"
+}
+]
+

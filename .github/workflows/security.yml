@@ -1,0 +1,39 @@
+
+
+name:
+MUTEB-SOC-Security-Check
+
+
+
+on:
+
+  push:
+
+    branches:
+
+      - main
+
+
+
+jobs:
+
+
+  security-check:
+
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+
+    - uses: actions/checkout@v4
+
+
+    - name: Python Check
+
+      run: |
+
+        python -m py_compile app/core/application.py
+
+

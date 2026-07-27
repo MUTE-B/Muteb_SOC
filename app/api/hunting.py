@@ -1,55 +1,111 @@
 
-from flask import Blueprint, request, jsonify
 
-from app.threat_hunting.hunter import hunt_event
+from flask import Blueprint,jsonify,request
 
-from app.threat_hunting.timeline import create_timeline
+from flask_jwt_extended import jwt_required
 
 
-hunting = Blueprint(
-    "hunting",
-    __name__
+from app.hunting.query_engine import (
+
+execute_query,
+
+all_queries
+
 )
+
+
+from app.hunting.reports import hunting_report
+
+
+
+hunting=Blueprint(
+
+"hunting",
+
+__name__
+
+)
+
 
 
 @hunting.route(
-    "/search",
-    methods=["POST"]
+
+"/queries",
+
+methods=["GET"]
+
 )
 
-def search():
+@jwt_required()
 
-    data = request.json
+def queries():
 
 
-    events = data.get(
-        "events",
-        []
+    return jsonify(
+
+        all_queries()
+
     )
 
 
-    results = []
 
 
-    for event in events:
+@hunting.route(
 
-        results.extend(
-            hunt_event(event)
-        )
+"/search",
+
+methods=["POST"]
+
+)
+
+@jwt_required()
+
+def search():
+
+
+    data=request.json or {}
 
 
     return jsonify({
 
         "engine":
+
         "MUTEB Threat Hunting Engine",
 
-        "findings":
-        results,
 
-        "timeline":
-        create_timeline(events),
+        "results":
 
-        "count":
-        len(results)
+        execute_query(
+
+            data.get("query","")
+
+        )
 
     })
+
+
+
+
+@hunting.route(
+
+"/report",
+
+methods=["POST"]
+
+)
+
+@jwt_required()
+
+def report():
+
+
+    return jsonify(
+
+        hunting_report(
+
+            request.json or {}
+
+        )
+
+    )
+

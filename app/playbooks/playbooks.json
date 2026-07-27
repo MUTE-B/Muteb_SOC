@@ -1,0 +1,88 @@
+
+{
+
+"bruteforce":
+
+{
+
+"name":"SSH Brute Force Response",
+
+"actions":
+
+[
+
+"Block Source IP",
+
+"Reset Credentials",
+
+"Collect Authentication Logs"
+
+]
+
+},
+
+
+"malware":
+
+{
+
+"name":"Malware Containment Response",
+
+"actions":
+
+[
+
+"Isolate Host",
+
+"Collect Malware Hash",
+
+"Start Investigation"
+
+]
+
+},
+
+
+"phishing":
+
+{
+
+"name":"Phishing Response",
+
+"actions":
+
+[
+
+"Disable User",
+
+"Collect Email Evidence",
+
+"Search IOC"
+
+]
+
+},
+
+
+"ransomware":
+
+{
+
+"name":"Ransomware Response",
+
+"actions":
+
+[
+
+"Network Isolation",
+
+"Stop Encryption Process",
+
+"Backup Recovery"
+
+]
+
+}
+
+}
+

@@ -1,0 +1,22 @@
+{
+    "ssh_failed_login":
+    {
+        "id":"T1110",
+        "name":"Brute Force",
+        "tactic":"Credential Access"
+    },
+
+    "root_login":
+    {
+        "id":"T1078",
+        "name":"Valid Accounts",
+        "tactic":"Defense Evasion"
+    },
+
+    "command_execution":
+    {
+        "id":"T1059",
+        "name":"Command and Scripting Interpreter",
+        "tactic":"Execution"
+    }
+}

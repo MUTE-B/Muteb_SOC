@@ -1,56 +1,95 @@
 
-from datetime import datetime
+
+import json
+import os
 
 
-def hunt_event(event):
 
-    findings = []
-
-
-    message = event.get(
-        "message",
-        ""
-    ).lower()
+class ThreatHunter:
 
 
-    suspicious_patterns = [
 
-        "failed password",
+    def __init__(self):
 
-        "unauthorized",
+        path=os.path.join(
 
-        "malware",
+            os.path.dirname(__file__),
 
-        "powershell",
+            "hunting_rules.json"
 
-        "reverse shell",
-
-        "root login"
-
-    ]
+        )
 
 
-    for pattern in suspicious_patterns:
+        with open(path) as f:
+
+            self.rules=json.load(f)
 
 
-        if pattern in message:
 
 
-            findings.append({
-
-                "pattern":
-                pattern,
-
-                "severity":
-                "HIGH",
-
-                "timestamp":
-                str(datetime.now()),
-
-                "message":
-                event.get("message")
-
-            })
+    def scan(self,data):
 
 
-    return findings
+        findings=[]
+
+
+        text=str(data).lower()
+
+
+
+        for item in self.rules["process"]["suspicious"]:
+
+            if item in text:
+
+                findings.append({
+
+                    "type":"PROCESS",
+
+                    "indicator":item,
+
+                    "severity":"HIGH"
+
+                })
+
+
+
+        for port in self.rules["network"]["suspicious_ports"]:
+
+            if str(port) in text:
+
+                findings.append({
+
+                    "type":"NETWORK",
+
+                    "indicator":port,
+
+                    "severity":"MEDIUM"
+
+                })
+
+
+
+        for path in self.rules["files"]["suspicious"]:
+
+            if path in text:
+
+                findings.append({
+
+                    "type":"FILE",
+
+                    "indicator":path,
+
+                    "severity":"HIGH"
+
+                })
+
+
+
+        return findings
+
+
+
+
+
+hunter=ThreatHunter()
+

@@ -1,25 +1,26 @@
----
-name: Security Issue
-about: Report a security vulnerability
-title: "[SECURITY]"
-labels: security
----
+
+
+# Security Issue Report
+
 
 ## Description
 
+
 Describe the security issue.
+
+
 
 ## Impact
 
-Explain the possible impact.
+
+Explain potential impact.
+
+
 
 ## Steps To Reproduce
 
+
 Provide details.
 
-## Environment
 
-OS:
-
-Version:
 

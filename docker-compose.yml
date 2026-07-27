@@ -1,0 +1,58 @@
+
+
+services:
+
+
+  muteb-soc:
+
+
+    container_name: muteb-soc-enterprise
+
+
+    build: .
+
+
+    ports:
+
+
+      - "8000:8000"
+
+
+    restart: always
+
+
+    environment:
+
+
+      - ENVIRONMENT=production
+
+
+
+  nginx:
+
+
+    image: nginx:latest
+
+
+    container_name: muteb-soc-nginx
+
+
+    ports:
+
+
+      - "80:80"
+
+
+    volumes:
+
+
+      - ./deployment/nginx:/etc/nginx/conf.d
+
+
+    depends_on:
+
+
+      - muteb-soc
+
+
+

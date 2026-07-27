@@ -4,11 +4,14 @@ from flask import Blueprint, request, jsonify
 from app.database.database import db
 from app.models.user import User
 
+from flask_jwt_extended import create_access_token
+
 
 auth = Blueprint(
     "auth",
     __name__
 )
+
 
 
 @auth.route(
@@ -19,13 +22,18 @@ def register():
 
     data = request.json
 
+
     user = User(
+
         username=data["username"],
+
         email=data["email"],
+
         role=data.get(
             "role",
-            "Viewer"
+            "VIEWER"
         )
+
     )
 
 
@@ -34,9 +42,7 @@ def register():
     )
 
 
-    db.session.add(
-        user
-    )
+    db.session.add(user)
 
     db.session.commit()
 
@@ -50,6 +56,8 @@ def register():
 
 
 
+
+
 @auth.route(
     "/login",
     methods=["POST"]
@@ -60,23 +68,40 @@ def login():
 
 
     user = User.query.filter_by(
+
         username=data["username"]
+
     ).first()
 
 
+
     if user and user.check_password(
+
         data["password"]
+
     ):
+
+
+        access_token = create_access_token(
+
+            identity=user.username
+
+        )
+
 
         return jsonify({
 
             "status":
             "success",
 
+            "access_token":
+            access_token,
+
             "role":
             user.role
 
         })
+
 
 
     return jsonify({
@@ -85,3 +110,4 @@ def login():
         "failed"
 
     }),401
+
