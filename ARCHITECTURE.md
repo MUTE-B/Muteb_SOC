@@ -1,66 +1,48 @@
 # MUTEB SOC Architecture
 
+Security Events
 
-            Security Sources
+↓
 
+Collection Layer
 
-    Linux        Windows        Network
+↓
 
-       \            |             /
+Detection Engine
 
-                Log Collector
+↓
 
-                     |
+Alert Management
 
-                SIEM Engine
+↓
 
-                     |
+SOC Dashboard
 
-          Detection & Correlation
+↓
 
-                     |
+Incident Response
 
-                Alerts
+↓
 
-                     |
-
-             SOC Dashboard
-
-                     |
-
-          Incident Response
-
-                     |
-
-              Investigation Report
+Security Reports
 
 
-## Security Layers
+## Components
+
+Backend:
+Python Flask
 
 
-Layer 1:
-
-Data Collection
-
-
-Layer 2:
-
-Detection
+Frontend:
+React Dashboard
 
 
-Layer 3:
-
-Investigation
-
-
-Layer 4:
-
-Response
+Database:
+SQLite
 
 
-Layer 5:
+Security Concepts:
 
-Reporting
-
-
-
+- MITRE ATT&CK
+- Sigma Rules
+- IOC Analysis

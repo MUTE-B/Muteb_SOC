@@ -1,61 +1,45 @@
-# MUTEB SOC v2.1.0
+# MUTEB SOC Enterprise v1.0.0
 
-## Enterprise SOC Analyst Portfolio Project
+## Overview
 
+MUTEB SOC is a defensive cybersecurity SOC laboratory platform designed to simulate Security Operations Center workflows.
 
-## Description
+The project demonstrates practical Blue Team operations including:
 
-MUTEB SOC is a defensive cybersecurity laboratory that simulates a Security Operations Center environment.
-
-The project demonstrates practical Blue Team workflows including monitoring, detection, investigation and incident response.
-
-
-
-## Main Capabilities
-
-
-### Security Monitoring
-
-- Linux Authentication Logs
-- Windows Security Events
-- Active Directory Events
-- Network Events
+- Security Monitoring
+- Alert Investigation
+- Detection Engineering
+- Incident Response
+- Security Reporting
 
 
+## Technology Stack
 
-### Detection Engineering
+Backend:
+Python Flask REST API
 
-- Custom Detection Engine
-- Sigma Rules
-- MITRE ATT&CK Mapping
-- IOC Analysis
+Frontend:
+React + Vite
 
+Database:
+SQLite
 
-
-### SIEM Simulation
-
-- Event Collection
-- Event Correlation
-- Alert Generation
-- Security Dashboard
+Environment:
+Linux Ubuntu
 
 
+## Career Alignment
 
-### Incident Response
-
-- Case Management
-- Investigation Reports
-- Evidence Documentation
-
-
-
-## Target Roles
-
+Designed for:
 
 - SOC Analyst
+- Junior Security Analyst
 - Blue Team Analyst
-- Security Operations Analyst
 - Cyber Security Analyst
 
 
+## Developer
 
+Muteb Albalawi
+
+Cyber Security | IT Specialist | SOC Analyst Path
