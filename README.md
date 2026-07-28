@@ -1,59 +1,92 @@
-# 🛡 MUTEB SOC ENTERPRISE v1.0
+# MUTEB SOC Enterprise Platform
 
-Enterprise Security Operations Center Platform
+## Security Operations Center Platform
+
+MUTEB SOC is an Enterprise Security Operations Center platform designed for:
+
+- Security Monitoring
+- Threat Detection
+- Incident Response
+- Security Analytics
+- SOC Operations
 
 
-## Features
+## Main Components
 
-✔ SOC Dashboard
+### Frontend
+- React Dashboard
+- Security Monitoring Interface
+- Analyst Console
 
-✔ JWT Authentication
 
-✔ Role Based Access Control
+### Backend
+- API Services
+- Authentication
+- Security Data Processing
 
-✔ Threat Intelligence Engine
 
-✔ IOC Scanner
+### Security Modules
 
-✔ Risk Score Engine
-
-✔ Incident Generator
-
-✔ Security Analytics
-
-✔ Docker Deployment
+- Alert Management
+- Incident Management
+- Threat Intelligence
+- Security Reporting
 
 
 ## Architecture
 
+User
+|
+Frontend Dashboard
+|
+Backend API
+|
+Security Engine
+|
+Database
+
+
+
+## Technologies
 
 Frontend:
-React + Vite
+- React
+- Vite
+- JavaScript
 
 
 Backend:
-Flask API
-
-
-Database:
-SQLite / PostgreSQL
+- API Services
+- Python
 
 
 Security:
-JWT + RBAC
+- SOC Operations
+- Blue Team Concepts
+- MITRE ATT&CK Mapping
 
 
+## Installation
 
-## Access
+```bash
+git clone <repository>
 
+cd Muteb-SOC
 
-Frontend:
+cd frontend
 
-http://SERVER:5173
+npm install
 
+npm run dev
+Version
 
-Backend:
+Current Release:
 
-http://SERVER:8000
+v1.0.0
 
+Developer
+
+Muteb Albalawi
+
+Cyber Security / IT Specialist
 

@@ -1,51 +1,40 @@
 
+MUTEB SOC Architecture
+Overview
 
-# MUTEB SOC Architecture
+MUTEB SOC consists of:
 
+Frontend Layer
 
-## Layers
+↓
 
+API Layer
 
-## API Layer
+↓
 
-REST APIs
+Security Processing Layer
 
+↓
 
-## Security Layer
+Data Storage Layer
 
-Authentication
-
-Authorization
-
-Audit
-
-
-## Detection Layer
-
-Rules
-
-Threat Intelligence
-
-Risk Scoring
-
-
-## Response Layer
-
-SOAR
-
-Playbooks
-
-Incident Workflow
-
-
-## Storage Layer
-
-Alerts
-
-Cases
-
-Evidence
+Security Flow
 
 Events
 
+↓
+
+Detection
+
+↓
+
+Alert Generation
+
+↓
+
+Incident Response
+
+↓
+
+Reporting
 

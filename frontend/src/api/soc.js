@@ -1,7 +1,7 @@
 const API="http://172.20.10.4:8000";
 
 
-export async function getDashboard(token){
+export async function get(token){
 
 const response = await fetch(
 `${API}/api/dashboard`,

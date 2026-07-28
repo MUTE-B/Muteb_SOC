@@ -16,7 +16,7 @@ MUTEB SOC Enterprise
 
 <p>
 
-Security Operations Center Dashboard
+
 
 </p>
 

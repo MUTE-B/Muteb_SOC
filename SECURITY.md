@@ -1,22 +1,15 @@
-# Security Policy
 
+Security Policy
+MUTEB SOC Security Guidelines
 
-## Purpose
+This project follows security best practices:
 
-This project is a defensive cybersecurity learning environment.
+Least Privilege
+Secure Authentication
+Access Control
+Logging
+Monitoring
+Reporting Security Issues
 
-
-## Reporting Issues
-
-Security improvements and suggestions are welcome.
-
-
-## Scope
-
-This repository focuses on:
-
-- Detection Engineering
-- SOC Monitoring
-- Defensive Security
-
+Please report security issues through the repository issue tracker.
 

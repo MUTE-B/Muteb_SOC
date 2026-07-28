@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import {login} from "./api/auth";
-import {getDashboard} from "./api/soc";
+import {get} from "./api/soc";
 
 
 const C={
@@ -40,23 +40,13 @@ token:r.token
 
 return (
 
-<div style={{
-height:"100vh",
-background:C.bg,
-display:"flex",
-alignItems:"center",
-justifyContent:"center",
-color:C.text
-}}>
-
+<div style={pageCenter}>
 
 <div style={box}>
 
-
 <h1 style={{color:C.blue}}>
-🛡 MUTEB SOC
+MUTEB SOC
 </h1>
-
 
 <p>
 Enterprise Security Operations Center
@@ -64,17 +54,17 @@ Enterprise Security Operations Center
 
 
 <input
+style={input}
 placeholder="Username"
 onChange={e=>setUsername(e.target.value)}
-style={input}
 />
 
 
 <input
+style={input}
 type="password"
 placeholder="Password"
 onChange={e=>setPassword(e.target.value)}
-style={input}
 />
 
 
@@ -97,20 +87,17 @@ LOGIN
 
 
 
-
 function Dashboard({user,logout}){
-
 
 const [data,setData]=useState(null);
 
 
-
 useEffect(()=>{
 
-getDashboard(user.token)
+get(user.token)
 .then(setData);
 
-},[]);
+},[user.token]);
 
 
 
@@ -127,16 +114,18 @@ return (
 <aside style={side}>
 
 <h2 style={{color:C.blue}}>
-🛡 MUTEB SOC
+MUTEB SOC
 </h2>
 
-
-<p>Dashboard</p>
 <p>Threat Monitoring</p>
 <p>Alerts</p>
 <p>Incidents</p>
 <p>Reports</p>
-<p>Settings</p>
+
+
+<button onClick={logout}>
+Logout
+</button>
 
 
 </aside>
@@ -146,8 +135,6 @@ return (
 <main style={main}>
 
 
-<header>
-
 <h1 style={{color:C.blue}}>
 Security Operations Center
 </h1>
@@ -155,48 +142,27 @@ Security Operations Center
 
 <p>
 Analyst: {user.username}
- |
- Role: {user.role}
- |
- 🟢 ACTIVE
+|
+Role: {user.role}
+|
+ACTIVE
 </p>
-
-
-</header>
-
 
 
 
 <section style={grid}>
 
 
-<Card
-title="Security Score"
-value={data.security_score+"%"}
-/>
+<Card title="Security Score" value={data.security_score+"%"}/>
 
+<Card title="Critical Alerts" value={data.critical_alerts}/>
 
-<Card
-title="Critical Alerts"
-value={data.critical_alerts}
-/>
+<Card title="Blocked Threats" value={data.blocked_threats}/>
 
-
-<Card
-title="Blocked Threats"
-value={data.blocked_threats}
-/>
-
-
-<Card
-title="Events Today"
-value={data.events_today}
-/>
+<Card title="Events Today" value={data.events_today}/>
 
 
 </section>
-
-
 
 
 
@@ -205,32 +171,27 @@ value={data.events_today}
 
 <div style={box}>
 
-
 <h2>
-🚨 Live Alerts
+Live Alerts
 </h2>
 
 
 {data.alerts.map(a=>(
 
-
-<div
-key={a.id}
+<div key={a.id}
 style={{
 padding:"15px",
-margin:"10px 0",
-background:"#020617",
+margin:"10px",
+background:C.bg,
 borderRadius:"10px"
 }}
 >
-
 
 <b>{a.id}</b>
 
 <br/>
 
 {a.name}
-
 
 <br/>
 
@@ -251,7 +212,6 @@ a.level==="MEDIUM"
 
 </div>
 
-
 ))}
 
 
@@ -259,34 +219,26 @@ a.level==="MEDIUM"
 
 
 
-
-
-
 <div style={box}>
 
-
 <h2>
-⚙ System Health
+System Health
 </h2>
 
-
 <p>
-Backend 🟢 {data.system.backend}
+Backend : {data.system.backend}
 </p>
 
-
 <p>
-Frontend 🟢 {data.system.frontend}
+Frontend : {data.system.frontend}
 </p>
 
-
 <p>
-Database 🟢 {data.system.database}
+Database : {data.system.database}
 </p>
 
-
 <p>
-Security Engine 🟢 {data.system.engine}
+Engine : {data.system.engine}
 </p>
 
 
@@ -296,35 +248,8 @@ Security Engine 🟢 {data.system.engine}
 </section>
 
 
-
-
-
-<section style={box}>
-
-
-<h2>
-📁 Incident Management
-</h2>
-
-
-<p>
-INC-001 | Investigation Active
-</p>
-
-
-<p>
-INC-002 | Closed Successfully
-</p>
-
-
-</section>
-
-
-
 <footer>
-
 MUTEB SOC Enterprise © 2026
-
 </footer>
 
 
@@ -346,15 +271,11 @@ return (
 
 <div style={box}>
 
-<h3>
-{title}
-</h3>
-
+<h3>{title}</h3>
 
 <h1 style={{color:C.blue}}>
 {value}
 </h1>
-
 
 </div>
 
@@ -368,18 +289,23 @@ return (
 
 export default function App(){
 
-
 const [user,setUser]=useState(null);
 
 
-return user?
+return user ?
 
 <Dashboard
+
 user={user}
+
 logout={()=>{
+
 localStorage.clear();
+
 setUser(null);
+
 }}
+
 />
 
 :
@@ -391,13 +317,26 @@ setUser(null);
 
 
 
-
 const page={
+
 minHeight:"100vh",
 background:C.bg,
 color:C.text,
 display:"flex",
 fontFamily:"Arial"
+
+};
+
+
+const pageCenter={
+
+height:"100vh",
+background:C.bg,
+display:"flex",
+alignItems:"center",
+justifyContent:"center",
+color:C.text
+
 };
 
 
@@ -405,30 +344,34 @@ const side={
 
 width:"240px",
 background:"#050b18",
-padding:"25px",
-borderRight:"1px solid #1e40af"
+padding:"25px"
 
 };
 
 
 const main={
+
 flex:1,
 padding:"30px"
+
 };
 
 
 const grid={
+
 display:"grid",
 gridTemplateColumns:"repeat(4,1fr)",
-gap:"20px",
-margin:"30px 0"
+gap:"20px"
+
 };
 
 
 const columns={
+
 display:"grid",
 gridTemplateColumns:"2fr 1fr",
 gap:"20px"
+
 };
 
 
@@ -436,8 +379,7 @@ const box={
 
 background:C.panel,
 padding:"25px",
-borderRadius:"18px",
-border:"1px solid #1e40af"
+borderRadius:"18px"
 
 };
 
@@ -458,8 +400,7 @@ background:"#0284c7",
 color:"white",
 padding:"12px 35px",
 border:"0",
-borderRadius:"10px",
-cursor:"pointer"
+borderRadius:"10px"
 
 };
 
