@@ -101,6 +101,7 @@ return (
 
 <div>Dashboard</div>
 <div>Alerts</div>
+<div>Security Events</div>
 <div>Events</div>
 <div>Reports</div>
 <div>Settings</div>
@@ -188,7 +189,7 @@ System Online
 <div className="panel">
 
 
-<h2>Recent Security Alerts</h2>
+<h2>Security Alerts & Events</h2>
 
 
 <table>

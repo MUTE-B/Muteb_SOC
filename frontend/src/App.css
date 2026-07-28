@@ -453,3 +453,70 @@ transform:translateY(-2px);
 
 
 
+
+
+/* ===================================
+   SOC ALERTS TABLE
+=================================== */
+
+
+.panel table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+
+
+.panel th{
+
+text-align:left;
+
+padding:14px;
+
+background:#0f172a;
+
+color:#38bdf8;
+
+}
+
+
+
+.panel td{
+
+padding:14px;
+
+border-bottom:1px solid #1e293b;
+
+}
+
+
+
+.panel tr:hover{
+
+background:#0f172a;
+
+}
+
+
+
+.status{
+
+padding:8px 15px;
+
+border-radius:20px;
+
+background:#064e3b;
+
+color:#34d399;
+
+font-size:14px;
+
+}
+
+
+
