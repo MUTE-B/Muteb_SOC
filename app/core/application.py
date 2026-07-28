@@ -1,10 +1,5 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
-
-from app.auth.auth import auth
-from app.api.soc import soc
-
 
 
 def create_app():
@@ -12,62 +7,59 @@ def create_app():
     app = Flask(__name__)
 
 
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI="sqlite:///muteb_soc.db",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False
+    )
+
+
     CORS(app)
 
 
-    app.config["JWT_SECRET_KEY"] = "MUTEB_SOC_SECRET_2026"
+    # Database
+    try:
+        from app.database.database import db
 
+        db.init_app(app)
 
-    JWTManager(app)
-
-
-
-    app.register_blueprint(auth)
-
-    app.register_blueprint(soc)
-
-
-
-    @app.route("/")
-    def home():
-
-        return jsonify({
-
-            "platform": "MUTEB SOC Enterprise",
-
-            "status": "ONLINE",
-
-            "version": "3.1.0"
-
-        })
+    except Exception as e:
+        print("Database init warning:", e)
 
 
 
-    @app.route("/api/status")
-    def status():
+    # APIs
+    try:
 
-        return jsonify({
+        from app.api.frontend_api import frontend_api
+        app.register_blueprint(frontend_api)
 
-            "backend": "ONLINE",
-
-            "database": "READY",
-
-            "security_engine": "RUNNING"
-
-        })
+    except Exception as e:
+        print("Frontend API warning:", e)
 
 
 
-    
+    try:
 
-    with app.app_context():
+        from app.api.soc import soc
+        app.register_blueprint(soc)
+
+    except Exception as e:
+        print("SOC API warning:", e)
+
+
+
+    # Create tables
+
+    try:
 
         from app.database.database import db
 
-        db.create_all()
+        with app.app_context():
+            db.create_all()
+
+    except Exception as e:
+        print("Database tables warning:", e)
+
 
 
     return app
-
-    
-

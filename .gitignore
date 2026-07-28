@@ -1,44 +1,49 @@
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Environment
+venv/
 .env
-
-# Logs
-logs/
-*.log
-
-# Runtime
-*.pid
 
 # Database
 *.db
 *.sqlite3
 
+# Logs
+*.log
+
 # Node
 frontend/node_modules/
 frontend/dist/
 
-# Virtual Environment
-venv/
-.venv/
+# Backups
+*.backup
+*.before*
+*.broken*
+*.failed*
+MUTEB_*.sh
 
-# IDE
-.vscode/
-.idea/
+# Temporary
+.tmp/
 
+# Runtime
+*.pid
+*.log
 
 # Reports
 reports/
-backup/
-backups/
+logs/
 SOC/reports/
 soc_lab/reports/
 docs/reports/
 
-# Generated Reports
-*.txt
+# Backup files
+backup/
+backups/
+*.backup*
+*.broken*
+*.failed*
+
+# Temporary scripts
+MUTEB_*.sh
+scripts/muteb_*.sh
 

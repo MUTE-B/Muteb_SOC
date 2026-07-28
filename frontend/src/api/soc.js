@@ -1,22 +1,11 @@
-const API="http://172.20.10.4:8000";
+import client from "./client";
 
 
-export async function get(token){
+export async function getSOCStatus(){
 
-const response = await fetch(
-`${API}/api/dashboard`,
-{
+const response =
+await client.get("/soc/status");
 
-headers:{
-
-"Authorization":
-`Bearer ${token}`
-
-}
-
-});
-
-
-return await response.json();
+return response.data;
 
 }

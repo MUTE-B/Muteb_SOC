@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 from auth import require_auth
 import os
 import json
@@ -8,6 +9,8 @@ import datetime
 
 
 app = Flask(__name__)
+CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 
@@ -64,10 +67,44 @@ def reports():
 
 
 
+@app.route("/api/login", methods=["POST"])
+def login():
+
+    from auth import check_auth
+
+    data = request.get_json()
+
+    username = data.get("username")
+    password = data.get("password")
+
+
+    if check_auth(username, password):
+
+        return jsonify({
+
+            "status":"success",
+            "username":username,
+            "role":"SOC Analyst",
+            "token":"MUTEB-SOC-TOKEN"
+
+        })
+
+
+    return jsonify({
+
+        "status":"failed",
+        "message":"Invalid username or password"
+
+    }),401
+
+
+
 if __name__ == "__main__":
 
     app.run(
         host="0.0.0.0",
         port=5000
     )
+
+
 

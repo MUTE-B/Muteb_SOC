@@ -1,0 +1,4 @@
+
+SQLALCHEMY_DATABASE_URI = "sqlite:///muteb_soc.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+

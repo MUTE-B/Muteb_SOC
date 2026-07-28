@@ -61,3 +61,10 @@ def get_settings():
 
 # Backward compatibility
 settings = SETTINGS
+
+
+
+
+SQLALCHEMY_DATABASE_URI = "sqlite:///muteb_soc.db"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
