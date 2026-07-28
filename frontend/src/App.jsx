@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import {useState} from "react";
 import "./App.css";
 
 
@@ -13,8 +12,8 @@ function App(){
 
 const [username,setUsername]=useState("");
 const [password,setPassword]=useState("");
-const [message,setMessage]=useState("");
 const [user,setUser]=useState(null);
+const [message,setMessage]=useState("");
 
 
 
@@ -34,32 +33,29 @@ body:JSON.stringify({
 username,
 password
 })
-}
-);
+});
 
 
-const data = await response.json();
+const result = await response.json();
 
 
-if(data.success){
+if(result.success){
 
-setUser(data.user);
-setMessage("Login Successful");
+setUser(result.user);
+setMessage("");
 
 }
 
 else{
 
-setMessage("Invalid Credentials");
+setMessage("Invalid Login");
 
 }
 
 
 }
 
-catch(error){
-
-console.log(error);
+catch{
 
 setMessage("Backend Connection Failed");
 
@@ -69,173 +65,25 @@ setMessage("Backend Connection Failed");
 
 
 
-
-if(user){
+if(!user){
 
 
 return (
 
-<div className="soc-dashboard">
+<div className="login-page">
 
 
-<header>
-
-<h1>
-🛡️ MUTEB SOC
-</h1>
-
-<p>
-Security Operations Center Dashboard
-</p>
-
-</header>
-
-
-
-<div className="cards">
-
-
-<div className="card online">
-
-<h3>
-System Status
-</h3>
-
-<p>
-ONLINE
-</p>
-
-</div>
-
-
-
-<div className="card">
-
-<h3>
-Threat Level
-</h3>
-
-<p>
-LOW
-</p>
-
-</div>
-
-
-
-<div className="card">
-
-<h3>
-Active Alerts
-</h3>
-
-<p>
-3
-</p>
-
-</div>
-
-
-
-<div className="card">
-
-<h3>
-Incidents
-</h3>
-
-<p>
-1
-</p>
-
-</div>
-
-
-</div>
-
-
-
-<section className="panel">
-
-<h2>
-Security Events
-</h2>
-
-
-<table>
-
-<thead>
-
-<tr>
-<th>Severity</th>
-<th>Source</th>
-<th>Status</th>
-</tr>
-
-</thead>
-
-
-<tbody>
-
-<tr>
-<td>Critical</td>
-<td>Firewall</td>
-<td>Investigating</td>
-</tr>
-
-
-<tr>
-<td>Medium</td>
-<td>Endpoint</td>
-<td>Monitoring</td>
-</tr>
-
-
-<tr>
-<td>Low</td>
-<td>User Activity</td>
-<td>Closed</td>
-</tr>
-
-
-</tbody>
-
-</table>
-
-
-</section>
-
-
-
-<footer>
-
-Logged User:
-{user.username}
-|
-Role:
-{user.role}
-
-</footer>
-
-
-
-</div>
-
-
-);
-
-
-}
-
-
-
-return (
-
-<div className="login-container">
+<div className="login-card">
 
 
 <h1>
 MUTEB SOC
 </h1>
+
+
+<h3>
+Enterprise Security Operations Center
+</h3>
 
 
 <input
@@ -257,9 +105,8 @@ e=>setPassword(e.target.value)
 />
 
 
-
 <button onClick={login}>
-Login
+Secure Login
 </button>
 
 
@@ -270,6 +117,298 @@ Login
 
 </div>
 
+
+</div>
+
+);
+
+
+}
+
+
+
+return (
+
+
+<div className="soc-layout">
+
+
+
+<aside className="sidebar">
+
+
+<h2>
+MUTEB SOC
+</h2>
+
+
+<nav>
+
+<div>
+Dashboard
+</div>
+
+<div>
+Alerts
+</div>
+
+<div>
+Events
+</div>
+
+<div>
+Reports
+</div>
+
+<div>
+Settings
+</div>
+
+
+</nav>
+
+
+</aside>
+
+
+
+<main className="content">
+
+
+
+<header className="topbar">
+
+
+<div>
+
+<h1>
+SOC Analyst Dashboard
+</h1>
+
+<p>
+Welcome {user.username}
+</p>
+
+</div>
+
+
+<div className="status">
+
+SYSTEM ONLINE
+
+</div>
+
+
+</header>
+
+
+
+
+
+<section className="overview">
+
+
+
+<div className="box">
+
+<h3>
+Security Status
+</h3>
+
+<strong>
+ONLINE
+</strong>
+
+</div>
+
+
+
+<div className="box">
+
+<h3>
+Active Alerts
+</h3>
+
+<strong>
+12
+</strong>
+
+</div>
+
+
+
+<div className="box">
+
+<h3>
+Events Today
+</h3>
+
+<strong>
+245
+</strong>
+
+</div>
+
+
+
+<div className="box">
+
+<h3>
+Threat Level
+</h3>
+
+<strong>
+LOW
+</strong>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<section className="panel">
+
+
+<h2>
+Security Alerts
+</h2>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Severity
+</th>
+
+<th>
+Source
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+Critical
+</td>
+
+<td>
+Firewall
+</td>
+
+<td>
+Investigating
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+High
+</td>
+
+<td>
+Authentication
+</td>
+
+<td>
+Monitoring
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Medium
+</td>
+
+<td>
+Network
+</td>
+
+<td>
+Resolved
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+<section className="panel">
+
+
+<h2>
+Recent Activity
+</h2>
+
+
+<ul>
+
+<li>
+Linux Authentication Log Analysis
+</li>
+
+
+<li>
+Threat Detection Rule Executed
+</li>
+
+
+<li>
+Security Report Generated
+</li>
+
+
+</ul>
+
+
+</section>
+
+
+
+</main>
+
+
+
+</div>
+
+
 );
 
 
@@ -277,4 +416,3 @@ Login
 
 
 export default App;
-
