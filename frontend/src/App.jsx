@@ -1,63 +1,32 @@
+
 import {useState} from "react";
 import "./App.css";
 
 
-const API =
-import.meta.env.VITE_API_URL ||
-"http://172.20.10.4:8000";
-
-
 function App(){
+
+const [user,setUser]=useState(null);
 
 
 const [username,setUsername]=useState("");
 const [password,setPassword]=useState("");
-const [user,setUser]=useState(null);
 const [message,setMessage]=useState("");
 
 
 
-async function login(){
+function login(){
 
-try{
+if(username==="admin" && password==="Muteb@123"){
 
-
-const response = await fetch(
-`${API}/api/login`,
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-username,
-password
-})
+setUser({
+username:"admin",
+role:"SOC Analyst"
 });
 
-
-const result = await response.json();
-
-
-if(result.success){
-
-setUser(result.user);
-setMessage("");
-
 }
-
 else{
 
-setMessage("Invalid Login");
-
-}
-
-
-}
-
-catch{
-
-setMessage("Backend Connection Failed");
+setMessage("Invalid credentials");
 
 }
 
@@ -67,126 +36,91 @@ setMessage("Backend Connection Failed");
 
 if(!user){
 
-
 return (
 
 <div className="login-page">
 
-
 <div className="login-card">
 
+<h1>MUTEB SOC</h1>
 
-<h1>
-MUTEB SOC
-</h1>
-
-
-<h3>
-Enterprise Security Operations Center
-</h3>
+<h3>Security Operations Center</h3>
 
 
 <input
+
 placeholder="Username"
+
 value={username}
-onChange={
-e=>setUsername(e.target.value)
-}
+
+onChange={(e)=>setUsername(e.target.value)}
+
 />
 
 
+
 <input
+
 type="password"
+
 placeholder="Password"
+
 value={password}
-onChange={
-e=>setPassword(e.target.value)
-}
+
+onChange={(e)=>setPassword(e.target.value)}
+
 />
 
 
 <button onClick={login}>
-Secure Login
+Login
 </button>
 
 
-<p>
-{message}
-</p>
+<p>{message}</p>
 
 
 </div>
-
 
 </div>
 
 );
 
-
 }
 
 
 
 return (
 
-
 <div className="soc-layout">
 
 
+<div className="sidebar">
 
-<aside className="sidebar">
+<h2>MUTEB SOC</h2>
+
+<div>Dashboard</div>
+<div>Alerts</div>
+<div>Events</div>
+<div>Reports</div>
+<div>Settings</div>
 
 
-<h2>
-MUTEB SOC
-</h2>
-
-
-<nav>
-
-<div>
-Dashboard
-</div>
-
-<div>
-Alerts
-</div>
-
-<div>
-Events
-</div>
-
-<div>
-Reports
-</div>
-
-<div>
-Settings
 </div>
 
 
-</nav>
+
+<div className="content">
 
 
-</aside>
-
-
-
-<main className="content">
-
-
-
-<header className="topbar">
-
+<div className="topbar">
 
 <div>
 
-<h1>
-SOC Analyst Dashboard
-</h1>
+<h2>SOC Dashboard</h2>
 
 <p>
-Welcome {user.username}
+Security Operations Monitoring Platform
 </p>
 
 </div>
@@ -194,30 +128,23 @@ Welcome {user.username}
 
 <div className="status">
 
-SYSTEM ONLINE
+System Online
 
 </div>
 
 
-</header>
+</div>
 
 
 
-
-
-<section className="overview">
-
+<div className="overview">
 
 
 <div className="box">
 
-<h3>
-Security Status
-</h3>
+<h3>Security Status</h3>
 
-<strong>
-ONLINE
-</strong>
+<strong>Normal</strong>
 
 </div>
 
@@ -225,13 +152,9 @@ ONLINE
 
 <div className="box">
 
-<h3>
-Active Alerts
-</h3>
+<h3>Active Alerts</h3>
 
-<strong>
-12
-</strong>
+<strong>05</strong>
 
 </div>
 
@@ -239,13 +162,9 @@ Active Alerts
 
 <div className="box">
 
-<h3>
-Events Today
-</h3>
+<h3>Events Today</h3>
 
-<strong>
-245
-</strong>
+<strong>240</strong>
 
 </div>
 
@@ -253,53 +172,38 @@ Events Today
 
 <div className="box">
 
-<h3>
-Threat Level
-</h3>
+<h3>Analyst</h3>
 
-<strong>
-LOW
-</strong>
+<strong>1</strong>
 
 </div>
 
 
 
-</section>
+</div>
 
 
 
 
+<div className="panel">
 
-<section className="panel">
 
-
-<h2>
-Security Alerts
-</h2>
+<h2>Recent Security Alerts</h2>
 
 
 <table>
-
 
 <thead>
 
 <tr>
 
-<th>
-Severity
-</th>
+<th>Severity</th>
 
-<th>
-Source
-</th>
+<th>Event</th>
 
-<th>
-Status
-</th>
+<th>Status</th>
 
 </tr>
-
 
 </thead>
 
@@ -309,51 +213,34 @@ Status
 
 <tr>
 
-<td>
-Critical
-</td>
+<td>High</td>
 
-<td>
-Firewall
-</td>
+<td>Multiple Login Attempts</td>
 
-<td>
-Investigating
-</td>
+<td>Investigating</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>Medium</td>
+
+<td>Network Scan Detected</td>
+
+<td>Reviewed</td>
 
 </tr>
 
 
 <tr>
 
-<td>
-High
-</td>
+<td>Low</td>
 
-<td>
-Authentication
-</td>
+<td>System Update</td>
 
-<td>
-Monitoring
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>
-Medium
-</td>
-
-<td>
-Network
-</td>
-
-<td>
-Resolved
-</td>
+<td>Closed</td>
 
 </tr>
 
@@ -364,46 +251,31 @@ Resolved
 </table>
 
 
-
-</section>
-
+</div>
 
 
 
-<section className="panel">
+<div className="panel">
 
 
-<h2>
-Recent Activity
-</h2>
+<h2>Analyst Information</h2>
 
 
-<ul>
-
-<li>
-Linux Authentication Log Analysis
-</li>
+<p>
+Username: {user.username}
+</p>
 
 
-<li>
-Threat Detection Rule Executed
-</li>
+<p>
+Role: {user.role}
+</p>
 
 
-<li>
-Security Report Generated
-</li>
-
-
-</ul>
-
-
-</section>
+</div>
 
 
 
-</main>
-
+</div>
 
 
 </div>
@@ -416,3 +288,4 @@ Security Report Generated
 
 
 export default App;
+
