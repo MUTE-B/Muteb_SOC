@@ -47,3 +47,25 @@ backups/
 MUTEB_*.sh
 scripts/muteb_*.sh
 
+
+
+# MUTEB SOC Temporary Files
+
+*.backup
+*.backup*
+*.bak
+*.old
+
+frontend.log
+backend.pid
+frontend.pid
+
+__pycache__/
+*.pyc
+
+node_modules/
+
+.env
+
+archive/
+
