@@ -16,7 +16,7 @@ const [message,setMessage]=useState("");
 
 function login(){
 
-if(username==="admin" && password==="CHANGE_PASSWORD"){
+if(username==="admin" && password==="DEMO_LOGIN_DISABLED"){
 
 setUser({
 username:"admin",
