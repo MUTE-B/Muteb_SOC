@@ -7,9 +7,9 @@ auth = Blueprint("auth", __name__)
 
 USERS = {
 
-    "admin": "Muteb@123",
+    "admin": "CHANGE_PASSWORD",
     "soc": "SOC@123",
-    "mte-b": "Muteb@123"
+    "mte-b": "CHANGE_PASSWORD"
 
 }
 
