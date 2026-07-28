@@ -1,58 +1,38 @@
-
+version: "3.9"
 
 services:
 
+ backend:
 
-  muteb-soc:
+  build: .
 
+  container_name: muteb-soc-backend
 
-    container_name: muteb-soc-enterprise
+  ports:
+   - "8000:8000"
 
+  env_file:
+   - .env
 
-    build: .
-
-
-    ports:
-
-
-      - "8000:8000"
-
-
-    restart: always
+  restart: always
 
 
-    environment:
+ frontend:
 
+  image: node:20
 
-      - ENVIRONMENT=production
+  container_name: muteb-soc-frontend
 
+  working_dir: /frontend
 
+  volumes:
+   - ./frontend:/frontend
 
-  nginx:
+  ports:
+   - "5173:5173"
 
+  command:
+   npm run dev -- --host 0.0.0.0
 
-    image: nginx:latest
-
-
-    container_name: muteb-soc-nginx
-
-
-    ports:
-
-
-      - "80:80"
-
-
-    volumes:
-
-
-      - ./deployment/nginx:/etc/nginx/conf.d
-
-
-    depends_on:
-
-
-      - muteb-soc
-
-
+  restart: always
 

@@ -1,14 +1,22 @@
+const API_URL="http://172.20.10.4:8000";
 
 
-import axios from "axios";
+export async function getHealth(){
 
+try{
 
-const API = axios.create({
+const response = await fetch(API_URL);
 
-baseURL:"http://127.0.0.1:8000"
+return await response.json();
 
-});
+}
 
+catch(error){
 
-export default API;
+return {
+status:"OFFLINE"
+};
 
+}
+
+}

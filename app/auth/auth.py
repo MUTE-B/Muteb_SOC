@@ -1,113 +1,60 @@
-
 from flask import Blueprint, request, jsonify
-
-from app.database.database import db
-from app.models.user import User
-
 from flask_jwt_extended import create_access_token
 
 
-auth = Blueprint(
-    "auth",
-    __name__
-)
+auth = Blueprint("auth", __name__)
+
+
+users = {
+
+    "admin": {
+        "password": "muteb123",
+        "role": "ADMIN"
+    },
+
+    "analyst": {
+        "password": "soc123",
+        "role": "SOC_ANALYST"
+    }
+
+}
 
 
 
-@auth.route(
-    "/register",
-    methods=["POST"]
-)
-def register():
-
-    data = request.json
-
-
-    user = User(
-
-        username=data["username"],
-
-        email=data["email"],
-
-        role=data.get(
-            "role",
-            "VIEWER"
-        )
-
-    )
-
-
-    user.set_password(
-        data["password"]
-    )
-
-
-    db.session.add(user)
-
-    db.session.commit()
-
-
-    return jsonify({
-
-        "message":
-        "User created successfully"
-
-    })
-
-
-
-
-
-@auth.route(
-    "/login",
-    methods=["POST"]
-)
+@auth.route("/api/login", methods=["POST"])
 def login():
 
     data = request.json
 
-
-    user = User.query.filter_by(
-
-        username=data["username"]
-
-    ).first()
+    username = data.get("username")
+    password = data.get("password")
 
 
+    if username in users and users[username]["password"] == password:
 
-    if user and user.check_password(
-
-        data["password"]
-
-    ):
-
-
-        access_token = create_access_token(
-
-            identity=user.username
-
+        token = create_access_token(
+            identity=username
         )
 
 
         return jsonify({
 
-            "status":
-            "success",
+            "status":"success",
 
-            "access_token":
-            access_token,
+            "token":token,
 
-            "role":
-            user.role
+            "username":username,
+
+            "role":users[username]["role"]
 
         })
 
 
-
     return jsonify({
 
-        "status":
-        "failed"
+        "status":"failed",
+
+        "message":"Invalid username or password"
 
     }),401
 

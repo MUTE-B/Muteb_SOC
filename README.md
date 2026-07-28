@@ -1,71 +1,59 @@
+# 🛡 MUTEB SOC ENTERPRISE v1.0
 
-# MUTEB SOC Enterprise
-
-## Security Operations Center Platform
-
-
-Version:
-10.1.0
+Enterprise Security Operations Center Platform
 
 
-## Overview
+## Features
 
-MUTEB SOC is an enterprise defensive security platform
-designed for monitoring, detection, investigation and response.
+✔ SOC Dashboard
 
+✔ JWT Authentication
 
-## Core Capabilities
+✔ Role Based Access Control
 
+✔ Threat Intelligence Engine
 
-- Authentication & JWT Security
-- Role Based Access Control
-- SOC Dashboard
-- Threat Intelligence
-- IOC Management
-- Detection Engine
-- Sigma Rules Foundation
-- MITRE ATT&CK Mapping
-- SOAR Automation
-- Incident Management
-- Evidence Management
-- SIEM Integration
-- Audit Logging
+✔ IOC Scanner
+
+✔ Risk Score Engine
+
+✔ Incident Generator
+
+✔ Security Analytics
+
+✔ Docker Deployment
 
 
 ## Architecture
 
 
-Backend:
+Frontend:
+React + Vite
 
-- Python Flask
+
+Backend:
+Flask API
+
+
+Database:
+SQLite / PostgreSQL
+
+
+Security:
+JWT + RBAC
+
+
+
+## Access
 
 
 Frontend:
 
-- React
+http://SERVER:5173
 
 
-Security:
+Backend:
 
-- JWT
-- RBAC
-- Security Headers
+http://SERVER:8000
 
-
-Deployment:
-
-- Docker
-- Nginx
-- Production Environment
-
-
-
-## Version
-
-MUTEB SOC Enterprise v10.1.0
-
-
-Status:
-
-Enterprise Ready
 
