@@ -1,42 +1,37 @@
+
 # MUTEB SOC Screenshots
 
 
-## Dashboard
+Required Portfolio Screenshots:
 
 
-Shows:
+01-login.png
 
-- Active alerts
-- Incident count
-- SOC monitoring status
-
-
-
-## Alerts
-
-
-Shows:
-
-- Detection results
-- Severity level
-- Evidence
+SOC Login Interface
 
 
 
-## Incident Cases
+02-dashboard.png
 
-
-Shows:
-
-- Case ID
-- Timeline
-- Investigation notes
+Main SOC Dashboard
 
 
 
-## Purpose
+03-alerts.png
+
+Security Alerts View
 
 
-Screenshots demonstrate practical SOC workflow execution.
+
+04-reports.png
+
+Security Reports View
+
+
+
+05-system-status.png
+
+System Monitoring Status
+
 
 
