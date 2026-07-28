@@ -1,0 +1,21 @@
+
+PROJECT:
+
+MUTEB SOC Enterprise
+
+
+VERSION:
+
+v2.1.1
+
+
+STATUS:
+
+FINAL PORTFOLIO RELEASE
+
+
+READY:
+
+YES
+
+
