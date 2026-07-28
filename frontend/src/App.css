@@ -345,3 +345,111 @@ gap:15px;
 
 }
 
+
+
+/* ===================================
+   MUTEB SOC ENTERPRISE LOGIN
+=================================== */
+
+
+.login-page{
+
+background:
+
+radial-gradient(
+circle at top,
+#12304a,
+#020617 70%
+);
+
+}
+
+
+
+.login-card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+
+.login-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:5px;
+
+background:#38bdf8;
+
+}
+
+
+
+.login-card h1{
+
+letter-spacing:3px;
+
+}
+
+
+
+.login-card h3{
+
+margin-bottom:35px;
+
+}
+
+
+
+.login-card p{
+
+color:#f87171;
+
+min-height:20px;
+
+}
+
+
+
+.login-card input:focus{
+
+outline:none;
+
+border-color:#38bdf8;
+
+box-shadow:
+0 0 10px rgba(56,189,248,.3);
+
+}
+
+
+
+.login-card button{
+
+transition:.3s;
+
+}
+
+
+
+.login-card button:hover{
+
+background:#0369a1;
+
+transform:translateY(-2px);
+
+}
+
+
+
