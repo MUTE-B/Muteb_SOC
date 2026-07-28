@@ -520,3 +520,46 @@ font-size:14px;
 
 
 
+
+
+/* ===================================
+   ENTERPRISE STATUS PANELS
+=================================== */
+
+
+.panel{
+
+background:#111827;
+
+border:1px solid #1e293b;
+
+border-radius:12px;
+
+padding:25px;
+
+margin-top:25px;
+
+}
+
+
+
+.panel h2{
+
+color:#38bdf8;
+
+margin-bottom:15px;
+
+}
+
+
+
+.panel p{
+
+color:#cbd5e1;
+
+line-height:1.8;
+
+}
+
+
+

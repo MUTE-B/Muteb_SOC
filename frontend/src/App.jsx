@@ -104,6 +104,8 @@ return (
 <div>Security Events</div>
 <div>Events</div>
 <div>Reports</div>
+<div>Analyst Profile</div>
+<div>System Status</div>
 <div>Settings</div>
 
 
@@ -259,7 +261,7 @@ System Online
 <div className="panel">
 
 
-<h2>Analyst Information</h2>
+<h2>Analyst Profile</h2>
 
 
 <p>
@@ -270,6 +272,102 @@ Username: {user.username}
 <p>
 Role: {user.role}
 </p>
+
+
+<p>
+Department: Security Operations Center
+</p>
+
+
+<p>
+Access Level: Analyst
+</p>
+
+
+</div>
+
+
+
+<div className="panel">
+
+
+<h2>System Status</h2>
+
+
+<p>
+Backend: Online
+</p>
+
+
+<p>
+Frontend: Online
+</p>
+
+
+<p>
+Monitoring Engine: Active
+</p>
+
+
+</div>
+
+
+
+<div className="panel">
+
+
+<h2>Security Reports</h2>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Report</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>Daily Security Report</td>
+
+<td>Generated</td>
+
+</tr>
+
+
+<tr>
+
+<td>Threat Analysis Report</td>
+
+<td>Available</td>
+
+</tr>
+
+
+<tr>
+
+<td>Incident Summary</td>
+
+<td>Ready</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
 
 
 </div>
