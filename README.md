@@ -1,92 +1,144 @@
-# MUTEB SOC Enterprise Platform
 
-## Security Operations Center Platform
+# MUTEB SOC Enterprise v2.1.1
 
-MUTEB SOC is an Enterprise Security Operations Center platform designed for:
+## Security Operations Center Portfolio Platform
 
+
+## Overview
+
+
+MUTEB SOC is a defensive cybersecurity laboratory platform designed to simulate a real Security Operations Center (SOC) environment.
+
+
+The project demonstrates practical Blue Team workflows including monitoring, investigation, detection concepts, and security reporting.
+
+
+
+# Main Capabilities
+
+
+## SOC Monitoring
+
+
+- Security dashboard
+- Event monitoring
+- Alert visibility
+- Analyst workflow
+
+
+## Detection Engineering
+
+
+- Detection concepts
+- MITRE ATT&CK mapping
+- Sigma rule concepts
+- IOC investigation workflow
+
+
+## Incident Response
+
+
+- Alert analysis
+- Investigation process
+- Security reporting workflow
+
+
+
+# Architecture
+
+
+
+Security Events
+
+↓
+
+Log Collection
+
+↓
+
+Detection Analysis
+
+↓
+
+Alerts
+
+↓
+
+SOC Dashboard
+
+↓
+
+Incident Response
+
+↓
+
+Reports
+
+
+
+# Technology Stack
+
+
+
+| Technology | Usage |
+|---|---|
+| Python | Backend & Automation |
+| React | User Interface |
+| Linux | Security Environment |
+| Bash | Automation |
+| GitHub | Version Control |
+| SQLite | Database |
+
+
+
+# Project Structure
+
+
+
+Muteb-SOC/
+
+├── app/
+├── frontend/
+├── soc_lab/
+├── sigma_rules/
+├── detections/
+├── reports/
+├── portfolio/
+└── docs/
+
+
+
+
+# Skills Demonstrated
+
+
+- SOC Analyst Workflow
+- Blue Team Operations
 - Security Monitoring
-- Threat Detection
-- Incident Response
-- Security Analytics
-- SOC Operations
-
-
-## Main Components
-
-### Frontend
-- React Dashboard
-- Security Monitoring Interface
-- Analyst Console
-
-
-### Backend
-- API Services
-- Authentication
-- Security Data Processing
-
-
-### Security Modules
-
-- Alert Management
-- Incident Management
-- Threat Intelligence
-- Security Reporting
-
-
-## Architecture
-
-User
-|
-Frontend Dashboard
-|
-Backend API
-|
-Security Engine
-|
-Database
+- Threat Investigation
+- Security Documentation
+- Linux Administration
+- Cybersecurity Automation
 
 
 
-## Technologies
-
-Frontend:
-- React
-- Vite
-- JavaScript
+# Release
 
 
-Backend:
-- API Services
-- Python
+Current Version:
 
 
-Security:
-- SOC Operations
-- Blue Team Concepts
-- MITRE ATT&CK Mapping
+v2.1.1
 
 
-## Installation
 
-```bash
-git clone <repository>
+# Developer
 
-cd Muteb-SOC
-
-cd frontend
-
-npm install
-
-npm run dev
-Version
-
-Current Release:
-
-v1.0.0
-
-Developer
 
 Muteb Albalawi
 
-Cyber Security / IT Specialist
+
+Cyber Security | IT Specialist | SOC Analyst Path
+
+
 
