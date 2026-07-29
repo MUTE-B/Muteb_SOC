@@ -1,30 +1,46 @@
 
+import React,{useEffect,useState} from "react";
+import api from "../services/api";
+
 
 export default function Alerts(){
+
+
+const [data,setData]=useState([]);
+
+
+useEffect(()=>{
+
+api.get("/api/alerts")
+.then(r=>setData(r.data))
+
+},[]);
+
 
 
 return (
 
 <div>
 
-<h2>
+<h1>Alerts</h1>
 
-Security Alerts
+{
 
-</h2>
+data.map(a=>
 
+<div key={a.id}>
 
-<p>
-
-No active alerts
-
-</p>
-
+{a.severity} - {a.title}
 
 </div>
 
-);
+)
 
+}
+
+</div>
+
+)
 
 }
 
