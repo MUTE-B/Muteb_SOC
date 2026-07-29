@@ -1,0 +1,210 @@
+from flask import Flask,request,jsonify
+from flask_cors import CORS
+from flask_jwt_extended import (
+JWTManager,
+create_access_token
+)
+
+from routes.health import health
+from routes.dashboard import dashboard
+
+
+app=Flask(__name__)
+
+CORS(app)
+
+
+app.config[
+"JWT_SECRET_KEY"
+]="MUTEB_SOC_ENTERPRISE_SECRET"
+
+
+jwt=JWTManager(app)
+
+
+
+app.register_blueprint(
+health
+)
+
+app.register_blueprint(
+dashboard
+)
+
+
+
+@app.route("/api/login",methods=["POST"])
+def login():
+
+    data=request.json
+
+    if (
+        data.get("username")
+        =="admin"
+        and
+        data.get("password")
+        =="Muteb@Admin2026"
+    ):
+
+        token=create_access_token(
+            identity="admin"
+        )
+
+
+        return jsonify({
+
+            "success":True,
+
+            "role":"Admin",
+
+            "token":token
+
+        })
+
+
+    return jsonify({
+
+        "success":False
+
+    }),401
+
+
+
+@app.route("/")
+def index():
+
+    return jsonify({
+
+        "system":
+        "MUTEB SOC Enterprise",
+
+        "status":
+        "running"
+
+    })
+
+
+
+if __name__=="__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=8000
+    )
+
+
+# =====================================
+# MUTEB SOC ENTERPRISE SECURITY APIs
+# =====================================
+
+
+from modules.threat_engine import ThreatEngine
+from modules.ioc_engine import IOCScanner
+from modules.detection_engine import DetectionEngine
+from modules.case_manager import CaseManager
+from modules.mitre_engine import map_attack
+
+
+
+enterprise_threat = ThreatEngine()
+
+enterprise_ioc = IOCScanner()
+
+enterprise_detection = DetectionEngine()
+
+enterprise_cases = CaseManager()
+
+
+
+@app.route("/api/enterprise/threat",methods=["POST"])
+def enterprise_threat_api():
+
+    data=request.json or {}
+
+    return jsonify(
+        enterprise_threat.analyze(data)
+    )
+
+
+
+@app.route("/api/enterprise/ioc",methods=["POST"])
+def enterprise_ioc_api():
+
+    data=request.json or {}
+
+    return jsonify(
+        enterprise_ioc.scan(
+            data.get("value","")
+        )
+    )
+
+
+
+@app.route("/api/enterprise/detection",methods=["POST"])
+def enterprise_detection_api():
+
+    data=request.json or {}
+
+    result = enterprise_detection.run(
+        data.get("event","")
+    )
+
+    return jsonify({
+
+        "detections":result
+
+    })
+
+
+
+@app.route("/api/enterprise/case",methods=["POST"])
+def enterprise_case_api():
+
+    data=request.json or {}
+
+    return jsonify(
+        enterprise_cases.create(
+            data.get(
+            "title",
+            "Security Incident"
+            )
+        )
+    )
+
+
+
+@app.route("/api/enterprise/mitre/<name>")
+def enterprise_mitre(name):
+
+    return jsonify({
+
+        "technique":
+        map_attack(name)
+
+    })
+
+
+
+@app.route("/api/enterprise/status")
+def enterprise_status():
+
+    return jsonify({
+
+        "platform":
+        "MUTEB SOC Enterprise",
+
+        "backend":
+        "ONLINE",
+
+        "security_modules":[
+
+        "Threat Engine",
+        "IOC Scanner",
+        "Detection Engine",
+        "Case Management",
+        "MITRE Mapping"
+
+        ]
+
+    })
+

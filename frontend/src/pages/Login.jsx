@@ -1,56 +1,134 @@
 
 import React,{useState} from "react";
-import api from "../services/api";
+
+import "./Login.css";
 
 
 export default function Login({onLogin}){
 
 
 const [username,setUsername]=useState("");
+
 const [password,setPassword]=useState("");
 
+const [error,setError]=useState("");
 
-function submit(){
 
-api.post("/api/login",{
+
+async function submit(e){
+
+e.preventDefault();
+
+
+try{
+
+
+const r=await fetch(
+
+"/api/login",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
 
 username,
+
 password
 
 })
-.then(res=>{
 
-if(res.data.success){
+}
 
-localStorage.setItem(
-"user",
-JSON.stringify(res.data.user)
 );
 
-onLogin(res.data.user);
+
+const data=await r.json();
+
+
+
+if(data.success){
+
+onLogin(data);
 
 }
 
-else alert("Login Failed");
+else{
 
-})
+setError("Invalid Credentials");
 
 }
+
+
+}
+
+catch{
+
+setError("Connection Error");
+
+}
+
+
+}
+
 
 
 return (
 
-<div className="login">
+<div className="login-background">
 
-<h1>MUTEB SOC</h1>
 
-<h2>Enterprise Login</h2>
+<div className="cyber-grid"></div>
+
+
+
+<div className="login-card">
+
+
+<h1>
+
+MUTEB SOC
+
+</h1>
+
+
+<h2>
+
+ENTERPRISE
+
+</h2>
+
+
+<p className="subtitle">
+
+Secure Access Portal
+
+</p>
+
+
+
+<form onSubmit={submit}>
 
 
 <input
+
 placeholder="Username"
-onChange={e=>setUsername(e.target.value)}
+
+value={username}
+
+onChange={
+e=>setUsername(e.target.value)
+}
+
 />
+
 
 
 <input
@@ -59,21 +137,69 @@ type="password"
 
 placeholder="Password"
 
-onChange={e=>setPassword(e.target.value)}
+value={password}
+
+onChange={
+e=>setPassword(e.target.value)
+}
+
 />
 
 
 
-<button onClick={submit}>
+<button>
 
 LOGIN
 
 </button>
 
 
+
+</form>
+
+
+
+{
+error &&
+<p className="error">
+
+{error}
+
+</p>
+}
+
+
+
+<div className="features">
+
+
+SOC Monitoring
+
+<br/>
+
+Threat Intelligence
+
+<br/>
+
+Incident Response
+
+<br/>
+
+Cyber Assessment
+
+
+</div>
+
+
+
+</div>
+
+
+
 </div>
 
 )
+
 
 }
 

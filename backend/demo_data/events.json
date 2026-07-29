@@ -1,0 +1,17 @@
+
+[
+{
+"id":1,
+"type":"LOGIN",
+"severity":"HIGH",
+"message":"Suspicious Login"
+},
+
+{
+"id":2,
+"type":"NETWORK",
+"severity":"MEDIUM",
+"message":"Unknown Connection"
+}
+]
+

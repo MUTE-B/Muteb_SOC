@@ -1,0 +1,12 @@
+
+MUTEB SOC ENTERPRISE THEME
+
+Modules:
+
+SOC Command Center
+Threat Monitoring
+Alert Management
+Incident Response
+User Management
+Security Logs
+

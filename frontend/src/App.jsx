@@ -1,164 +1,210 @@
 
-import {useEffect,useState} from "react";
+import React,{useState} from "react";
+
+import {
+BrowserRouter,
+Routes,
+Route,
+Link
+}
+from "react-router-dom";
+
+
+import Login from "./pages/Login";
+
+import Dashboard from "./pages/Dashboard";
+
+import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+
+import WebScanner from "./scanner/WebScanner";
+
+
 import "./App.css";
 
 
-function App(){
 
-const [data,setData]=useState({});
-const [page,setPage]=useState("dashboard");
+export default function App(){
 
 
-useEffect(()=>{
+const [user,setUser]=useState(
+localStorage.getItem("muteb_user")
+);
 
-fetch("/api/stats")
-.then(r=>r.json())
-.then(setData);
 
-},[]);
+
+function login(data){
+
+localStorage.setItem(
+"muteb_user",
+JSON.stringify(data)
+);
+
+
+setUser(data);
+
+}
+
+
+
+function logout(){
+
+localStorage.removeItem(
+"muteb_user"
+);
+
+
+setUser(null);
+
+}
+
+
+
+if(!user){
+
+return (
+
+<Login
+onLogin={login}
+/>
+
+)
+
+}
 
 
 
 return (
 
-<div>
+<BrowserRouter>
 
-<h1>MUTEB SOC</h1>
 
-<nav>
+<div className="soc-layout">
 
-<button onClick={()=>setPage("dashboard")}>Dashboard</button>
-<button onClick={()=>setPage("alerts")}>Alerts</button>
-<button onClick={()=>setPage("incidents")}>Incidents</button>
-<button onClick={()=>setPage("users")}>Users</button>
-<button onClick={()=>setPage("logs")}>Logs</button>
+
+<nav className="soc-menu">
+
+
+<h2>
+MUTEB SOC ENTERPRISE
+</h2>
+
+
+<h4>OPERATIONS</h4>
+
+<Link to="/">Dashboard</Link>
+
+<Link to="/enterprise">
+Security Monitoring
+</Link>
+
+<Link to="/alerts">
+Alerts
+</Link>
+
+<Link to="/incidents">
+Incidents
+</Link>
+
+<Link to="/cases">
+Cases
+</Link>
+
+
+
+<h4>THREAT INTELLIGENCE</h4>
+
+<Link to="/hunting">
+Threat Hunting
+</Link>
+
+<Link to="/ioc">
+IOC Management
+</Link>
+
+<Link to="/mitre">
+MITRE ATT&CK
+</Link>
+
+
+
+<h4>SECURITY ENGINEERING</h4>
+
+<Link to="/detection">
+Detection Engine
+</Link>
+
+<Link to="/scanner">
+Web Security Scanner
+</Link>
+
+
+
+<h4>REPORTING</h4>
+
+<Link to="/reports">
+Reports
+</Link>
+
+
+
+<button
+onClick={logout}
+>
+Logout
+</button>
+
 
 </nav>
 
 
-<h2>SOC Overview</h2>
+
+<main className="soc-content">
 
 
-{
-page==="dashboard" &&
+<Routes>
 
-<div>
 
-<h3>Critical Alerts : {data.alerts}</h3>
-
-<h3>Open Incidents : {data.incidents}</h3>
-
-<h3>Active Users : {data.users}</h3>
-
-<h3>Threat Score : {data.threat_score}</h3>
-
-</div>
-
+<Route
+path="/"
+element={
+<Dashboard logout={logout}/>
 }
+/>
 
 
-{
-page==="alerts" &&
 
-<div>
-
-<h2>Alerts Center</h2>
-
-<table>
-
-<tbody>
-
-<tr>
-<td>1</td>
-<td>Brute Force Attack</td>
-<td>Critical</td>
-<td>Open</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
+<Route
+path="/enterprise"
+element={
+<EnterpriseDashboard/>
 }
+/>
 
 
 
-{
-page==="incidents" &&
-
-<div>
-
-<h2>Incident Management</h2>
-
-<p>Suspicious Login</p>
-<p>Priority : High</p>
-<p>Status : Investigating</p>
-
-</div>
-
+<Route
+path="/scanner"
+element={
+<WebScanner/>
 }
+/>
 
 
 
-{
-page==="users" &&
-
-<div>
-
-<h2>Users Management</h2>
+</Routes>
 
 
-<table>
-<tbody>
-
-<tr>
-<td>admin</td>
-<td>Admin</td>
-<td><button>Change Role</button></td>
-<td><button>Delete</button></td>
-</tr>
-
-
-<tr>
-<td>analyst</td>
-<td>Analyst</td>
-<td><button>Change Role</button></td>
-<td><button>Delete</button></td>
-</tr>
-
-</tbody>
-</table>
+</main>
 
 
 </div>
 
-}
+
+</BrowserRouter>
 
 
+)
 
-{
-page==="logs" &&
-
-<div>
-
-<h2>Logs Viewer</h2>
-
-<p>Security Events</p>
-
-</div>
 
 }
-
-
-
-</div>
-
-);
-
-}
-
-
-export default App;
 

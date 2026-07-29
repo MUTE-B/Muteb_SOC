@@ -1,0 +1,17 @@
+
+title: Suspicious Login Detection
+
+id: MUTEB-001
+
+severity: high
+
+logsource:
+
+ product: authentication
+
+
+detection:
+
+ condition: failed_login
+
+

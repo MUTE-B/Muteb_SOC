@@ -1,0 +1,42 @@
+
+MUTEB SOC ENTERPRISE HEALTH REPORT
+
+DATE:
+Thu Jul 30 12:38:20 AM +03 2026
+
+
+PROJECT:
+/home/mte-b/Muteb-SOC
+
+
+SERVICES:
+
+PostgreSQL:
+active
+
+
+Backend:
+active
+
+
+Nginx:
+active
+
+
+
+MODULES:
+
+Log Collector       READY
+
+Detection Engine    READY
+
+Threat Hunting     READY
+
+Web Scanner         READY
+
+
+STATUS:
+
+PRODUCTION READY
+
+

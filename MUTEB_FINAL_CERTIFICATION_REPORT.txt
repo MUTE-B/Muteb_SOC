@@ -1,0 +1,132 @@
+MUTEB SOC FINAL CERTIFICATION REPORT
+DATE: Wed Jul 29 11:58:08 PM +03 2026
+PROJECT: /home/mte-b/Muteb-SOC
+
+[PROJECT SIZE]
+451M	.
+[STRUCTURE]
+.
+./release_notes
+./assets
+./incident
+./archive
+./archive/scripts
+./archive/backups
+./archive/development_scripts
+./archive/internal_audit
+./backup_cleanup
+./backup_cleanup/frontend_backup_2026-07-29_1716
+./public_release
+./public_release/github
+./public_release/checklist
+./public_release/interview
+./public_release/linkedin
+./cases
+./monitoring
+./tmp
+./platinum_release
+./platinum_release/package
+./platinum_release/certificate
+./platinum_release/status
+./templates
+./deployment
+./deployment/services
+./deployment/monitoring
+./deployment/api
+./deployment/cicd
+./deployment/gunicorn
+./deployment/scripts
+./deployment/config
+./deployment/docker
+./deployment/nginx
+./deployment/runtime
+./deployment/logging
+./deployment/backup
+./deployment/reports
+./deployment/cloud
+./deployment/.github
+./brand
+./brand/media
+./brand/website
+./brand/identity
+./demo
+./demo/screenshots
+./demo/incidents
+./demo/scenarios
+./demo/evidence
+./demo/alerts
+[BACKEND SERVICE]
+● muteb-backend.service - MUTEB SOC Backend
+     Loaded: loaded (/etc/systemd/system/muteb-backend.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-07-29 23:57:41 +03; 27s ago
+   Main PID: 53024 (python)
+      Tasks: 1 (limit: 3465)
+     Memory: 20.4M (peak: 20.5M)
+        CPU: 308ms
+     CGroup: /system.slice/muteb-backend.service
+             └─53024 /home/mte-b/Muteb-SOC/backend/venv/bin/python app.py
+
+Jul 29 23:57:41 mte-b systemd[1]: Started muteb-backend.service - MUTEB SOC Backend.
+Jul 29 23:57:41 mte-b python[53024]:  * Serving Flask app 'app'
+Jul 29 23:57:41 mte-b python[53024]:  * Debug mode: off
+Jul 29 23:57:41 mte-b python[53024]: WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+Jul 29 23:57:41 mte-b python[53024]:  * Running on all addresses (0.0.0.0)
+Jul 29 23:57:41 mte-b python[53024]:  * Running on http://127.0.0.1:8000
+Jul 29 23:57:41 mte-b python[53024]:  * Running on http://172.20.10.4:8000
+Jul 29 23:57:41 mte-b python[53024]: Press CTRL+C to quit
+[BACKEND PORT]
+tcp   LISTEN 0      128          0.0.0.0:8000       0.0.0.0:*    users:(("python",pid=53024,fd=3))
+[FRONTEND]
+  "name": "muteb-soc-dashboard",
+  "version": "1.0.0",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build"
+    "@vitejs/plugin-react": "4.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "^6.30.4",
+    "vite": "5.4.14"
+
+> muteb-soc-dashboard@1.0.0 build
+> vite build
+
+vite v5.4.14 building for production...
+transforming...
+✓ 83 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.37 kB │ gzip:  0.27 kB
+dist/assets/index-BD1z9jnf.css    1.10 kB │ gzip:  0.54 kB
+dist/assets/index-DbdeY_FX.js   190.75 kB │ gzip: 63.84 kB
+✓ built in 3.87s
+[POSTGRESQL]
+active
+ muteb_soc | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =Tc/postgres            +
+           |          |          |                 |             |             |            |           | muteb_admin=CTc/postgres
+[HEALTH]
+{"status":"ONLINE","system":"MUTEB SOC Enterprise"}
+[LOGIN TEST]
+{"role":"Admin","success":true,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4NTM1ODY5NSwianRpIjoiMjU0NDMxYzUtMmI3Mi00ZjdlLThhZWItYTBmNjI5ZjhiMmQ0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWluIiwibmJmIjoxNzg1MzU4Njk1LCJjc3JmIjoiNjE3NGY2YmMtNTA5ZC00Yjc5LTk2MzctM2VhNzNjNzU3ZDUyIiwiZXhwIjoxNzg1MzU5NTk1fQ.vvl2K2SiKV7N5sS9-G9KhpsH_pdjKE8QpZy6eAjDL6s"}
+[SECRETS CHECK]
+backend/app.py:"JWT_SECRET_KEY"
+backend/config.py:JWT_SECRET=os.getenv(
+backend/config.py:"JWT_SECRET_KEY"
+backend/database.py:        password=Config.DB["password"]
+backend/.env:JWT_SECRET_KEY=MUTEB_SOC_ENTERPRISE_SECRET_CHANGE
+[SERVICES]
+active
+failed
+active
+2026/07/29 23:58:15 [warn] 53281#53281: the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+2026/07/29 23:58:15 [emerg] 53281#53281: open() "/run/nginx.pid" failed (13: Permission denied)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+========== FINAL STATUS ==========
+Backend:
+active
+Frontend:
+failed
+Database:
+active
+Nginx:
+active

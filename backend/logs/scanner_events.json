@@ -1,0 +1,86 @@
+[
+    {
+        "time": "2026-07-29 22:06:32.053021",
+        "target": "example.com",
+        "result": {
+            "target": "example.com",
+            "findings": [
+                {
+                    "title": "Missing Security Header Content-Security-Policy",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header X-Frame-Options",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header Strict-Transport-Security",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                }
+            ],
+            "risk": "HIGH",
+            "ip": "172.66.147.243",
+            "tls": "Enabled"
+        },
+        "severity": "HIGH"
+    },
+    {
+        "time": "2026-07-29 22:07:09.346855",
+        "target": "example.com",
+        "result": {
+            "target": "example.com",
+            "findings": [
+                {
+                    "title": "Missing Security Header Content-Security-Policy",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header X-Frame-Options",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header Strict-Transport-Security",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                }
+            ],
+            "risk": "HIGH",
+            "ip": "172.66.147.243",
+            "tls": "Enabled"
+        },
+        "severity": "HIGH"
+    },
+    {
+        "time": "2026-07-29 22:08:04.394061",
+        "target": "example.com",
+        "result": {
+            "target": "example.com",
+            "findings": [
+                {
+                    "title": "Missing Security Header Content-Security-Policy",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header X-Frame-Options",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                },
+                {
+                    "title": "Missing Security Header Strict-Transport-Security",
+                    "severity": "MEDIUM",
+                    "owasp": "A05 Security Misconfiguration"
+                }
+            ],
+            "risk": "HIGH",
+            "ip": "172.66.147.243",
+            "tls": "Enabled"
+        },
+        "severity": "HIGH"
+    }
+]
