@@ -1,68 +1,167 @@
 
-
-import React,{useState} from "react";
-
+import React,{useEffect,useState} from "react";
 import axios from "axios";
 
+import "../App.css";
 
 
 export default function WebScanner(){
 
 
-const [domain,setDomain]=useState("");
+const [target,setTarget]=useState("");
+
+const [history,setHistory]=useState([]);
 
 const [result,setResult]=useState(null);
 
+const [progress,setProgress]=useState(0);
+
+const [loading,setLoading]=useState(false);
 
 
-async function scan(){
+
+async function startScan(){
+
+
+if(!target){
+
+alert("Target required");
+
+return;
+
+}
+
+
+setLoading(true);
+
+setProgress(10);
+
 
 
 try{
 
 
-const r=await axios.post(
+setProgress(40);
 
-"/api/scanner/start",
+
+const res=await axios.post(
+
+"/api/scanner/v2/start",
 
 {
 
-domain:domain
+target:target
 
 }
 
 );
 
 
-setResult(r.data);
+
+setProgress(80);
+
+
+
+setResult(res.data);
+
+
+
+await loadHistory();
+
+
+
+setProgress(100);
+
 
 
 }
 
 catch(e){
 
+
 alert(
 "Scanner Error"
-)
-
-}
+);
 
 
 }
 
+finally{
+
+
+setLoading(false);
+
+
+}
+
+
+
+}
+
+
+
+
+async function loadHistory(){
+
+
+const r=await axios.get(
+
+"/api/scanner/v2/history"
+
+);
+
+
+setHistory(
+r.data.history || []
+);
+
+
+}
+
+
+
+async function exportReport(id){
+
+
+const r=await axios.get(
+
+"/api/scanner/v2/report/"+id
+
+);
+
+
+alert(
+
+"PDF Generated: "+r.data.report
+
+);
+
+
+}
+
+
+
+
+useEffect(()=>{
+
+loadHistory();
+
+},[]);
 
 
 
 return (
+
 
 <div className="soc-page">
 
 
 <h1>
 
-MUTEB WEB SECURITY SCANNER
+🛡️ MUTEB SOC SCANNER v2 ENTERPRISE
 
 </h1>
+
 
 
 <div className="soc-card">
@@ -74,10 +173,10 @@ className="soc-input"
 
 placeholder="example.com"
 
-value={domain}
+value={target}
 
 onChange={
-e=>setDomain(e.target.value)
+e=>setTarget(e.target.value)
 }
 
 
@@ -89,11 +188,22 @@ e=>setDomain(e.target.value)
 
 className="soc-button"
 
-onClick={scan}
+onClick={startScan}
+
+disabled={loading}
 
 >
 
-START SCAN
+{loading ?
+
+"SCANNING..."
+
+:
+
+"START SCAN"
+
+}
+
 
 </button>
 
@@ -103,62 +213,199 @@ START SCAN
 
 
 
+
+{
+
+loading &&
+
+<div className="soc-card">
+
+<h3>
+
+SCAN PROGRESS
+
+</h3>
+
+
+<div
+
+style={{
+
+width:"100%",
+
+background:"#222",
+
+height:"20px"
+
+}}
+
+>
+
+
+<div
+
+style={{
+
+width:progress+"%",
+
+height:"20px",
+
+background:"#00ff99"
+
+}}
+
+></div>
+
+
+</div>
+
+
+</div>
+
+
+}
+
+
+
+
+
+
 {
 
 result &&
-
 
 <div className="soc-card">
 
 
 <h2>
 
-TARGET:
-
-{result.target}
+TARGET
 
 </h2>
 
 
-<h3>
+<p>
 
-RISK:
+{result.target}
 
-{result.report.risk.risk_level}
-
-</h3>
+</p>
 
 
 
-<h3>
+<h2>
+
+RISK
+
+</h2>
+
+
+<p>
+
+{result.risk}
+
+</p>
+
+
+
+<h2>
 
 FINDINGS
 
-</h3>
+</h2>
 
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Title
+</th>
+
+
+<th>
+Severity
+</th>
+
+
+<th>
+OWASP
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
 
 
 {
 
-result.report.risk.findings.map(
+result.findings.map(
 
-(item,index)=>(
+(f,i)=>(
 
-<p key={index}>
 
-{item.issue}
+<tr key={i}>
 
--
 
-{item.severity}
+<td>
 
-</p>
+{f.title}
+
+</td>
+
+
+<td>
+
+{f.severity}
+
+</td>
+
+
+<td>
+
+{f.owasp}
+
+</td>
+
+
+</tr>
+
 
 )
 
 )
 
 }
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+<button
+
+className="soc-button"
+
+onClick={()=>exportReport(result.scan_id)}
+
+>
+
+EXPORT PDF REPORT
+
+</button>
 
 
 
@@ -166,6 +413,140 @@ result.report.risk.findings.map(
 
 
 }
+
+
+
+
+
+
+
+<div className="soc-card">
+
+
+<h2>
+
+SCAN HISTORY
+
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Target
+</th>
+
+<th>
+Risk
+</th>
+
+<th>
+Findings
+</th>
+
+<th>
+Date
+</th>
+
+<th>
+Report
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+{
+
+history.map(
+
+(item,i)=>(
+
+
+<tr key={i}>
+
+
+<td>
+
+{item.target}
+
+</td>
+
+
+<td>
+
+{item.risk}
+
+</td>
+
+
+<td>
+
+{item.findings.length}
+
+</td>
+
+
+<td>
+
+{item.date}
+
+</td>
+
+
+
+<td>
+
+
+<button
+
+className="soc-button"
+
+onClick={()=>exportReport(item.scan_id)}
+
+>
+
+PDF
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+)
+
+)
+
+
+}
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
 
 
 

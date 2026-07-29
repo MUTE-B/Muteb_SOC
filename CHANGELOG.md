@@ -1,38 +1,17 @@
 
-
-# CHANGELOG
-
-
-## v3.0.0 GOLD MASTER
-
+Changelog
+v2.1.0
 
 Added:
 
-
-✓ SOC Fusion Center
-
-✓ AI Security Copilot
-
-✓ SIEM Integration
-
-✓ SOAR Automation
-
-✓ DFIR Center
-
-✓ Risk Intelligence
-
-✓ Zero Trust
-
-✓ Compliance Layer
-
-✓ Cloud Security
-
-
-
-Status:
-
-
-Enterprise Release
-
-
+Production Docker Deployment
+Gunicorn Server
+Nginx Proxy
+Scanner v2 Enterprise
+PDF Reporting
+Scan Queue
+Role Framework
+Health Monitoring
+v2.0.0
+Initial Enterprise Scanner Release
 

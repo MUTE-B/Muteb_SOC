@@ -248,3 +248,34 @@ width:100%;
 
 
 
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+td,th{
+
+padding:10px;
+
+border:1px solid #334155;
+
+}
+
+
+
+.soc-button{
+
+margin:5px;
+
+cursor:pointer;
+
+}
+
+

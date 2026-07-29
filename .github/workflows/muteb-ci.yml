@@ -1,6 +1,7 @@
 
 
-name: MUTEB SOC CI/CD
+name: MUTEB SOC Enterprise CI
+
 
 
 on:
@@ -12,48 +13,167 @@ on:
       - main
 
 
+  pull_request:
+
+    branches:
+
+      - main
+
+
+
+
 
 jobs:
 
 
-  build:
+
+  backend-test:
+
+
+    name: Backend Security Test
 
 
     runs-on: ubuntu-latest
 
 
+
     steps:
 
 
-    - name: Checkout
+      - name: Checkout
 
-      uses: actions/checkout@v4
-
-
-
-    - name: Setup Python
-
-      uses: actions/setup-python@v5
-
-      with:
-
-        python-version: "3.12"
+        uses: actions/checkout@v4
 
 
 
-    - name: Install Dependencies
+      - name: Setup Python
 
-      run: |
+        uses: actions/setup-python@v5
 
-        pip install -r requirements.txt
+        with:
+
+          python-version: "3.12"
 
 
 
-    - name: System Check
+      - name: Install Backend Dependencies
 
-      run: |
+        run: |
 
-        python3 validation/security_score.py
+          cd backend
+
+          pip install -r requirements.txt
+
+
+
+      - name: Python Syntax Check
+
+        run: |
+
+          cd backend
+
+          python -m compileall .
+
+
+
+
+
+      - name: Backend Health Test
+
+        run: |
+
+          cd backend
+
+          python -c "import app; print('Backend OK')"
+
+
+
+
+
+
+
+  frontend-test:
+
+
+    name: Frontend Build Test
+
+
+    runs-on: ubuntu-latest
+
+
+
+    steps:
+
+
+      - name: Checkout
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Setup Node
+
+        uses: actions/setup-node@v4
+
+        with:
+
+          node-version: "18"
+
+
+
+      - name: Install Frontend
+
+        run: |
+
+
+          cd frontend
+
+          npm install
+
+
+
+      - name: Build Frontend
+
+        run: |
+
+
+          cd frontend
+
+          npm run build
+
+
+
+
+
+
+
+  docker-test:
+
+
+    name: Docker Build Test
+
+
+    runs-on: ubuntu-latest
+
+
+
+    steps:
+
+
+      - name: Checkout
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Build Containers
+
+        run: |
+
+
+          docker compose build
+
+
 
 
 

@@ -1,16 +1,18 @@
-from functools import wraps
-from flask import jsonify
 
 
-def role_required(role):
+from security.roles import has_permission
 
-    def decorator(fn):
 
-        @wraps(fn)
-        def wrapper(*args,**kwargs):
 
-            return fn(*args,**kwargs)
+def check_access(
+user,
+action
+):
 
-        return wrapper
 
-    return decorator
+    return has_permission(
+    user,
+    action
+    )
+
+

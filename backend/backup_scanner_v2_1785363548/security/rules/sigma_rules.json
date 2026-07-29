@@ -1,0 +1,15 @@
+
+[
+ {
+ "name":"Failed Login Detection",
+ "severity":"HIGH",
+ "mitre":"T1110"
+ },
+
+ {
+ "name":"Malware Execution",
+ "severity":"CRITICAL",
+ "mitre":"T1204"
+ }
+]
+

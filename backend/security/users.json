@@ -1,0 +1,14 @@
+{
+    "admin": {
+        "password": "admin123",
+        "role": "Admin"
+    },
+    "soc": {
+        "password": "soc123",
+        "role": "SOC Analyst"
+    },
+    "viewer": {
+        "password": "viewer123",
+        "role": "Viewer"
+    }
+}

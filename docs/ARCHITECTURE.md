@@ -1,40 +1,13 @@
 
 MUTEB SOC Architecture
-Overview
 
-MUTEB SOC consists of:
+Components:
 
-Frontend Layer
-
-↓
-
-API Layer
-
-↓
-
-Security Processing Layer
-
-↓
-
-Data Storage Layer
-
-Security Flow
-
-Events
-
-↓
-
-Detection
-
-↓
-
-Alert Generation
-
-↓
-
+React Dashboard
+Flask API
+Security Scanner
+Detection Engine
+IOC Engine
 Incident Response
-
-↓
-
-Reporting
+Docker Infrastructure
 

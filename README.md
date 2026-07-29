@@ -1,83 +1,118 @@
-# MUTEB SOC ENTERPRISE
-
-## AI Cyber Defense Command Center
 
 
-MUTEB SOC Enterprise is an AI-powered cybersecurity platform designed for Security Operations, threat analysis and automated defense.
+# 🛡️ MUTEB SOC Enterprise v2.1.0
 
 
-## Core Features
+## Security Operations Center Platform
 
 
-- SOC Monitoring
-- AI Security Analysis
-- Threat Intelligence
-- Security Automation
-- Risk Monitoring
-- Enterprise Dashboard
+MUTEB SOC is an enterprise cybersecurity monitoring platform combining:
+
+
+- Security Monitoring
+- Threat Detection
+- IOC Analysis
+- Web Security Scanner
+- Threat Hunting
+- Incident Response
+- MITRE ATT&CK Mapping
+- Automated Reporting
+
+
 
 
 ## Architecture
 
 
-Frontend
-|
-React Dashboard
-|
-Backend API
-|
-Security Engines
-|
-AI Intelligence Layer
+MUTEB-SOC
 
+├── frontend
 
+│ └── React Enterprise Dashboard
 
-## Technologies
+│
 
+├── backend
 
-- Python
-- Flask
-- React
-- Linux
-- Cyber Security Frameworks
+│ ├── Flask API
 
+│ ├── Scanner Engine
 
-## Version
+│ ├── Detection Engine
 
+│ ├── IOC Engine
 
-MUTEB SOC Enterprise
+│ └── Incident Response
 
-v10.0 FINAL
+│
 
+├── docker-compose.yml
 
-## Status
+├── nginx
 
-
-Production Portfolio Release
+└── scripts
 
 
 
 
-# Final Release
+
+## Features
 
 
-Version:
+### SOC Dashboard
 
-v10.0-final
-
-
-Status:
-
-Enterprise Portfolio Release
+- Enterprise Dashboard
+- Security Monitoring
+- Incident Management
 
 
-Demo:
+### Web Security Scanner
 
-docs/demo/
+- OWASP Mapping
+- Risk Scoring
+- PDF Reports
+- Scan History
 
 
-Screenshots:
+### Threat Intelligence
 
-docs/images/
+- IOC Management
+- MITRE ATT&CK Integration
+- Threat Hunting
+
+
+
+
+## Deployment
+
+
+Production deployment:
+
+
+```bash
+
+docker compose up -d
+
+
+Health check:
+
+
+./scripts/muteb_health_check.sh
+
+Version
+
+Current Release:
+
+
+v2.1.0
+
+Security
+
+Security issues:
+
+See:
+
+
+SECURITY.md
 
 

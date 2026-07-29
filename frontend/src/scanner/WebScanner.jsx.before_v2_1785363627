@@ -1,0 +1,469 @@
+
+import React,{useState} from "react";
+import axios from "axios";
+import "./scanner.css";
+
+
+export default function WebScanner(){
+
+
+const [target,setTarget]=useState("");
+const [loading,setLoading]=useState(false);
+const [result,setResult]=useState(null);
+const [history,setHistory]=useState([]);
+
+
+
+async function startScan(){
+
+
+if(!target){
+ alert("Target required");
+ return;
+}
+
+
+try{
+
+
+setLoading(true);
+
+
+const response = await axios.post(
+"/api/scanner/start",
+{
+ target:target
+}
+);
+
+
+
+setResult(response.data);
+
+
+
+setHistory(prev=>[
+{
+ target:response.data.target,
+ risk:response.data.result?.risk || "UNKNOWN",
+ findings:
+ response.data.result?.findings?.length || 0,
+ date:new Date().toLocaleString()
+},
+...prev
+]);
+
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+alert(
+"Scanner connection failed"
+);
+
+
+}
+
+finally{
+
+setLoading(false);
+
+}
+
+
+}
+
+
+
+
+function exportReport(){
+
+
+if(!result){
+return;
+}
+
+
+const data =
+JSON.stringify(
+result,
+null,
+2
+);
+
+
+const blob =
+new Blob(
+[data],
+{
+type:"application/json"
+}
+);
+
+
+const url =
+URL.createObjectURL(blob);
+
+
+
+const a=document.createElement("a");
+
+a.href=url;
+
+a.download=
+"muteb-scanner-report.json";
+
+
+a.click();
+
+
+URL.revokeObjectURL(url);
+
+
+}
+
+
+
+
+
+return (
+
+
+<div className="soc-page">
+
+
+<h1>
+🛡️ MUTEB WEB SECURITY SCANNER
+</h1>
+
+
+
+<div className="soc-card">
+
+
+<input
+
+className="soc-input"
+
+placeholder="example.com"
+
+value={target}
+
+onChange={
+e=>setTarget(e.target.value)
+}
+
+/>
+
+
+
+<button
+
+className="soc-button"
+
+onClick={startScan}
+
+disabled={loading}
+
+>
+
+{
+loading
+?
+"SCANNING..."
+:
+"START SCAN"
+}
+
+
+</button>
+
+
+</div>
+
+
+
+
+{
+result &&
+
+<div className="soc-grid">
+
+
+<div className="soc-card">
+
+<h3>
+TARGET
+</h3>
+
+<p>
+{result.target}
+</p>
+
+</div>
+
+
+
+<div className="soc-card">
+
+<h3>
+RISK
+</h3>
+
+<p className="risk-high">
+
+{
+result.result?.risk || "UNKNOWN"
+}
+
+</p>
+
+</div>
+
+
+
+<div className="soc-card">
+
+<h3>
+FINDINGS
+</h3>
+
+
+<p>
+
+{
+result.result?.findings?.length || 0
+}
+
+</p>
+
+
+</div>
+
+
+</div>
+
+}
+
+
+
+
+
+{
+result &&
+
+
+<div className="soc-card">
+
+
+<h2>
+OWASP FINDINGS
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Title
+</th>
+
+<th>
+Severity
+</th>
+
+<th>
+OWASP
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+{
+
+result.result?.findings?.map(
+
+(item,index)=>(
+
+
+<tr key={index}>
+
+
+<td>
+{item.title}
+</td>
+
+
+<td>
+{item.severity}
+</td>
+
+
+<td>
+{item.owasp}
+</td>
+
+
+
+</tr>
+
+
+)
+
+
+)
+
+
+}
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+<button
+
+className="soc-button"
+
+onClick={exportReport}
+
+>
+
+EXPORT REPORT
+
+</button>
+
+
+
+</div>
+
+
+}
+
+
+
+
+{
+history.length>0 &&
+
+
+<div className="soc-card">
+
+
+<h2>
+SCAN HISTORY
+</h2>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Target
+</th>
+
+<th>
+Risk
+</th>
+
+<th>
+Findings
+</th>
+
+<th>
+Date
+</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+{
+
+history.map(
+
+(item,index)=>(
+
+<tr key={index}>
+
+<td>
+{item.target}
+</td>
+
+<td>
+{item.risk}
+</td>
+
+<td>
+{item.findings}
+</td>
+
+<td>
+{item.date}
+</td>
+
+
+</tr>
+
+
+)
+
+
+)
+
+
+}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+}
+
+
+
+</div>
+
+
+)
+
+
+}
+

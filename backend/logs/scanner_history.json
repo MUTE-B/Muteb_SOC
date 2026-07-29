@@ -1,0 +1,62 @@
+[
+    {
+        "scan_id": "dec7f2e9-4900-4332-9b37-ae5d048a7a91",
+        "target": "example.com",
+        "risk": "HIGH",
+        "findings": [
+            {
+                "title": "Missing Security Header Content-Security-Policy",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            },
+            {
+                "title": "Missing Security Header X-Frame-Options",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            },
+            {
+                "title": "Missing Security Header Strict-Transport-Security",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            }
+        ],
+        "date": "2026-07-30T01:19:12.407421",
+        "status": "completed",
+        "progress": 100
+    },
+    {
+        "scan_id": "36132dd5-528c-4142-94a8-3b8fd38db026",
+        "target": "example.com",
+        "risk": "HIGH",
+        "findings": [
+            {
+                "title": "Missing Security Header Content-Security-Policy",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            },
+            {
+                "title": "Missing Security Header X-Frame-Options",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            },
+            {
+                "title": "Missing Security Header Strict-Transport-Security",
+                "severity": "MEDIUM",
+                "owasp": "A05 Security Misconfiguration"
+            }
+        ],
+        "date": "2026-07-30 01:20:51.197422",
+        "hooks": {
+            "mitre": {
+                "mapped": true,
+                "framework": "MITRE ATT&CK"
+            },
+            "ioc": {
+                "ioc_processed": true
+            },
+            "incident": {
+                "incident_created": false
+            }
+        }
+    }
+]

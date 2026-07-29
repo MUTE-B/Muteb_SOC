@@ -1,15 +1,20 @@
 
 Security Policy
-MUTEB SOC Security Guidelines
+Reporting Vulnerabilities
 
-This project follows security best practices:
+Do not publish vulnerabilities publicly.
 
-Least Privilege
-Secure Authentication
-Access Control
-Logging
-Monitoring
-Reporting Security Issues
+Provide:
 
-Please report security issues through the repository issue tracker.
+Description
+Steps to reproduce
+Impact
+Evidence
+Supported Version
+
+| Version | Status |
+
+|---|---|
+
+|2.1.x|Supported|
 

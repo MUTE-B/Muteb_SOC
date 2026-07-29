@@ -1,0 +1,7 @@
+
+
+flask
+gunicorn
+gevent
+requests
+reportlab
