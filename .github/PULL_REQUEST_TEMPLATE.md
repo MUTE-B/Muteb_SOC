@@ -1,32 +1,21 @@
 
 
-# Pull Request
-
-
 ## Description
 
 
-Explain the change.
+Changes made:
 
 
+## Testing
 
-## Type of Change
 
-
-- Feature
-
-- Bug Fix
-
-- Documentation
-
-- Security Improvement
-
+Tests performed:
 
 
 ## Security Impact
 
 
-Describe security considerations.
+Impact assessment:
 
 
 

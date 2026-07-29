@@ -1,54 +1,27 @@
 
 
-# MUTEB SOC Architecture
+# MUTEB Architecture
 
 
 
-
-Security Sources
-
-    |
-
-    v
-
-Collection Layer
+React Dashboard
 
     |
 
-    v
-
-Intelligence Layer
+Flask API
 
     |
 
-    v
-
-Response Automation
+Security Engines
 
     |
 
-    v
+AI Intelligence Layer
 
-Cyber Command Center
+    |
 
+Threat Intelligence
 
-
-
-Integrated Layers:
-
-
-
-- Detection
-
-- Intelligence
-
-- Analytics
-
-- Automation
-
-- Governance
-
-- Investigation
 
 
 

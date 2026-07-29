@@ -1,14 +1,21 @@
+
+
 # Contributing
 
 
-Contributions are welcome.
+Thank you for supporting MUTEB SOC Enterprise.
 
 
-Areas:
+Development process:
 
-- Detection Rules
-- Documentation
-- Security Automation
-- Improvements
+
+1. Create branch
+
+2. Make changes
+
+3. Test
+
+4. Submit Pull Request
+
 
 
