@@ -1,91 +1,43 @@
-
-from flask import Flask,request,jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-import datetime
-
 
 app = Flask(__name__)
 CORS(app)
 
 
 USERS = {
-
-"admin":{
-"password":"admin123",
-"role":"Admin"
-},
-
-"analyst":{
-"password":"analyst123",
-"role":"Analyst"
-}
-
+    "admin": {
+        "password": "admin123",
+        "role": "Admin"
+    },
+    "analyst": {
+        "password": "analyst123",
+        "role": "Analyst"
+    }
 }
 
 
-alerts=[
-
-{
-"id":1,
-"severity":"Critical",
-"title":"Brute Force Detection",
-"status":"Open"
-}
-
-]
-
-
-incidents=[
-
-{
-"id":1,
-"title":"Suspicious Login",
-"priority":"High",
-"status":"Investigating"
-}
-
-]
-
-
-logs=[
-
-{
-"time":str(datetime.datetime.now()),
-"event":"SOC Backend Started"
-}
-
-]
-
-
-
-@app.route("/api/login",methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
 
-    data=request.json
+    data = request.get_json()
 
-    user=data.get("username")
-    password=data.get("password")
+    username = data.get("username")
+    password = data.get("password")
 
-
-    if user in USERS and USERS[user]["password"]==password:
+    if username in USERS and USERS[username]["password"] == password:
 
         return jsonify({
-
-        "success":True,
-
-        "user":{
-
-        "username":user,
-        "role":USERS[user]["role"]
-
-        }
-
+            "success": True,
+            "user": {
+                "username": username,
+                "role": USERS[username]["role"]
+            }
         })
 
-
-    return jsonify({"success":False})
-
-
+    return jsonify({
+        "success": False
+    }), 401
 
 
 
@@ -93,68 +45,20 @@ def login():
 def dashboard():
 
     return jsonify({
-
-    "critical_alerts":len(alerts),
-
-    "open_incidents":len(incidents),
-
-    "threat_score":85
-
+        "critical_alerts": 1,
+        "open_incidents": 1,
+        "threat_score": 85
     })
-
-
-
-
-
-@app.route("/api/alerts")
-def get_alerts():
-
-    return jsonify(alerts)
-
-
-
-
-
-@app.route("/api/incidents")
-def get_incidents():
-
-    return jsonify(incidents)
-
-
-
-
-
-@app.route("/api/logs")
-def get_logs():
-
-    logs.append({
-
-    "time":str(datetime.datetime.now()),
-
-    "event":"API Request"
-
-    })
-
-    return jsonify(logs)
-
-
-
 
 
 @app.route("/")
 def home():
-
     return "MUTEB SOC BACKEND ONLINE"
 
 
 
-
-
-if __name__=="__main__":
-
+if __name__ == "__main__":
     app.run(
-    host="0.0.0.0",
-    port=8000
+        host="0.0.0.0",
+        port=8000
     )
-
-

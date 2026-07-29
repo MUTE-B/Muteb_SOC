@@ -1,60 +1,76 @@
-
 import React,{useEffect,useState} from "react";
 import api from "../services/api";
 
 
 export default function Incidents(){
 
+const [items,setItems]=useState([]);
 
-const [data,setData]=useState([]);
 
-
-useEffect(()=>{
+function load(){
 
 api.get("/api/incidents")
-.then(r=>setData(r.data))
+.then(r=>setItems(r.data));
 
-},[]);
+}
+
+
+useEffect(load,[]);
 
 
 
-return (
+async function close(id){
 
-<div>
+await api.put(
+"/api/incidents/"+id,
+{
+status:"Closed"
+}
+);
 
-<h1>Incident Management</h1>
+load();
+
+}
+
+
+
+return <div>
+
+<h2>Incident Management</h2>
 
 
 {
+items.map(i=>
 
-data.map(i=>
+<div key={i[0]}>
 
-<div key={i.id}>
-
-{i.title}
-
-<br/>
+<h3>
+{i[1]}
+</h3>
 
 Priority:
-{i.priority}
+{i[2]}
 
 <br/>
 
 Status:
-{i.status}
+{i[3]}
+
+
+<button
+onClick={()=>close(i[0])}>
+
+Close Incident
+
+</button>
 
 
 </div>
 
-
 )
-
 }
 
 
 </div>
 
-)
-
 }
-

@@ -1,46 +1,71 @@
-
 import React,{useEffect,useState} from "react";
 import api from "../services/api";
 
 
 export default function Alerts(){
 
+const [alerts,setAlerts]=useState([]);
 
-const [data,setData]=useState([]);
 
-
-useEffect(()=>{
+function load(){
 
 api.get("/api/alerts")
-.then(r=>setData(r.data))
+.then(r=>setAlerts(r.data));
 
-},[]);
+}
+
+
+useEffect(load,[]);
 
 
 
-return (
+async function close(id){
 
-<div>
+await api.put(
+"/api/alerts/"+id,
+{
+status:"Closed"
+}
+);
 
-<h1>Alerts</h1>
+load();
+
+}
+
+
+
+return <div>
+
+<h2>Security Alerts</h2>
+
 
 {
+alerts.map(a=>
 
-data.map(a=>
+<div key={a[0]}>
 
-<div key={a.id}>
+<h3>{a[1]}</h3>
 
-{a.severity} - {a.title}
+Severity:
+{a[2]}
+
+<br/>
+
+Status:
+{a[3]}
+
+
+<button onClick={()=>close(a[0])}>
+Close Alert
+</button>
+
 
 </div>
 
 )
-
 }
+
 
 </div>
 
-)
-
 }
-
