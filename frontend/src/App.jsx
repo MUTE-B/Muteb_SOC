@@ -5,22 +5,35 @@ import Alerts from "./pages/Alerts";
 import Incidents from "./pages/Incidents";
 import "./App.css";
 
-function App() {
+function Layout({children}) {
   return (
-    <BrowserRouter>
-      <div className="app">
+    <div className="app">
+      <aside>
+        <h2>MUTEB SOC</h2>
         <nav>
-          <Link to="/">Dashboard</Link> |{" "}
-          <Link to="/alerts">Alerts</Link> |{" "}
+          <Link to="/">Dashboard</Link>
+          <Link to="/alerts">Alerts</Link>
           <Link to="/incidents">Incidents</Link>
         </nav>
+      </aside>
 
+      <main>
+        {children}
+      </main>
+    </div>
+  );
+}
+
+function App(){
+  return(
+    <BrowserRouter>
+      <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/alerts" element={<Alerts />} />
-          <Route path="/incidents" element={<Incidents />} />
+          <Route path="/" element={<Dashboard/>}/>
+          <Route path="/alerts" element={<Alerts/>}/>
+          <Route path="/incidents" element={<Incidents/>}/>
         </Routes>
-      </div>
+      </Layout>
     </BrowserRouter>
   );
 }
