@@ -34,12 +34,3 @@ if __name__ == "__main__":
         port=8000
     )
 
-
-
-@app.route("/api/dashboard", methods=["GET"])
-def dashboard():
-    return {
-        "critical_alerts": 0,
-        "open_incidents": 1,
-        "threat_score": 80
-    }
