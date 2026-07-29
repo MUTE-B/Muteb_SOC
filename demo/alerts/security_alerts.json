@@ -1,0 +1,29 @@
+
+
+[
+ {
+  "id":1,
+  "type":"Malware Detection",
+  "severity":"HIGH",
+  "source":"Endpoint",
+  "status":"INVESTIGATING"
+ },
+
+ {
+  "id":2,
+  "type":"Suspicious Login",
+  "severity":"MEDIUM",
+  "source":"Identity System",
+  "status":"MONITORING"
+ },
+
+ {
+  "id":3,
+  "type":"Network Anomaly",
+  "severity":"CRITICAL",
+  "source":"NDR",
+  "status":"RESPONDING"
+ }
+]
+
+

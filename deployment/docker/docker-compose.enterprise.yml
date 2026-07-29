@@ -1,0 +1,61 @@
+
+
+version: "3.9"
+
+
+services:
+
+
+  muteb-api:
+
+    build:
+
+      context: ../..
+
+    container_name: muteb-soc-api
+
+
+    restart: always
+
+
+    ports:
+
+      - "8000:8000"
+
+
+
+  database:
+
+    image: postgres:16
+
+
+    container_name: muteb-database
+
+
+    restart: always
+
+
+    environment:
+
+      POSTGRES_DB: muteb_soc
+
+      POSTGRES_USER: muteb
+
+      POSTGRES_PASSWORD: change_password
+
+
+
+  nginx:
+
+    image: nginx:latest
+
+
+    container_name: muteb-nginx
+
+
+    ports:
+
+      - "80:80"
+
+
+

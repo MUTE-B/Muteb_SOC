@@ -1,0 +1,22 @@
+[
+{
+"event":"Multiple Failed Logins",
+"source":"Windows Server",
+"severity":"HIGH",
+"status":"INVESTIGATING"
+},
+
+{
+"event":"Malware Detection",
+"source":"Endpoint",
+"severity":"CRITICAL",
+"status":"CONTAINED"
+},
+
+{
+"event":"Suspicious Network Traffic",
+"source":"Firewall",
+"severity":"MEDIUM",
+"status":"MONITORING"
+}
+]

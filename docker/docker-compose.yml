@@ -1,23 +1,53 @@
-version: "3.8"
+
 
 services:
 
-  muteb-soc:
+
+  backend:
+
 
     build:
+
       context: ..
 
-    container_name:
-      muteb-soc
+      dockerfile: docker/Dockerfile.backend
 
-    restart:
-      unless-stopped
 
-    volumes:
-      - ../logs:/opt/muteb-soc/logs
-      - ../reports:/opt/muteb-soc/reports
+    ports:
+
+      - "8000:8000"
+
+
+
+  database:
+
+
+    image: postgres:16
+
 
     environment:
 
-      - TZ=Asia/Riyadh
+
+      POSTGRES_DB:
+
+        muteb_soc
+
+
+      POSTGRES_USER:
+
+        muteb
+
+
+      POSTGRES_PASSWORD:
+
+        change_this_password
+
+
+
+    ports:
+
+
+      - "5432:5432"
+
+
 

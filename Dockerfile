@@ -1,11 +1,24 @@
+
+
 FROM python:3.12-slim
+
 
 WORKDIR /app
 
+
 COPY . .
 
-RUN pip install --no-cache-dir flask flask-cors flask-sqlalchemy flask-jwt-extended flask-swagger-ui python-dotenv
+
+RUN pip install flask gunicorn
+
 
 EXPOSE 8000
 
-CMD ["python3","run.py"]
+
+CMD ["gunicorn",
+"app.main:app",
+"--bind",
+"0.0.0.0:8000"]
+
+
+

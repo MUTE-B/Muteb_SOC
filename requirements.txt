@@ -1,11 +1,7 @@
 
 flask
-flask-cors
-flask-sqlalchemy
-python-dotenv
-werkzeug
-psutil
-pyyaml
+
 requests
-gunicorn
-pytest
+
+python-dotenv
+

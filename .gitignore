@@ -1,83 +1,23 @@
-# Python
+
+
 __pycache__/
+
 *.pyc
-venv/
+
 .env
 
-# Database
-*.db
-*.sqlite3
-
-# Logs
 *.log
 
-# Node
-frontend/node_modules/
-frontend/dist/
+.vscode/
 
-# Backups
-*.backup
-*.before*
-*.broken*
-*.failed*
-MUTEB_*.sh
+.idea/
 
-# Temporary
-.tmp/
-
-# Runtime
-*.pid
-*.log
-
-# Reports
-reports/
-logs/
-SOC/reports/
-soc_lab/reports/
-docs/reports/
-
-# Backup files
-backup/
-backups/
-*.backup*
-*.broken*
-*.failed*
-
-# Temporary scripts
-MUTEB_*.sh
-scripts/muteb_*.sh
-
-
-
-# MUTEB SOC Temporary Files
-
-*.backup
-*.backup*
-*.bak
-*.old
-
-frontend.log
-backend.pid
-frontend.pid
-
-__pycache__/
-*.pyc
+venv/
 
 node_modules/
 
-.env
+dist/
 
-archive/
+build/
 
-.env
-.env.local.backup
-.env.local.backup
-
-# Python Environment
-venv/
-__pycache__/
-
-# Local Environment
-.env
-*.env
 

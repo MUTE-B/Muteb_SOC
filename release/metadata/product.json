@@ -1,0 +1,13 @@
+{
+    "name": "MUTEB SOC",
+    "category": "Cyber Security Operations Platform",
+    "architecture": [
+        "SIEM",
+        "SOAR",
+        "Threat Intelligence",
+        "DFIR",
+        "Zero Trust",
+        "Security Analytics"
+    ],
+    "command_center": true
+}

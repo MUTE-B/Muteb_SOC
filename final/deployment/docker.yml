@@ -1,0 +1,15 @@
+
+version: "3"
+
+services:
+
+ muteb:
+
+  image: muteb-enterprise
+
+  restart: always
+
+  ports:
+
+   - "8000:8000"
+

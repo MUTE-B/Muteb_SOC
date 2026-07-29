@@ -1,8 +1,26 @@
 
+
 import os
 
 
-DATABASE_URL = os.getenv(
+
+class DatabaseConfig:
+
+
+
+    DATABASE_URL=os.getenv(
+
     "DATABASE_URL",
-    "sqlite:///muteb_soc.db"
-)
+
+    "postgresql://muteb:password@localhost/muteb_soc"
+
+    )
+
+
+
+    def get():
+
+        return DatabaseConfig.DATABASE_URL
+
+
+

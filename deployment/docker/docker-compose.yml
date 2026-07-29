@@ -1,0 +1,42 @@
+
+
+version: "3.9"
+
+
+services:
+
+
+  muteb-api:
+
+    container_name: muteb-api
+
+    build:
+
+      context: ../../
+
+
+    ports:
+
+      - "8000:8000"
+
+
+    restart: always
+
+
+
+  muteb-monitor:
+
+    container_name: muteb-monitor
+
+    image: prom/prometheus
+
+
+    ports:
+
+      - "9090:9090"
+
+
+    restart: always
+
+
+

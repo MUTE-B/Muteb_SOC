@@ -1,0 +1,47 @@
+
+
+{
+
+"name":
+
+"MUTEB SOC Sentinel X",
+
+
+"edition":
+
+"Enterprise",
+
+
+"version":
+
+"3.0",
+
+
+"status":
+
+"Portfolio Ready",
+
+
+"modules":
+
+[
+
+"Authorization",
+
+"Asset Intelligence",
+
+"Risk Engine",
+
+"AI Security Director",
+
+"Audit",
+
+"Compliance",
+
+"Reporting"
+
+]
+
+
+}
+

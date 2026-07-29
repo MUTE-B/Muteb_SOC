@@ -1,144 +1,58 @@
+# MUTEB SOC ENTERPRISE
 
-# MUTEB SOC Enterprise v2.1.1
+## AI Cyber Defense Command Center
 
-## Security Operations Center Portfolio Platform
 
+MUTEB SOC Enterprise is an AI-powered cybersecurity platform designed for Security Operations, threat analysis and automated defense.
 
-## Overview
 
+## Core Features
 
-MUTEB SOC is a defensive cybersecurity laboratory platform designed to simulate a real Security Operations Center (SOC) environment.
 
+- SOC Monitoring
+- AI Security Analysis
+- Threat Intelligence
+- Security Automation
+- Risk Monitoring
+- Enterprise Dashboard
 
-The project demonstrates practical Blue Team workflows including monitoring, investigation, detection concepts, and security reporting.
 
+## Architecture
 
 
-# Main Capabilities
+Frontend
+|
+React Dashboard
+|
+Backend API
+|
+Security Engines
+|
+AI Intelligence Layer
 
 
-## SOC Monitoring
 
+## Technologies
 
-- Security dashboard
-- Event monitoring
-- Alert visibility
-- Analyst workflow
 
+- Python
+- Flask
+- React
+- Linux
+- Cyber Security Frameworks
 
-## Detection Engineering
 
+## Version
 
-- Detection concepts
-- MITRE ATT&CK mapping
-- Sigma rule concepts
-- IOC investigation workflow
 
+MUTEB SOC Enterprise
 
-## Incident Response
+v10.0 FINAL
 
 
-- Alert analysis
-- Investigation process
-- Security reporting workflow
+## Status
 
 
-
-# Architecture
-
-
-
-Security Events
-
-↓
-
-Log Collection
-
-↓
-
-Detection Analysis
-
-↓
-
-Alerts
-
-↓
-
-SOC Dashboard
-
-↓
-
-Incident Response
-
-↓
-
-Reports
-
-
-
-# Technology Stack
-
-
-
-| Technology | Usage |
-|---|---|
-| Python | Backend & Automation |
-| React | User Interface |
-| Linux | Security Environment |
-| Bash | Automation |
-| GitHub | Version Control |
-| SQLite | Database |
-
-
-
-# Project Structure
-
-
-
-Muteb-SOC/
-
-├── app/
-├── frontend/
-├── soc_lab/
-├── sigma_rules/
-├── detections/
-├── reports/
-├── portfolio/
-└── docs/
-
-
-
-
-# Skills Demonstrated
-
-
-- SOC Analyst Workflow
-- Blue Team Operations
-- Security Monitoring
-- Threat Investigation
-- Security Documentation
-- Linux Administration
-- Cybersecurity Automation
-
-
-
-# Release
-
-
-Current Version:
-
-
-v2.1.1
-
-
-
-# Developer
-
-
-Muteb Albalawi
-
-
-Cyber Security | IT Specialist | SOC Analyst Path
-
+Production Portfolio Release
 
 

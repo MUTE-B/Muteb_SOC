@@ -1,28 +1,29 @@
 
 
-# Release Process
-
-
-1. Update Version
-
-
-2. Update Changelog
-
-
-3. Review Security
-
-
-4. Create Git Tag
-
-
-5. Publish Release
+# MUTEB SOC Release Process
 
 
 
-Current Version:
+Steps:
 
 
-13.2.0
+
+1. Development
+
+2. Testing
+
+3. Security Review
+
+4. Version Tag
+
+5. Release
+
+
+
+Example:
+
+
+v5.0.0 Enterprise
 
 
 

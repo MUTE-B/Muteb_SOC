@@ -1,0 +1,468 @@
+
+import {useState} from "react";
+import "./App.css";
+import {login} from "./api/auth";
+
+
+
+function App(){
+
+
+const [username,setUsername]=useState("");
+
+const [password,setPassword]=useState("");
+
+const [user,setUser]=useState(null);
+
+const [message,setMessage]=useState("");
+
+
+
+
+async function handleLogin(){
+
+
+try{
+
+
+const result =
+await login(username,password);
+
+
+
+if(result.success){
+
+
+setUser(result.user);
+
+
+}
+else{
+
+
+setMessage("Invalid Credentials");
+
+
+}
+
+
+}
+
+catch(e){
+
+setMessage(
+"Backend Connection Failed"
+);
+
+
+}
+
+
+}
+
+
+
+
+if(!user){
+
+
+return(
+
+
+<div className="login">
+
+
+<div className="login-box">
+
+
+<h1>
+🛡 MUTEB SOC
+</h1>
+
+
+<h3>
+Security Operations Center
+</h3>
+
+
+<input
+
+placeholder="Username"
+
+onChange={
+e=>setUsername(e.target.value)
+}
+
+/>
+
+
+<input
+
+type="password"
+
+placeholder="Password"
+
+onChange={
+e=>setPassword(e.target.value)
+}
+
+/>
+
+
+<button onClick={handleLogin}>
+
+LOGIN
+
+</button>
+
+
+<p>{message}</p>
+
+
+</div>
+
+
+</div>
+
+
+);
+
+
+}
+
+
+
+
+
+return(
+
+
+<div className="soc-layout">
+
+
+
+<aside className="sidebar">
+
+
+<h2>
+🛡 MUTEB SOC
+</h2>
+
+
+
+<div className="menu active">
+Dashboard
+</div>
+
+
+<div className="menu">
+Alerts
+</div>
+
+
+<div className="menu">
+Incidents
+</div>
+
+
+<div className="menu">
+Assets
+</div>
+
+
+<div className="menu">
+Threat Hunting
+</div>
+
+
+<div className="menu">
+Reports
+</div>
+
+
+
+</aside>
+
+
+
+
+
+<main className="content">
+
+
+
+<header className="topbar">
+
+
+<h1>
+SOC Dashboard
+</h1>
+
+
+<div>
+
+User:
+<b>
+{user.username}
+</b>
+
+</div>
+
+
+</header>
+
+
+
+
+
+
+<section className="stats">
+
+
+<div className="stat">
+
+
+<h3>
+Critical Alerts
+</h3>
+
+<p className="danger">
+12
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="stat">
+
+
+<h3>
+Open Incidents
+</h3>
+
+
+<p>
+5
+</p>
+
+
+</div>
+
+
+
+
+
+<div className="stat">
+
+
+<h3>
+Monitored Assets
+</h3>
+
+
+<p>
+248
+</p>
+
+
+</div>
+
+
+
+
+<div className="stat">
+
+
+<h3>
+System
+</h3>
+
+
+<p className="online">
+ONLINE
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<section className="panel">
+
+
+<h2>
+Security Alerts
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Severity
+</th>
+
+<th>
+Source
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+<tr>
+
+<td className="danger">
+Critical
+</td>
+
+<td>
+Firewall
+</td>
+
+<td>
+Investigating
+</td>
+
+
+</tr>
+
+
+
+<tr>
+
+<td className="warning">
+High
+</td>
+
+<td>
+Endpoint
+</td>
+
+<td>
+Monitoring
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>
+Medium
+</td>
+
+<td>
+Email Gateway
+</td>
+
+<td>
+Resolved
+</td>
+
+
+</tr>
+
+
+
+</tbody>
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+<section className="panel">
+
+
+<h2>
+Threat Intelligence
+</h2>
+
+
+<div className="threat-box">
+
+
+<div>
+Malware Detection
+<span>
+ACTIVE
+</span>
+</div>
+
+
+<div>
+IOC Monitoring
+<span>
+ACTIVE
+</span>
+</div>
+
+
+<div>
+Log Analysis
+<span>
+RUNNING
+</span>
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+</main>
+
+
+</div>
+
+
+);
+
+
+}
+
+
+
+export default App;
+

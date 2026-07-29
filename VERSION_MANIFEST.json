@@ -1,0 +1,26 @@
+
+
+{
+ "platform":"MUTEB SOC Enterprise",
+ "version":"8.5",
+ "release":"Enterprise Edition",
+
+ "modules":[
+
+ "Sentinel X",
+ "Security Intelligence Engine",
+ "Vulnerability Management",
+ "Threat Intelligence",
+ "AI Security Director",
+ "SOC Command Center",
+ "Governance Center",
+ "Compliance Center",
+ "Executive Reporting"
+
+ ],
+
+ "status":"Enterprise Ready"
+
+}
+
+

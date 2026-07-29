@@ -1,79 +1,46 @@
+
+
 # MUTEB SOC Demo Scenario
 
 
-## Scenario 1: SSH Brute Force Detection
 
+Organization:
 
-### Attack Simulation
-
-Multiple failed SSH login attempts are generated.
-
-
-### Detection
-
-MUTEB SOC detects:
-
-- Authentication failures
-- Suspicious source IP
-- Repeated usernames
-
-
-### Investigation
-
-SOC Analyst:
-
-1. Reviews logs.
-
-2. Identifies indicators.
-
-3. Creates incident case.
-
-4. Generates report.
+Demo Enterprise
 
 
 
----
+Assets:
 
-
-# Scenario 2: Suspicious File Detection
-
-
-## Detection
-
-YARA engine scans suspicious files.
-
-
-## Analysis
-
-The system identifies:
-
-- Suspicious commands
-- Network download patterns
-- Malicious indicators
-
-
-## Response
-
-- Evidence collection
-- Threat classification
-- Rule improvement
+120
 
 
 
----
+Security Score:
+
+92%
 
 
-# Analyst Skills Demonstrated
+
+Threat Level:
+
+LOW
 
 
-- Alert Triage
 
-- Log Analysis
+Modules Demonstrated:
 
-- Threat Hunting
 
-- Incident Response
 
-- Detection Engineering
+1. SOC Dashboard
+
+2. Sentinel X
+
+3. Risk Engine
+
+4. AI Director
+
+5. Executive Report
+
 
 
