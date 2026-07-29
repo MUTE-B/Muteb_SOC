@@ -1,0 +1,81 @@
+SECRET_KEY="9bd0724582ad2e3ab8a2b20a15b50d068980541902e0c32fc65fe85febbf2ad4"
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+
+USERS = {
+    "admin": {
+        "password": "admin123",
+        "role": "Admin"
+    },
+    "analyst": {
+        "password": "analyst123",
+        "role": "Analyst"
+    }
+}
+
+
+            "success": True,
+            "user": {
+                "username": username,
+                "role": USERS[username]["role"]
+            }
+        })
+
+    return jsonify({
+        "success": False
+    }), 401
+
+
+
+@app.route("/api/dashboard")
+def dashboard():
+
+    return jsonify({
+        "critical_alerts": 1,
+        "open_incidents": 1,
+        "threat_score": 85
+    })
+
+
+@app.route("/")
+def home():
+    return "MUTEB SOC BACKEND ONLINE"
+
+
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=8000
+    )
+
+
+@app.route("/api/login", methods=["POST"])
+def login():
+
+    from flask import request, jsonify
+
+    data=request.get_json()
+
+    username=data.get("username")
+    password=data.get("password")
+
+
+    if username=="admin" and password=="Muteb@Admin2026":
+
+        return jsonify({
+            "success":True,
+            "status":"success",
+            "username":"admin",
+            "role":"Admin"
+        })
+
+
+    return jsonify({
+        "success":False
+    }),401
+

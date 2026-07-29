@@ -1,0 +1,173 @@
+
+import {useState} from "react";
+import "./App.css";
+
+
+const API="http://172.20.10.4:8000";
+
+
+function App(){
+
+
+const [login,setLogin]=useState(false);
+
+const [u,setU]=useState("");
+const [p,setP]=useState("");
+
+const [page,setPage]=useState("dashboard");
+
+const [data,setData]=useState([]);
+
+
+
+async function loginUser(){
+
+let r=await fetch(API+"/api/login",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+username:u,
+password:p
+})
+});
+
+let j=await r.json();
+
+if(j.success)
+setLogin(true);
+
+}
+
+
+
+async function load(name){
+
+let r=await fetch(API+"/api/"+name);
+
+setData(await r.json());
+
+}
+
+
+
+if(!login)
+
+return (
+
+<div className="login">
+
+<h1>MUTEB SOC</h1>
+
+<h2>Enterprise Login</h2>
+
+<input
+placeholder="Username"
+onChange={e=>setU(e.target.value)}
+/>
+
+<input
+type="password"
+placeholder="Password"
+onChange={e=>setP(e.target.value)}
+/>
+
+<button onClick={loginUser}>
+LOGIN
+</button>
+
+</div>
+
+);
+
+
+
+return (
+
+<div>
+
+
+<h1>MUTEB SOC</h1>
+
+
+<nav>
+
+<button onClick={()=>setPage("dashboard")}>
+Dashboard
+</button>
+
+
+<button onClick={()=>{setPage("alerts");load("alerts")}}>
+Alerts
+</button>
+
+
+<button onClick={()=>{setPage("incidents");load("incidents")}}>
+Incidents
+</button>
+
+
+<button onClick={()=>{setPage("users");load("users")}}>
+Users
+</button>
+
+
+<button onClick={()=>{setPage("logs");load("logs")}}>
+Logs
+</button>
+
+
+</nav>
+
+
+
+{
+page==="dashboard" &&
+
+<div>
+
+<h2>SOC Overview</h2>
+
+<h3>Critical Alerts : 1</h3>
+
+<h3>Open Incidents : 1</h3>
+
+<h3>Threat Score : 85</h3>
+
+</div>
+
+}
+
+
+
+{
+data.map((x,i)=>
+
+<div key={i}
+style={{
+border:"1px solid gray",
+margin:"10px",
+padding:"10px"
+}}>
+
+{JSON.stringify(x)}
+
+</div>
+
+)
+
+}
+
+
+
+</div>
+
+)
+
+}
+
+
+export default App;
+

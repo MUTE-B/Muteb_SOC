@@ -1,7 +1,15 @@
-MUTEB SOC ENTERPRISE
 
-VERSION=10.0
+MUTEB SOC Enterprise v1.0
 
-RELEASE=FINAL
+Status:
+FINAL BUILD
 
-STATUS=READY
+Components:
+- React Frontend
+- Flask Backend
+- PostgreSQL
+- Nginx
+- Systemd
+- Firewall
+- Backup
+

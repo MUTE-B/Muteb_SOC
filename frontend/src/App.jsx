@@ -1,60 +1,83 @@
-import React,{useState} from "react";
-import {BrowserRouter,Routes,Route,Navigate,Link} from "react-router-dom";
-import api from "./services/api";
 
-import Dashboard from "./pages/Dashboard";
-import Alerts from "./pages/Alerts";
-import Incidents from "./pages/Incidents";
-import Users from "./pages/Users";
+import {useEffect,useState} from "react";
+import "./App.css";
 
 
-function Login({setAuth}){
+function App(){
 
-const [u,setU]=useState("");
-const [p,setP]=useState("");
-const [err,setErr]=useState("");
-
-async function login(){
-
-let r=await api.post("/api/login",{
-username:u,
-password:p
-});
-
-if(r.data.success){
-
-localStorage.setItem("user",JSON.stringify(r.data));
-setAuth(true);
-
-}else{
-
-setErr("Login Failed");
-
-}
-
-}
+const [data,setData]=useState({});
+const [page,setPage]=useState("dashboard");
 
 
-return <div>
+useEffect(()=>{
+
+fetch("/api/stats")
+.then(r=>r.json())
+.then(setData);
+
+},[]);
+
+
+
+return (
+
+<div>
 
 <h1>MUTEB SOC</h1>
 
-<input placeholder="Username"
-onChange={e=>setU(e.target.value)}/>
+<nav>
 
-<br/>
+<button onClick={()=>setPage("dashboard")}>Dashboard</button>
+<button onClick={()=>setPage("alerts")}>Alerts</button>
+<button onClick={()=>setPage("incidents")}>Incidents</button>
+<button onClick={()=>setPage("users")}>Users</button>
+<button onClick={()=>setPage("logs")}>Logs</button>
 
-<input type="password"
-placeholder="Password"
-onChange={e=>setP(e.target.value)}/>
+</nav>
 
-<br/>
 
-<button onClick={login}>
-LOGIN
-</button>
+<h2>SOC Overview</h2>
 
-<p>{err}</p>
+
+{
+page==="dashboard" &&
+
+<div>
+
+<h3>Critical Alerts : {data.alerts}</h3>
+
+<h3>Open Incidents : {data.incidents}</h3>
+
+<h3>Active Users : {data.users}</h3>
+
+<h3>Threat Score : {data.threat_score}</h3>
+
+</div>
+
+}
+
+
+{
+page==="alerts" &&
+
+<div>
+
+<h2>Alerts Center</h2>
+
+<table>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>Brute Force Attack</td>
+<td>Critical</td>
+<td>Open</td>
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -62,59 +85,80 @@ LOGIN
 
 
 
-function App(){
+{
+page==="incidents" &&
 
-const [auth,setAuth]=useState(
-!!localStorage.getItem("user")
+<div>
+
+<h2>Incident Management</h2>
+
+<p>Suspicious Login</p>
+<p>Priority : High</p>
+<p>Status : Investigating</p>
+
+</div>
+
+}
+
+
+
+{
+page==="users" &&
+
+<div>
+
+<h2>Users Management</h2>
+
+
+<table>
+<tbody>
+
+<tr>
+<td>admin</td>
+<td>Admin</td>
+<td><button>Change Role</button></td>
+<td><button>Delete</button></td>
+</tr>
+
+
+<tr>
+<td>analyst</td>
+<td>Analyst</td>
+<td><button>Change Role</button></td>
+<td><button>Delete</button></td>
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+}
+
+
+
+{
+page==="logs" &&
+
+<div>
+
+<h2>Logs Viewer</h2>
+
+<p>Security Events</p>
+
+</div>
+
+}
+
+
+
+</div>
+
 );
-
-
-if(!auth)
-
-return <Login setAuth={setAuth}/>
-
-
-
-return <BrowserRouter>
-
-<nav>
-
-<Link to="/">Dashboard</Link> |
-
-<Link to="/alerts">Alerts</Link> |
-
-<Link to="/incidents">Incidents</Link> |
-
-<Link to="/users">Users</Link> |
-
-<button onClick={()=>{
-localStorage.clear();
-setAuth(false)
-}}>
-Logout
-</button>
-
-</nav>
-
-
-<Routes>
-
-<Route path="/" element={<Dashboard/>}/>
-
-<Route path="/alerts" element={<Alerts/>}/>
-
-<Route path="/incidents" element={<Incidents/>}/>
-
-<Route path="/users" element={<Users/>}/>
-
-<Route path="*" element={<Navigate to="/"/>}/>
-
-</Routes>
-
-
-</BrowserRouter>
 
 }
 
 
 export default App;
+
