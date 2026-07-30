@@ -1,0 +1,647 @@
+========================================
+ MUTEB SOC FRONTEND LOGIN DIAGNOSIS
+========================================
+
+[1] Frontend structure
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/api/soc.js
+/home/mte-b/Muteb-SOC/frontend/src/api/client.js
+/home/mte-b/Muteb-SOC/frontend/src/api/auth.js
+/home/mte-b/Muteb-SOC/frontend/src/api/socket.js
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/services/sentinelApi.js
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/SentinelXRouter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SentinelDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.css
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925
+/home/mte-b/Muteb-SOC/frontend/src/components/ScannerDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js
+
+[2] Login flow inspection
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:24:export function login(username,password){
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:27:"/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:40:export function dashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:43:"/api/dashboard"
+/home/mte-b/Muteb-SOC/frontend/src/index.css:13:.login{
+/home/mte-b/Muteb-SOC/frontend/src/index.css:58:.dashboard{
+/home/mte-b/Muteb-SOC/frontend/src/index.css:69:.dashboard section{
+/home/mte-b/Muteb-SOC/frontend/src/index.css:79:.dashboard section div{
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:1:import ScannerDashboard from './components/ScannerDashboard';
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:14:import Login from "./pages/Login";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:16:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:18:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:31:localStorage.getItem("muteb_user")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:36:function login(data){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:38:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:52:localStorage.removeItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:67:<Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:68:onLogin={login}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:95:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:171:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:180:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:215:export function ScannerDashboardPage(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:219:<ScannerDashboard />
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:10:const [token,setToken]=useState(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:11:localStorage.getItem("token")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:20:async function login(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:28:"/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:40:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:41:"token",
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:42:r.data.token
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:46:setToken(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:47:r.data.token
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:56:alert("Login Failed");
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:65:if(!token)
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:81:Enterprise Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:108:className="login"
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:109:onClick={login}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:112:LOGIN
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:140:Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:208:<div className="card success">
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:235:Suspicious Login
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx:7:export default function ExecutiveDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx:16:MUTEB SOC Executive Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/api/auth.js:5:export async function login(username,password){
+/home/mte-b/Muteb-SOC/frontend/src/api/auth.js:8:        "/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:2:import Login from "./pages/Login";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:3:import {dashboard} from "./services/api";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:10:const saved=localStorage.getItem("muteb_user");
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:19:async function handleLogin(u){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:21:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:31:await dashboard();
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:47:localStorage.removeItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:61:<Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:62:onLogin={handleLogin}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:86:Security Operations Center Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/integration/SentinelEntry.jsx:6:import SentinelCommandCenter from "../dashboard/SentinelCommandCenter";
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SentinelDashboard.jsx:16:export default function SentinelDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/App.css:130:.success{
+/home/mte-b/Muteb-SOC/frontend/src/App.css:161:button.login{
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:2:import Login from "./pages/Login";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:3:import {dashboard} from "./services/api";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:11:localStorage.getItem("muteb_user")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:21:async function openDashboard(u){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:26:await dashboard();
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:36:localStorage.removeItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:48:return <Login onLogin={openDashboard}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:64:MUTEB SOC Enterprise Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx:17:const token=localStorage.getItem(
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx:18:"token"
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx:39:"Bearer "+token
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:3:.login-background{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:83:.login-card{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:118:.login-card h1{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:132:.login-card h2{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:157:.login-card input{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:180:.login-card button{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css:207:.login-card button:hover{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:3:export default function Dashboard({logout}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:9:<div className="dashboard">
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:20:<button>Dashboard</button>
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:98:<h1 className="success">
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:143:Suspicious Login
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx:7:export default function EnterpriseDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx:27:event:"Suspicious Login",
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:2:import {login} from "../services/api";
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:5:export default function Login({onLogin}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:18:await login(username,password);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:20:console.log('MUTEB LOGIN RESULT:', result);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:23:if(result.success){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:28:token:result.token
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:32:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:38:onLogin(user);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx:102:LOGIN
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:2:import {login} from "../services/api";
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:5:export default function Login({onLogin}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:18:await login(username,password);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:21:if(result.success){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:26:token:result.token
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:30:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:36:onLogin(user);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug:100:LOGIN
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:3:import {getDashboard} from "../services/api";
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:6:export default function Dashboard({user,logout}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:15:getDashboard()
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:24:<div className="dashboard">
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:4:export default function Login({onLogin}) {
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:21:const response = await fetch("/api/login",{
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:44:if(data.success){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:46:onLogin(data);
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:75:<div className="login">
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:80:<h2>Enterprise Login</h2>
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:116:"LOGIN..."
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:120:"LOGIN"
+/home/mte-b/Muteb-SOC/frontend/src/style.css:8:.login{
+/home/mte-b/Muteb-SOC/frontend/src/style.css:42:.dashboard{
+/home/mte-b/Muteb-SOC/frontend/src/style.css:152:.dashboard h1{
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:13:import Login from "./pages/Login";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:15:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:17:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:30:localStorage.getItem("muteb_user")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:35:function login(data){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:37:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:51:localStorage.removeItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:66:<Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:67:onLogin={login}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:94:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:170:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:179:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:13:import Login from "./pages/Login";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:15:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:17:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:30:localStorage.getItem("muteb_user")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:35:function login(data){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:37:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:51:localStorage.removeItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:66:<Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:67:onLogin={login}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:94:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:170:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:179:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/components/ScannerDashboard.jsx:5:export default function ScannerDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:10:const [token,setToken]=useState(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:11:localStorage.getItem("token")
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:20:async function login(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:28:"/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:40:localStorage.setItem(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:41:"token",
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:42:r.data.token
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:46:setToken(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:47:r.data.token
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:56:alert("Login Failed");
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:65:if(!token)
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:81:Enterprise Login
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:108:className="login"
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:109:onClick={login}
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:112:LOGIN
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:140:Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:208:<div className="card success">
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:235:Suspicious Login
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:8:dashboard
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:13:export default function useDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:26:await dashboard();
+
+[3] API endpoint inspection
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:8:const response = await fetch(
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:27:"/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx:3:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx:47:const res=await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx:107:const r=await axios.get(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx:126:const r=await axios.get(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363693:4:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363693:29:const r=await axios.get(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363693:81:const r=await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_1785363182:5:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_1785363182:24:const r=await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363850:4:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363850:29:const r=await axios.get(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363850:102:const r=await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363627:3:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363627:32:const response = await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363933:5:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363933:33:const r=await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363933:65:const r=await axios.get(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:3:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:27:await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:28:"/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/api/client.js:1:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/api/client.js:3:const client = axios.create({
+/home/mte-b/Muteb-SOC/frontend/src/api/auth.js:8:        "/api/login",
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/services/sentinelApi.js:2:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/services/sentinelApi.js:4:const sentinelAPI = axios.create({
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx:38:Authorization:
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx:39:"Bearer "+token
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx:3:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx:18:axios.get("/api/enterprise/status")
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup:21:const response = await fetch("/api/login",{
+/home/mte-b/Muteb-SOC/frontend/src/components/ScannerDashboard.jsx:29:const response=await fetch(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:3:import axios from "axios";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:27:await axios.post(
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:28:"/api/login",
+
+[4] Route inspection
+/home/mte-b/Muteb-SOC/frontend/src/presentation/SecurityOverview.jsx:48:Protected Assets:
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:40:export function dashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js:43:"/api/dashboard"
+/home/mte-b/Muteb-SOC/frontend/src/index.css:58:.dashboard{
+/home/mte-b/Muteb-SOC/frontend/src/index.css:69:.dashboard section{
+/home/mte-b/Muteb-SOC/frontend/src/index.css:79:.dashboard section div{
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:1:import ScannerDashboard from './components/ScannerDashboard';
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:6:BrowserRouter,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:7:Routes,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:8:Route,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:11:from "react-router-dom";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:16:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:18:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:79:<BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:95:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:165:<Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:168:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:171:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:177:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:180:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:186:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:195:</Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:204:</BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:215:export function ScannerDashboardPage(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933:219:<ScannerDashboard />
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup:140:Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx:7:export default function ExecutiveDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx:16:MUTEB SOC Executive Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:3:import {dashboard} from "./services/api";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:31:await dashboard();
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx:86:Security Operations Center Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/SentinelXRouter.jsx:15:export default function SentinelXRouter(){
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/integration/SentinelEntry.jsx:6:import SentinelCommandCenter from "../dashboard/SentinelCommandCenter";
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SentinelDashboard.jsx:16:export default function SentinelDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:3:import {dashboard} from "./services/api";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:21:async function openDashboard(u){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:26:await dashboard();
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:48:return <Login onLogin={openDashboard}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix:64:MUTEB SOC Enterprise Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/cyber_command_center/CommandCenter.jsx:47:Assets Protected:
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:3:export default function Dashboard({logout}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:9:<div className="dashboard">
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup:20:<button>Dashboard</button>
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx:7:export default function EnterpriseDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:3:import {getDashboard} from "../services/api";
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:6:export default function Dashboard({user,logout}){
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:15:getDashboard()
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx:24:<div className="dashboard">
+/home/mte-b/Muteb-SOC/frontend/src/style.css:42:.dashboard{
+/home/mte-b/Muteb-SOC/frontend/src/style.css:152:.dashboard h1{
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:5:BrowserRouter,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:6:Routes,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:7:Route,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:10:from "react-router-dom";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:15:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:17:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:78:<BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:94:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:164:<Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:167:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:170:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:176:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:179:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:185:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:194:</Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985:203:</BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:5:BrowserRouter,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:6:Routes,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:7:Route,
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:10:from "react-router-dom";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:15:import Dashboard from "./pages/Dashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:17:import EnterpriseDashboard from "./pages/EnterpriseDashboard";
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:78:<BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:94:<Link to="/">Dashboard</Link>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:164:<Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:167:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:170:<Dashboard logout={logout}/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:176:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:179:<EnterpriseDashboard/>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:185:<Route
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:194:</Routes>
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925:203:</BrowserRouter>
+/home/mte-b/Muteb-SOC/frontend/src/components/ScannerDashboard.jsx:5:export default function ScannerDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup:140:Dashboard
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:8:dashboard
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:13:export default function useDashboard(){
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js:26:await dashboard();
+
+[5] Dashboard files
+/home/mte-b/Muteb-SOC/frontend/src/presentation/SecurityOverview.jsx
+/home/mte-b/Muteb-SOC/frontend/src/presentation/Hero.jsx
+/home/mte-b/Muteb-SOC/frontend/src/presentation/Modules.jsx
+/home/mte-b/Muteb-SOC/frontend/src/presentation/ArchitectureView.jsx
+/home/mte-b/Muteb-SOC/frontend/src/services/api.js
+/home/mte-b/Muteb-SOC/frontend/src/enterprise/ProductOverview.jsx
+/home/mte-b/Muteb-SOC/frontend/src/enterprise/Landing.jsx
+/home/mte-b/Muteb-SOC/frontend/src/enterprise/Architecture.jsx
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363693
+/home/mte-b/Muteb-SOC/frontend/src/scanner/scanner.css
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_1785363182
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.backup_v2_1785363850
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363627
+/home/mte-b/Muteb-SOC/frontend/src/scanner/WebScanner.jsx.before_v2_1785363933
+/home/mte-b/Muteb-SOC/frontend/src/enterprise.css
+/home/mte-b/Muteb-SOC/frontend/src/index.css
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_v2_1785363933
+/home/mte-b/Muteb-SOC/frontend/src/command_center/SOCCommandCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.enterprise_backup
+/home/mte-b/Muteb-SOC/frontend/src/executive_center/ExecutiveDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/api/soc.js
+/home/mte-b/Muteb-SOC/frontend/src/api/client.js
+/home/mte-b/Muteb-SOC/frontend/src/api/auth.js
+/home/mte-b/Muteb-SOC/frontend/src/api/socket.js
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/services/sentinelApi.js
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/SentinelXRouter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/SentinelX.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/pages/RiskCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/pages/Assets.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/pages/ExecutiveReport.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/pages/CommandCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/pages/AIDirector.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/integration/SentinelEntry.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/styles/sentinel.css
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/RiskCard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SentinelButton.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SecurityScore.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/AIDirectorCard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/SentinelDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/sentinel_x/components/AssetCard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/Reports.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.css
+/home/mte-b/Muteb-SOC/frontend/src/soc_command_center/SOCCommandCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_login_fix
+/home/mte-b/Muteb-SOC/frontend/src/advanced_soc/OperationsCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/main.jsx
+/home/mte-b/Muteb-SOC/frontend/src/executive_portal/ExecutivePortal.jsx
+/home/mte-b/Muteb-SOC/frontend/src/cyber_command_center/CommandCenter.jsx
+/home/mte-b/Muteb-SOC/frontend/src/UserManagement.jsx
+/home/mte-b/Muteb-SOC/frontend/src/Investigation.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Alerts.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.css
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx.backup
+/home/mte-b/Muteb-SOC/frontend/src/pages/Incidents.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/EnterpriseDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup_debug
+/home/mte-b/Muteb-SOC/frontend/src/pages/Dashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/pages/Login.jsx.backup
+/home/mte-b/Muteb-SOC/frontend/src/pages/Users.jsx
+/home/mte-b/Muteb-SOC/frontend/src/enterprise_theme.txt
+/home/mte-b/Muteb-SOC/frontend/src/style.css
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_fix_1785362985
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.before_scanner_dashboard_1785362925
+/home/mte-b/Muteb-SOC/frontend/src/intelligence_center/SOCWorkspace.jsx
+/home/mte-b/Muteb-SOC/frontend/src/components/Header.jsx
+/home/mte-b/Muteb-SOC/frontend/src/components/ScannerDashboard.jsx
+/home/mte-b/Muteb-SOC/frontend/src/components/Card.jsx
+/home/mte-b/Muteb-SOC/frontend/src/App.jsx.failed_backup
+/home/mte-b/Muteb-SOC/frontend/src/hooks/useDashboard.js
+
+[6] Package information
+{
+  "name": "muteb-soc-dashboard",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.1",
+    "axios": "^1.18.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "^6.30.4",
+    "vite": "5.4.14"
+  }
+}
+
+[7] Frontend build check
+
+> muteb-soc-dashboard@1.0.0 build
+> vite build
+
+vite v5.4.14 building for production...
+transforming...
+✓ 32 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.30 kB │ gzip:  0.23 kB
+dist/assets/index-BfkDfkmT.js  144.96 kB │ gzip: 46.72 kB
+✓ built in 5.91s
+
+[8] Git status (no changes made)
+On branch develop
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   backend/api/auth_api.py
+	modified:   backend/api/scanner_v2_api.py
+	modified:   backend/app.py
+	modified:   backend/logs/scanner_history.json
+	modified:   backend/logs/scanner_status.json
+	modified:   backend/security/roles.py
+	modified:   backend/security/users.json
+	modified:   frontend/src/App.jsx
+	modified:   frontend/src/pages/Dashboard.jsx
+	modified:   frontend/src/pages/Login.jsx
+	modified:   frontend/src/services/api.js
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	MUTEB_LOGIN_DIAGNOSIS_REPORT.txt
+	MUTEB_SOC_APP_LOGIN_CLEAN_FINAL.sh
+	MUTEB_SOC_APP_RECOVERY_AUTO_FINAL.sh
+	MUTEB_SOC_AUTH_BLUEPRINT_FINAL_FIX.sh
+	MUTEB_SOC_AUTH_DEEP_FINAL_REPAIR.sh
+	MUTEB_SOC_AUTH_ENGINE_FINAL_FIX.sh
+	MUTEB_SOC_AUTH_FINAL_REBUILD.sh
+	MUTEB_SOC_AUTH_FINAL_VERIFY.sh
+	MUTEB_SOC_AUTH_REGISTER_FINAL.sh
+	MUTEB_SOC_BLUEPRINT_INJECT_FINAL.sh
+	MUTEB_SOC_EMPTY_FUNCTION_AUTO_FIX.sh
+	MUTEB_SOC_EMPTY_LOGIN_FIX.sh
+	MUTEB_SOC_ENTERPRISE_AUTO_HEAL_FINAL.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_AUTH_ROUTE_CLEAN.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_CLEANUP.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_ENGINEERING_REBUILD.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_ENGINEERING_REPAIR.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_HARDENING.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_REPAIR.sh
+	MUTEB_SOC_ENTERPRISE_FINAL_TEST.sh
+	MUTEB_SOC_ENTERPRISE_FULL_AUDIT_SAFE_FIX.sh
+	MUTEB_SOC_ENTERPRISE_HARDENING.sh
+	MUTEB_SOC_ENTERPRISE_LAST_FIX.sh
+	MUTEB_SOC_ENTERPRISE_MASTER_AUTO_REPAIR.sh
+	MUTEB_SOC_ENTERPRISE_MASTER_ONE_SHOT_FINAL.sh
+	MUTEB_SOC_ENTERPRISE_MASTER_RECOVERY_ONE_SHOT.sh
+	MUTEB_SOC_ENTERPRISE_MASTER_REPAIR.sh
+	MUTEB_SOC_ENTERPRISE_ONE_SHOT_FINAL_FIX.sh
+	MUTEB_SOC_ENTERPRISE_RECOVERY_ENGINE.sh
+	MUTEB_SOC_ENTERPRISE_RECOVERY_FINAL.sh
+	MUTEB_SOC_ENTERPRISE_ROUTE_HARDENING_FINAL.sh
+	MUTEB_SOC_ENTERPRISE_SCANNER_RUNNER.sh
+	MUTEB_SOC_ENTERPRISE_SECURITY_FINAL.sh
+	MUTEB_SOC_FINAL_AUTH_SCANNER_REBUILD.sh
+	MUTEB_SOC_FINAL_ENGINEERING_AUDIT_FIX.sh
+	MUTEB_SOC_FINAL_RECOVERY_REPAIR.sh
+	MUTEB_SOC_FINAL_ROUTE_HEAL.sh
+	MUTEB_SOC_FLASK_APP_OBJECT_FINAL_CHECK.sh
+	MUTEB_SOC_FRONTEND_ENTERPRISE_AUTH_FINAL.sh
+	MUTEB_SOC_FRONTEND_LOGIN_FLOW_FINAL_FIX.sh
+	MUTEB_SOC_FRONTEND_REAL_FORENSIC_CHECK.sh
+	MUTEB_SOC_JWT_ENTERPRISE_HARDEN_ONE_SHOT.sh
+	MUTEB_SOC_LOGIN_DEEP_DIAGNOSTIC.sh
+	MUTEB_SOC_LOGIN_FINAL_ONE_SHOT.sh
+	MUTEB_SOC_LOGIN_FINAL_REPAIR.sh
+	MUTEB_SOC_LOGIN_ROUTE_FINAL_FIX.sh
+	MUTEB_SOC_REMOVE_LOGIN_DUPLICATE_FINAL.sh
+	MUTEB_SOC_RUNTIME_AUTH_FINAL_SYNC.sh
+	MUTEB_SOC_RUNTIME_FINAL_SYNC.sh
+	MUTEB_SOC_RUNTIME_RELOAD_FINAL.sh
+	MUTEB_SOC_RUNTIME_VERIFY_FINAL.sh
+	MUTEB_SOC_SCANNER_FINAL_CLEAN_ONE.sh
+	MUTEB_SOC_SCANNER_PREFIX_FINAL_FIX.sh
+	MUTEB_SOC_SCANNER_V2_BLUEPRINT_FIX.sh
+	MUTEB_SOC_SCANNER_V2_ENDPOINT_DIAGNOSTIC.sh
+	MUTEB_SOC_SCANNER_V2_FINAL_INTEGRATION.sh
+	MUTEB_SOC_SCANNER_V2_PREFIX_FINAL_FIX.sh
+	MUTEB_SOC_SCANNER_V2_RESTORE_FINAL.sh
+	MUTEB_SOC_SCANNER_V2_ROUTE_NORMALIZER.sh
+	MUTEB_SOC_TRY_BLOCK_AND_SCANNER_REPAIR.sh
+	backend/.env.production
+	backend/MUTEB_SOC_AUTH_FINAL_PRODUCTION_FIX.sh
+	backend/MUTEB_SOC_ENTERPRISE_PRODUCTION_MIGRATION.sh
+	backend/MUTEB_SOC_FINAL_RUNTIME_REPAIR.sh
+	backend/MUTEB_SOC_FRONTEND_FORENSIC_CHECK.sh
+	backend/MUTEB_SOC_RUNTIME_AUTH_FORENSIC_REBUILD.sh
+	backend/MUTEB_SOC_SCANNER_V2_RUNTIME_DEEP_CHECK.sh
+	backend/api/scanner_v2.py
+	backend/app.py.before_double_bp_fix_1785364854
+	backend/app.py.before_scanner_v2_double_register_fix_1785364910
+	backend/app.py.before_scanner_v2_duplicate_fix_1785364886
+	backend/app.py.before_scanner_v2_import_fix_1785364796
+	backend/reports/071358f0-31a3-449e-9905-e14c8a2c718e_report.pdf
+	backend/reports/236729a4-6cbe-4f4c-816b-6d69713b9af4_report.pdf
+	backend/reports/4fced007-e9a6-4705-8e7a-8b623b6adf68_report.pdf
+	backend/reports/6c54c485-e17d-4777-9203-379415827516_report.pdf
+	backend/reports/809c9b1c-7008-4818-9136-4be73af362e0_report.pdf
+	backend/reports/913c16f1-5986-4e6b-af23-45ba61e30a42_report.pdf
+	backend/reports/9d53baf6-5025-4a06-a9e9-8d23767af539_report.pdf
+	backend/reports/a3045561-64ea-464d-afd5-0fbbbeabede9_report.pdf
+	backend/reports/c4f25a3d-b773-4453-9473-1d9ceb2d15bd_report.pdf
+	backend/reports/d3ea9482-73e5-4468-b879-5fab58b018b7_report.pdf
+	backend/reports/db6addd8-179a-4b8b-b8e3-f5a78fc5513d_report.pdf
+	backend/reports/e928d889-a28f-48e2-b29f-e6b4e8293947_report.pdf
+	backend/reports/example.com_report.pdf
+	backend/security/roles.py.backup_1785364703
+	backups/20260730_014634/
+	backups/20260730_014716/
+	backups/20260730_014747/
+	backups/20260730_014844/
+	backups/20260730_015005/
+	backups/20260730_015039/
+	backups/20260730_015142/
+	backups/20260730_015212/
+	backups/20260730_015336/
+	backups/APP_LOGIN_CLEAN_20260730_020618/
+	backups/APP_LOGIN_CLEAN_FINAL_20260730_023532/
+	backups/APP_RECOVERY_AUTO_20260730_020642/
+	backups/AUTH_BLUEPRINT_FIX_20260730_020707/
+	backups/AUTH_DEEP_FINAL_20260730_024332/
+	backups/AUTH_ENGINE_FINAL_20260730_024252/
+	backups/AUTH_FINAL_20260730_020427/
+	backups/AUTH_FORENSIC_REBUILD_20260730_024812/
+	backups/AUTH_PRODUCTION_FIX_20260730_024722/
+	backups/AUTH_REGISTER_FINAL_20260730_020731/
+	backups/AUTH_ROUTE_FINAL_20260730_023235/
+	backups/AUTH_TARGETED_FIX_20260730_074242/
+	backups/AUTO_HEAL_20260730_021448/
+	backups/BLUEPRINT_INJECT_20260730_022949/
+	backups/DASHBOARD_CONNECT_20260730_030603/
+	backups/EMPTY_FUNCTION_AUTO_FIX_20260730_023623/
+	backups/EMPTY_LOGIN_FIX_20260730_023600/
+	backups/ENGINEERING_FINAL_20260730_024858/
+	backups/ENTERPRISE_HARDENING_20260730_015602/
+	backups/ENTERPRISE_HARDENING_20260730_023122/
+	backups/ENTERPRISE_LAST_FIX_20260730_023324/
+	backups/ENTERPRISE_SECURITY_FINAL_20260730_015943/
+	backups/FINAL_CLEANUP_20260730_015711/
+	backups/FINAL_ENGINEERING_AUDIT_20260730_033813/
+	backups/FINAL_ENGINEERING_REBUILD_20260730_025013/
+	backups/FINAL_ENTERPRISE_CLEANUP_20260730_020042/
+	backups/FINAL_ENTERPRISE_REBUILD_20260730_024444/
+	backups/FINAL_REBUILD_SAFE_20260730_021928/
+	backups/FINAL_RECOVERY_20260730_022830/
+	backups/FINAL_REPAIR_20260730_022730/
+	backups/FINAL_ROUTE_HEAL_20260730_023653/
+	backups/FINAL_RUNTIME_REPAIR_20260730_024645/
+	backups/FRONTEND_AUTH_FINAL_20260730_034128/
+	backups/FRONTEND_FINAL_20260730_031924/
+	backups/FRONTEND_LOGIN_20260730_031014/
+	backups/FULL_AUDIT_20260730_033132/
+	backups/FULL_AUDIT_20260730_033309/
+	backups/JWT_HARDEN_20260730_033903/
+	backups/LOGIN_FINAL_20260730_020520/
+	backups/LOGIN_FINAL_ONE_SHOT_20260730_023356/
+	backups/LOGIN_ROUTE_FINAL_FIX_20260730_023423/
+	backups/MASTER_AUTO_HEAL_20260730_022147/
+	backups/MASTER_AUTO_REPAIR_20260730_022509/
+	backups/MASTER_ONE_SHOT_FINAL_20260730_023905/
+	backups/MASTER_RECOVERY_ONE_SHOT_20260730_024014/
+	backups/MASTER_REPAIR_20260730_020335/
+	backups/ONE_SHOT_FINAL_20260730_022907/
+	backups/PRODUCTION_MIGRATION_20260730_025438/
+	backups/RECOVERY_20260730_020207/
+	backups/RECOVERY_FINAL_20260730_020404/
+	backups/REMOVE_LOGIN_DUP_20260730_020547/
+	backups/ROUTE_HARDENING_FINAL_20260730_020817/
+	backups/RUNTIME_AUTH_SYNC_20260730_024521/
+	backups/SCANNER_BP_FIX_20260730_021000/
+	backups/SCANNER_FINAL_CLEAN_20260730_024119/
+	backups/SCANNER_MASTER_CLEANUP_20260730_021648/
+	backups/SCANNER_PREFIX_FINAL_20260730_021023/
+	backups/SCANNER_PREFIX_FINAL_20260730_023021/
+	backups/SCANNER_PREFIX_FINAL_20260730_025043/
+	backups/SCANNER_RECOVERY_20260730_021820/
+	backups/SCANNER_ROUTE_NORMALIZER_20260730_025117/
+	backups/SCANNER_V2_FINAL_20260730_021318/
+	backups/SCANNER_V2_RESTORE_20260730_020934/
+	backups/SECURITY_FINAL_20260730_015839/
+	backups/TRY_SCANNER_REPAIR_20260730_024148/
+	backups/frontend_engineering_1785370998/
+	backups/muteb_soc_before_v3_20260730_013701.tar.gz
+	fix_auth_api_final_rebuild.sh
+	fix_auth_duplicate_enterprise.sh
+	fix_duplicate_login_final.sh
+	fix_login_and_backup.sh
+	fix_login_final_safe.sh
+	fix_login_route_final.sh
+	frontend/MUTEB_SOC_AUTH_GUARD_FINAL.sh
+	frontend/MUTEB_SOC_DASHBOARD_ENTERPRISE_ONE_SHOT.sh
+	frontend/MUTEB_SOC_ENTERPRISE_FRONTEND_FINAL_ENGINEERING.sh
+	frontend/MUTEB_SOC_FRONTEND_ENTERPRISE_ONE_SHOT_FINAL.sh
+	frontend/MUTEB_SOC_FRONTEND_FINAL_RUNTIME_CHECK.sh
+	frontend/MUTEB_SOC_FRONTEND_RUNTIME_CLEAN_FINAL.sh
+	frontend/MUTEB_SOC_LOGIN_DASHBOARD_ONE_SHOT.sh
+	frontend/MUTEB_SOC_LOGIN_DEBUG_FINAL.sh
+	frontend/MUTEB_SOC_LOGIN_DIAG_ONE.sh
+	frontend/MUTEB_SOC_LOGIN_FINAL_DEBUG_FIX.sh
+	frontend/MUTEB_SOC_LOGIN_PAGE_FINAL_CONNECT.sh
+	frontend/src/App.jsx.before_login_fix
+	frontend/src/hooks/
+	frontend/src/index.css
+	frontend/src/pages/Login.jsx.backup_debug
+	frontend_login_diagnosis.sh
+	frontend_login_diagnosis_20260730_074634.txt
+	muteb_auth_targeted_fix.sh
+	muteb_enterprise_health_fix.sh
+	muteb_final_auth_unification.sh
+	muteb_login_debug_fix.sh
+	muteb_login_diagnosis.sh
+	muteb_route_inspector.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+========================================
+ DIAGNOSIS COMPLETE
+/home/mte-b/Muteb-SOC/frontend_login_diagnosis_20260730_074634.txt
+========================================

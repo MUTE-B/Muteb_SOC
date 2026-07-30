@@ -1,41 +1,36 @@
+import json
+from pathlib import Path
+
+USERS_FILE = Path("security/users.json")
 
 
-ROLES={
+def load_users():
 
-"admin":[
+    if not USERS_FILE.exists():
 
-"scan",
+        return {}
 
-"report",
-
-"manage"
-
-],
-
-
-"soc_analyst":[
-
-"scan",
-
-"report"
-
-],
-
-
-"viewer":[
-
-"view"
-
-]
-
-}
+    with open(USERS_FILE,"r") as f:
+        return json.load(f)
 
 
 
-def allowed(role,action):
+def get_user(username):
 
-    return action in ROLES.get(
-        role,
-        []
-    )
+    users=load_users()
 
+    return users.get(username)
+
+
+
+def check_password(username,password):
+
+    user=get_user(username)
+
+    if not user:
+        return None
+
+    if user["password"] == password:
+        return user
+
+    return None

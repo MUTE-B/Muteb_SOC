@@ -1,205 +1,122 @@
-
-import React,{useState} from "react";
-
-import "./Login.css";
-
+import {useState} from "react";
+import {login} from "../services/api";
 
 export default function Login({onLogin}){
 
-
 const [username,setUsername]=useState("");
-
 const [password,setPassword]=useState("");
-
 const [error,setError]=useState("");
-
-
 
 async function submit(e){
 
 e.preventDefault();
 
-
 try{
 
+const result = await login(username,password);
 
-const r=await fetch(
-
-"/api/login",
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-username,
-
-password
-
-})
-
-}
-
+console.log(
+"MUTEB AUTH RESULT:",
+result
 );
 
 
-const data=await r.json();
+if(result.success){
+
+localStorage.removeItem("muteb_user"); localStorage.removeItem("token");
 
 
+localStorage.setItem(
+"muteb_user",
+JSON.stringify({
+username:result.username,
+role:result.role,
+token:result.token
+})
+);
 
-if(data.success){
 
-onLogin(data);
+localStorage.setItem(
+"token",
+result.token
+);
+
+
+onLogin({
+username:result.username,
+role:result.role,
+token:result.token
+});
+
+
+}else{
+
+setError("Login Failed");
 
 }
 
-else{
 
-setError("Invalid Credentials");
+}catch(err){
 
-}
-
-
-}
-
-catch{
-
-setError("Connection Error");
+console.error(err);
+setError("Backend connection failed");
 
 }
 
-
 }
-
 
 
 return (
 
-<div className="login-background">
-
-
-<div className="cyber-grid"></div>
-
-
-
-<div className="login-card">
-
+<div className="login">
 
 <h1>
-
 MUTEB SOC
-
 </h1>
 
-
 <h2>
-
-ENTERPRISE
-
+Enterprise Login
 </h2>
-
-
-<p className="subtitle">
-
-Secure Access Portal
-
-</p>
-
 
 
 <form onSubmit={submit}>
 
 
 <input
-
 placeholder="Username"
-
 value={username}
-
 onChange={
 e=>setUsername(e.target.value)
 }
-
 />
-
 
 
 <input
-
 type="password"
-
 placeholder="Password"
-
 value={password}
-
 onChange={
 e=>setPassword(e.target.value)
 }
-
 />
 
 
-
 <button>
-
 LOGIN
-
 </button>
-
 
 
 </form>
 
 
-
 {
 error &&
-<p className="error">
-
-{error}
-
-</p>
+<p>{error}</p>
 }
-
-
-
-<div className="features">
-
-
-SOC Monitoring
-
-<br/>
-
-Threat Intelligence
-
-<br/>
-
-Incident Response
-
-<br/>
-
-Cyber Assessment
-
-
-</div>
-
-
-
-</div>
-
 
 
 </div>
 
 )
 
-
 }
-

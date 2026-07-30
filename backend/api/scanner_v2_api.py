@@ -110,7 +110,7 @@ def save_history(item):
 
 @scanner_v2_bp.route(
 
-"/api/scanner/v2/start",
+"/start",
 
 methods=["POST"]
 
@@ -274,7 +274,7 @@ def start_scan():
 
 @scanner_v2_bp.route(
 
-"/api/scanner/v2/history",
+"/history",
 
 methods=["GET"]
 
@@ -307,7 +307,7 @@ def history():
 
 @scanner_v2_bp.route(
 
-"/api/scanner/v2/status/<scan_id>",
+"/status/<scan_id>",
 
 methods=["GET"]
 
@@ -337,7 +337,7 @@ def status(scan_id):
 
 @scanner_v2_bp.route(
 
-"/api/scanner/v2/report/<scan_id>",
+"/report/<scan_id>",
 
 methods=["GET"]
 
@@ -373,7 +373,7 @@ def report(scan_id):
 
 @scanner_v2_bp.route(
 
-"/api/scanner/v2/progress/<scan_id>",
+"/progress/<scan_id>",
 
 methods=["GET"]
 

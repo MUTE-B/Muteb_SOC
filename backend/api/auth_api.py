@@ -1,65 +1,98 @@
 
 from flask import Blueprint,request,jsonify
+import jwt
+import datetime
 
-from security.roles import load_users
 
-
-
-auth_api=Blueprint(
-"auth_api",
-__name__
+auth_api = Blueprint(
+    "auth_api",
+    __name__
 )
 
 
+USERS={
+
+"admin":{
+"username":"admin",
+"password":"Muteb@Admin2026",
+"role":"Admin"
+},
+
+"soc":{
+"username":"soc",
+"password":"soc123",
+"role":"SOC Analyst"
+},
+
+"viewer":{
+"username":"viewer",
+"password":"viewer123",
+"role":"Viewer"
+}
+
+}
+
+
+SECRET="MUTEB_SOC_SECRET"
+
 
 @auth_api.route(
-"/api/auth/login",
+"/api/login",
 methods=["POST"]
 )
 
 def login():
 
+    data=request.get_json() or {}
 
-    data=request.json or {}
-
-
-    username=data.get(
-    "username"
-    )
+    username=data.get("username")
+    password=data.get("password")
 
 
-    password=data.get(
-    "password"
-    )
+    user=USERS.get(username)
 
 
-    users=load_users()
+    if not user:
+        return jsonify({
+            "success":False,
+            "error":"Invalid credentials"
+        }),401
 
 
-    user=users.get(
-        username
-    )
+    if user["password"] != password:
+        return jsonify({
+            "success":False,
+            "error":"Invalid credentials"
+        }),401
 
 
-    if user and user["password"]==password:
 
+    token=jwt.encode(
 
-        return jsonify(
         {
+        "username":username,
+        "role":user["role"],
+        "exp":
+        datetime.datetime.utcnow()
+        +
+        datetime.timedelta(hours=8)
+
+        },
+
+        SECRET,
+
+        algorithm="HS256"
+
+    )
+
+
+    return jsonify({
+
         "success":True,
         "username":username,
-        "role":user["role"]
-        }
-        )
+        "role":user["role"],
+        "token":token
 
-
-
-    return jsonify(
-    {
-    "success":False,
-    "error":"Invalid login"
-    }
-    ),401
-
+    })
 
 

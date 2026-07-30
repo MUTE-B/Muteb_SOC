@@ -1,31 +1,81 @@
 
+import {useEffect,useState} from "react";
+import {getDashboard} from "../services/api";
 
-export default function Dashboard({logout}){
+
+export default function Dashboard({user,logout}){
+
+
+const [stats,setStats]=useState({});
+
+
+
+useEffect(()=>{
+
+getDashboard()
+.then(setStats);
+
+},[]);
+
 
 
 return (
 
-
 <div className="dashboard">
 
 
-<div className="sidebar">
+<header>
+
+<h1>
+MUTEB SOC Enterprise
+</h1>
 
 
-<h2>
-MUTEB SOC
-</h2>
+<p>
+Security Operations Center
+</p>
 
 
-<button>Dashboard</button>
+</header>
 
-<button>Alerts</button>
 
-<button>Incidents</button>
 
-<button>Users</button>
+<section>
 
-<button>Logs</button>
+
+<div>
+<h3>User</h3>
+<p>{user.username}</p>
+</div>
+
+
+<div>
+<h3>Role</h3>
+<p>{user.role}</p>
+</div>
+
+
+
+<div>
+<h3>Threat Score</h3>
+<p>{stats.threat_score}</p>
+</div>
+
+
+<div>
+<h3>Critical Alerts</h3>
+<p>{stats.critical_alerts}</p>
+</div>
+
+
+<div>
+<h3>Incidents</h3>
+<p>{stats.open_incidents}</p>
+</div>
+
+
+</section>
+
 
 
 <button onClick={logout}>
@@ -33,144 +83,10 @@ Logout
 </button>
 
 
-</div>
-
-
-
-<div className="content">
-
-
-<h1>
-SOC Command Center
-</h1>
-
-
-<div className="card">
-
-<h3>
-Critical Alerts
-</h3>
-
-<h1 className="critical">
-1
-</h1>
 
 </div>
-
-
-
-<div className="card">
-
-<h3>
-Open Incidents
-</h3>
-
-<h1 className="warning">
-1
-</h1>
-
-
-</div>
-
-
-
-<div className="card">
-
-<h3>
-Threat Score
-</h3>
-
-<h1 className="critical">
-85
-</h1>
-
-
-</div>
-
-
-
-<div className="card">
-
-<h3>
-System Status
-</h3>
-
-<h1 className="success">
-ONLINE
-</h1>
-
-
-</div>
-
-
-
-<h2>
-Recent Security Events
-</h2>
-
-
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>ID</th>
-
-<th>Event</th>
-
-<th>Severity</th>
-
-<th>Status</th>
-
-
-</tr>
-
-</thead>
-
-
-
-<tbody>
-
-
-<tr>
-
-<td>1</td>
-
-<td>
-Suspicious Login
-</td>
-
-<td className="critical">
-HIGH
-</td>
-
-<td>
-Investigating
-</td>
-
-
-</tr>
-
-
-</tbody>
-
-
-</table>
-
-
-
-</div>
-
-
-</div>
-
 
 )
 
-
 }
-
 

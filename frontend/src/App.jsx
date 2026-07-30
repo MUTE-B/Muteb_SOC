@@ -1,47 +1,42 @@
-import ScannerDashboard from './components/ScannerDashboard';
-
-import React,{useState} from "react";
-
-import {
-BrowserRouter,
-Routes,
-Route,
-Link
-}
-from "react-router-dom";
-
-
+import {useState} from "react";
 import Login from "./pages/Login";
-
-import Dashboard from "./pages/Dashboard";
-
-import EnterpriseDashboard from "./pages/EnterpriseDashboard";
-
-import WebScanner from "./scanner/WebScanner";
-
-
-import "./App.css";
-
+import {dashboard} from "./services/api";
 
 
 export default function App(){
 
-
 const [user,setUser]=useState(
-localStorage.getItem("muteb_user")
+()=>{
+const saved=localStorage.getItem("muteb_user");
+return saved ? JSON.parse(saved):null;
+}
 );
 
 
+const [data,setData]=useState(null);
 
-function login(data){
+
+async function handleLogin(u){
 
 localStorage.setItem(
 "muteb_user",
-JSON.stringify(data)
+JSON.stringify(u)
 );
 
+setUser(u);
 
-setUser(data);
+try{
+
+const result =
+await dashboard(u.token);
+
+setData(result);
+
+}catch(e){
+
+console.log(e);
+
+}
 
 }
 
@@ -53,8 +48,8 @@ localStorage.removeItem(
 "muteb_user"
 );
 
-
 setUser(null);
+setData(null);
 
 }
 
@@ -63,12 +58,10 @@ setUser(null);
 if(!user){
 
 return (
-
 <Login
-onLogin={login}
+onLogin={handleLogin}
 />
-
-)
+);
 
 }
 
@@ -76,149 +69,77 @@ onLogin={login}
 
 return (
 
-<BrowserRouter>
+<div style={{
+background:"#020617",
+color:"white",
+minHeight:"100vh",
+padding:"40px",
+fontFamily:"Arial"
+}}>
 
-
-<div className="soc-layout">
-
-
-<nav className="soc-menu">
+<h1>
+MUTEB SOC Enterprise
+</h1>
 
 
 <h2>
-MUTEB SOC ENTERPRISE
+Security Operations Center Dashboard
 </h2>
 
 
-<h4>OPERATIONS</h4>
-
-<Link to="/">Dashboard</Link>
-
-<Link to="/enterprise">
-Security Monitoring
-</Link>
-
-<Link to="/alerts">
-Alerts
-</Link>
-
-<Link to="/incidents">
-Incidents
-</Link>
-
-<Link to="/cases">
-Cases
-</Link>
+<p>
+User:
+<b>{user.username}</b>
+</p>
 
 
-
-<h4>THREAT INTELLIGENCE</h4>
-
-<Link to="/hunting">
-Threat Hunting
-</Link>
-
-<Link to="/ioc">
-IOC Management
-</Link>
-
-<Link to="/mitre">
-MITRE ATT&CK
-</Link>
+<p>
+Role:
+<b>{user.role}</b>
+</p>
 
 
+{
 
-<h4>SECURITY ENGINEERING</h4>
+data &&
 
-<Link to="/detection">
-Detection Engine
-</Link>
+<div>
 
-<Link to="/scanner">
-Web Security Scanner
-</Link>
+<hr/>
 
+<h3>
+System Status
+</h3>
 
+<p>
+Active Users:
+{data.active_users}
+</p>
 
-<h4>REPORTING</h4>
+<p>
+Threat Score:
+{data.threat_score}
+</p>
 
-<Link to="/reports">
-Reports
-</Link>
+</div>
+
+}
 
 
 
 <button
 onClick={logout}
+style={{
+marginTop:30,
+padding:10
+}}
 >
 Logout
 </button>
 
 
-</nav>
-
-
-
-<main className="soc-content">
-
-
-<Routes>
-
-
-<Route
-path="/"
-element={
-<Dashboard logout={logout}/>
-}
-/>
-
-
-
-<Route
-path="/enterprise"
-element={
-<EnterpriseDashboard/>
-}
-/>
-
-
-
-<Route
-path="/scanner"
-element={
-<WebScanner/>
-}
-/>
-
-
-
-</Routes>
-
-
-</main>
-
-
 </div>
 
-
-</BrowserRouter>
-
-
-)
-
-
-}
-
-
-
-
-export function ScannerDashboardPage(){
-
-return (
-
-<ScannerDashboard />
-
 )
 
 }
-
