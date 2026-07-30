@@ -47,3 +47,11 @@ dist/
 build/
 
 
+
+# MUTEB SOC temporary files
+archive/
+*.backup
+*.before_*
+*.pyc
+__pycache__/
+
